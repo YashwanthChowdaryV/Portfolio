@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificates | V Yashwanth Kumar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Certificate Styles */
+        .certificate-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .certificate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .certificate-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .certificate-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .certificate-card:hover .certificate-image img {
+            transform: scale(1.05);
+        }
+        
+        .certificate-content {
+            padding: 20px;
+        }
+        
+        .certificate-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .badge-internship { background-color: #e83e8c; }
+        .badge-dsa { background-color: #6610f2; }
+        .badge-ai { background-color: #dc3545; }
+        .badge-web { background-color: #28a745; }
+        .badge-networks { background-color: #fd7e14; }
+        .badge-nptel { background-color: #6f42c1; }
+        .badge-iot { background-color: #20c997; }
+        .badge-participation { background-color: #17a2b8; }
+        
+        .certificate-org {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Filter Buttons */
+        .certificate-filter {
+            margin-bottom: 30px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            border: 2px solid #dee2e6;
+            background: white;
+            color: #495057;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #0d6efd;
+            color: white;
+            border-color: #0d6efd;
+        }
+        
+        /* Modal Styles */
+        .certificate-modal-image {
+            width: 100%;
+            max-height: 500px;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+        }
+        
+        .certificate-modal-image img {
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            object-fit: contain;
+        }
+        
+        /* Page Header */
+        .page-header {
+            padding: 120px 0 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Google Cloud Profile */
+        .google-cloud-profile {
+            background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .google-cloud-profile a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .google-cloud-profile a:hover {
+            color: #f1f1f1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .certificate-modal-image {
+                max-height: 400px;
+            }
+            
+            .filter-buttons {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .filter-btn {
+                white-space: nowrap;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .certificate-modal-image {
+                max-height: 300px;
+            }
+        }
+        
+        /* Certificate Item Animation */
+        .certificate-item {
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-name">V Yashwanth Kumar</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="certificates.html">Certificates</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="display-4 fw-bold">Certificates</h1>
+                    <p class="lead">Professional certifications and achievements</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Cloud Profile -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="google-cloud-profile">
+                <div class="row align-items-center">
+                    <div class="col-md-2 text-center">
+                        <i class="fab fa-google fa-4x mb-3 mb-md-0"></i>
+                    </div>
+                    <div class="col-md-10">
+                        <h3>Google Cloud Skill Boost Profile</h3>
+                        <p>View all my Google Cloud certifications and skill badges</p>
+                        <a href="https://www.skills.google/public_profiles/cbc71777-09db-4ef1-b6c1-7469d69b7549" target="_blank">
+                            https://www.skills.google/public_profiles/cbc71777-09db-4ef1-b6c1-7469d69b7549
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificate Filter -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="certificate-filter">
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" onclick="filterCertificates('all')">All Certificates</button>
+                            <button class="filter-btn" onclick="filterCertificates('internship')">Virtual Internships</button>
+                            <button class="filter-btn" onclick="filterCertificates('dsa')">DSA & Programming</button>
+                            <button class="filter-btn" onclick="filterCertificates('ai')">AI</button>
+                            <button class="filter-btn" onclick="filterCertificates('web')">Web Development</button>
+                            <button class="filter-btn" onclick="filterCertificates('networks')">Networks & Cloud</button>
+                            <button class="filter-btn" onclick="filterCertificates('nptel')">NPTEL</button>
+                            <button class="filter-btn" onclick="filterCertificates('iot')">IoT</button>
+                            <button class="filter-btn" onclick="filterCertificates('participation')">Participation</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificates Grid -->
+            <div class="row g-4" id="certificatesContainer">
+                <!-- Virtual Internships -->
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="internship">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/gen-ai-internship.jpg" alt="Gen AI Virtual Internship">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-internship">Virtual Internship</div>
+                            <h5>Gen AI Virtual Internship</h5>
+                            <p class="certificate-org">AICTE - Google Cloud</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('gen-ai-internship')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="internship">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/aiml-internship.jpg" alt="AIML Virtual Internship">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-internship">Virtual Internship</div>
+                            <h5>AIML Virtual Internship</h5>
+                            <p class="certificate-org">AICTE - Google Cloud</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('aiml-internship')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="internship">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/servicenow-internship.jpg" alt="ServiceNow Virtual Internship">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-internship">Virtual Internship</div>
+                            <h5>ServiceNow Virtual Internship</h5>
+                            <p class="certificate-org">ServiceNow</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('servicenow-internship')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="internship">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/cisco-internship.jpg" alt="Cisco Virtual Internship">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-internship">Virtual Internship</div>
+                            <h5>Cisco Virtual Internship</h5>
+                            <p class="certificate-org">Cisco</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('cisco-internship')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DSA & Programming -->
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/smart-coder.jpg" alt="Smart Coder">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-dsa">DSA</div>
+                            <h5>Smart Coder</h5>
+                            <p class="certificate-org">SmartInterviews</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('smart-coder')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/graph-theory.jpg" alt="Graph Theory Programming Camp">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-dsa">DSA</div>
+                            <h5>Graph Theory Programming Camp</h5>
+                            <p class="certificate-org">AlgoUniversity</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('graph-theory')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/python-bootcamp.jpg" alt="100 Days of Code Python Bootcamp">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-dsa">Programming</div>
+                            <h5>100 Days of Code Python Bootcamp</h5>
+                            <p class="certificate-org">Udemy</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('python-bootcamp')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/java-fundamentals.jpg" alt="Java Fundamentals">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-dsa">Programming</div>
+                            <h5>Java Fundamentals</h5>
+                            <p class="certificate-org">Infosys</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('java-fundamentals')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/python-fundamentals.jpg" alt="Python Fundamentals">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-dsa">Programming</div>
+                            <h5>Python Fundamentals</h5>
+                            <p class="certificate-org">Infosys</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('python-fundamentals')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/dsa-infosys.jpg" alt="Data Structures">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-dsa">DSA</div>
+                            <h5>Data Structures</h5>
+                            <p class="certificate-org">Infosys</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('dsa-infosys')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/c-programming.jpg" alt="C Programming Course">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-dsa">Programming</div>
+                            <h5>C Programming Course</h5>
+                            <p class="certificate-org">Infosys</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('c-programming')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/c-programming-101.jpg" alt="C Programming 101">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-dsa">Programming</div>
+                            <h5>C Programming 101</h5>
+                            <p class="certificate-org">Infosys</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('c-programming-101')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/cpp-essentials.jpg" alt="C++ Essentials">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-dsa">Programming</div>
+                            <h5>C++ Essentials</h5>
+                            <p class="certificate-org">Cisco</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('cpp-essentials')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI -->
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="ai">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/chatgpt-ai-apps.jpg" alt="Build AI Apps with ChatGPT">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-ai">AI</div>
+                            <h5>Build AI Apps with ChatGPT</h5>
+                            <p class="certificate-org">Scrimba</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('chatgpt-ai-apps')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="ai">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/applied-ai.jpg" alt="Applied AI">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-ai">AI</div>
+                            <h5>Applied AI</h5>
+                            <p class="certificate-org">IBM SkillBuild</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('applied-ai')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="ai">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/google-ai-essentials.jpg" alt="Google AI Essentials">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-ai">AI</div>
+                            <h5>Google AI Essentials</h5>
+                            <p class="certificate-org">Coursera</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('google-ai-essentials')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="ai">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/modern-ai.jpg" alt="Introduction to Modern AI">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-ai">AI</div>
+                            <h5>Introduction to Modern AI</h5>
+                            <p class="certificate-org">Cisco</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('modern-ai')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Development -->
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="web">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/react-js.jpg" alt="React.js">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-web">Web Development</div>
+                            <h5>React.js</h5>
+                            <p class="certificate-org">Infosys</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('react-js')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="web">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/mongodb-toolkit.jpg" alt="MongoDB Developers Toolkit">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-web">Web Development</div>
+                            <h5>MongoDB Developers Toolkit</h5>
+                            <p class="certificate-org">GeeksForGeeks</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('mongodb-toolkit')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="web">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/mongodb-sql.jpg" alt="MongoDB for SQL Experts">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-web">Web Development</div>
+                            <h5>MongoDB for SQL Experts</h5>
+                            <p class="certificate-org">MongoDB</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('mongodb-sql')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="web">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/relation-to-document.jpg" alt="Relation to Document Model">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-web">Web Development</div>
+                            <h5>Relation to Document Model</h5>
+                            <p class="certificate-org">MongoDB</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('relation-to-document')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Networks & Cloud -->
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/ccna-intro.jpg" alt="CCNA Introduction to Networks">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-networks">Networks</div>
+                            <h5>CCNA Introduction to Networks</h5>
+                            <p class="certificate-org">Cisco</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('ccna-intro')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/cisco-packet-tracer.jpg" alt="Exploring Networking with Cisco Packet Tracer">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-networks">Networks</div>
+                            <h5>Exploring Networking with Cisco Packet Tracer</h5>
+                            <p class="certificate-org">Cisco</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('cisco-packet-tracer')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/vip-networking.jpg" alt="VIP 2025 Networking Essentials">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-networks">Networks</div>
+                            <h5>VIP 2025 Networking Essentials</h5>
+                            <p class="certificate-org">Cisco</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('vip-networking')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/journey-to-cloud-culture.jpg" alt="Journey to Cloud: Transforming your Culture">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-networks">Cloud</div>
+                            <h5>Journey to Cloud: Transforming your Culture</h5>
+                            <p class="certificate-org">IBM</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('journey-to-cloud-culture')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/journey-to-cloud-solution.jpg" alt="Journey to Cloud: Envisioning Your Solution">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-networks">Cloud</div>
+                            <h5>Journey to Cloud: Envisioning Your Solution</h5>
+                            <p class="certificate-org">IBM</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('journey-to-cloud-solution')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/intro-to-os.jpg" alt="Introduction to OS">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-networks">OS</div>
+                            <h5>Introduction to OS</h5>
+                            <p class="certificate-org">Cisco</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('intro-to-os')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NPTEL -->
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="nptel">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/nptel-os.jpg" alt="Introduction to Operating System">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-nptel">NPTEL</div>
+                            <h5>Introduction to Operating System</h5>
+                            <p class="certificate-org">NPTEL (66% - TOP 5%)</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('nptel-os')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="nptel">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/nptel-db.jpg" alt="Introduction to Database System">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-nptel">NPTEL</div>
+                            <h5>Introduction to Database System</h5>
+                            <p class="certificate-org">NPTEL (56%)</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('nptel-db')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IoT -->
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="iot">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/iot-intro.jpg" alt="Introduction to IoT">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-iot">IoT</div>
+                            <h5>Introduction to IoT</h5>
+                            <p class="certificate-org">Cisco</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('iot-intro')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Participation Certificates -->
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/gdg-devfest.jpg" alt="GDG DevFest 2025">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-participation">Participation</div>
+                            <h5>GDG DevFest 2025</h5>
+                            <p class="certificate-org">Google Developer Groups</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('gdg-devfest')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/aws-summit.jpg" alt="AWS Summit 2025">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-participation">Participation</div>
+                            <h5>AWS Summit 2025</h5>
+                            <p class="certificate-org">Amazon Web Services</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('aws-summit')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/codefiesta.jpg" alt="CodeFiesta 5.0">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-participation">Participation</div>
+                            <h5>CodeFiesta 5.0 Hackathon</h5>
+                            <p class="certificate-org">SKSVMA College of Engineering</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('codefiesta')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/techhack.jpg" alt="TechHack#3">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-participation">Participation</div>
+                            <h5>TechHack#3 Hackathon</h5>
+                            <p class="certificate-org">Anurag University</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('techhack')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/hackattack.jpg" alt="Hackattack#1">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-participation">Participation</div>
+                            <h5>Hackattack#1 Hackathon</h5>
+                            <p class="certificate-org">Anurag University</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('hackattack')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/innoquest.jpg" alt="Innoquest#4">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-participation">Participation</div>
+                            <h5>Innoquest#4 Hackathon</h5>
+                            <p class="certificate-org">Anurag University</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('innoquest')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/tejas-expo.jpg" alt="Tejas2k25 Expo">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-participation">Participation</div>
+                            <h5>Tejas2k25 Expo</h5>
+                            <p class="certificate-org">Anurag University</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('tejas-expo')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation">
+                    <div class="certificate-card">
+                        <div class="certificate-image">
+                            <img src="images/icacii.jpg" alt="ICACII Conference">
+                        </div>
+                        <div class="certificate-content">
+                            <div class="certificate-badge badge-participation">Participation</div>
+                            <h5>ICACII International Conference</h5>
+                            <p class="certificate-org">Anurag University</p>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('icacii')">View Certificate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificate View Modal -->
+    <div class="modal fade" id="certificateModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Certificate</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="certificate-modal-image">
+                        <img id="modalImage" src="" alt="Certificate">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h4>V Yashwanth Kumar</h4>
+                    <p>Full-Stack Developer & ML Enthusiast</p>
+                    <p class="small">B.Tech Computer Science & Engineering<br>Anurag University</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="certificates.html">Certificates</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Contact</h5>
+                    <p><i class="fas fa-envelope me-2"></i> yashwanthkumarv155@gmail.com</p>
+                    <p><i class="fas fa-phone me-2"></i> +91 9951810271</p>
+                    <div class="social-links">
+                        <a href="https://github.com/YashwanthChowdaryV" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/www.linkedin.com/in/vankayalapati-yashwanth-kumar-730091315/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com/yourusername" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com/__yashwanth.15" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2024 V Yashwanth Kumar. All rights reserved.</p>
+                    <p class="mt-2 small">Thank you for visiting my portfolio!</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Certificate images mapping
+        const certificateImages = {
+            // Virtual Internships
+            'gen-ai-internship': 'images/gen-ai-internship.jpg',
+            'aiml-internship': 'images/aiml-internship.jpg',
+            'servicenow-internship': 'images/servicenow-internship.jpg',
+            'cisco-internship': 'images/cisco-internship.jpg',
+            
+            // DSA & Programming
+            'smart-coder': 'images/smart-coder.jpg',
+            'graph-theory': 'images/graph-theory.jpg',
+            'python-bootcamp': 'images/python-bootcamp.jpg',
+            'java-fundamentals': 'images/java-fundamentals.jpg',
+            'python-fundamentals': 'images/python-fundamentals.jpg',
+            'dsa-infosys': 'images/dsa-infosys.jpg',
+            'c-programming': 'images/c-programming.jpg',
+            'c-programming-101': 'images/c-programming-101.jpg',
+            'cpp-essentials': 'images/cpp-essentials.jpg',
+            
+            // AI
+            'chatgpt-ai-apps': 'images/chatgpt-ai-apps.jpg',
+            'applied-ai': 'images/applied-ai.jpg',
+            'google-ai-essentials': 'images/google-ai-essentials.jpg',
+            'modern-ai': 'images/modern-ai.jpg',
+            
+            // Web Development
+            'react-js': 'images/react-js.jpg',
+            'mongodb-toolkit': 'images/mongodb-toolkit.jpg',
+            'mongodb-sql': 'images/mongodb-sql.jpg',
+            'relation-to-document': 'images/relation-to-document.jpg',
+            
+            // Networks & Cloud
+            'ccna-intro': 'images/ccna-intro.jpg',
+            'cisco-packet-tracer': 'images/cisco-packet-tracer.jpg',
+            'vip-networking': 'images/vip-networking.jpg',
+            'journey-to-cloud-culture': 'images/journey-to-cloud-culture.jpg',
+            'journey-to-cloud-solution': 'images/journey-to-cloud-solution.jpg',
+            'intro-to-os': 'images/intro-to-os.jpg',
+            
+            // NPTEL
+            'nptel-os': 'images/nptel-os.jpg',
+            'nptel-db': 'images/nptel-db.jpg',
+            
+            // IoT
+            'iot-intro': 'images/iot-intro.jpg',
+            
+            // Participation
+            'gdg-devfest': 'images/gdg-devfest.jpg',
+            'aws-summit': 'images/aws-summit.jpg',
+            'codefiesta': 'images/codefiesta.jpg',
+            'techhack': 'images/techhack.jpg',
+            'hackattack': 'images/hackattack.jpg',
+            'innoquest': 'images/innoquest.jpg',
+            'tejas-expo': 'images/tejas-expo.jpg',
+            'icacii': 'images/icacii.jpg'
+        };
+
+        // Certificate titles mapping
+        const certificateTitles = {
+            // Virtual Internships
+            'gen-ai-internship': 'Gen AI Virtual Internship - AICTE - Google Cloud',
+            'aiml-internship': 'AIML Virtual Internship - AICTE - Google Cloud',
+            'servicenow-internship': 'ServiceNow Virtual Internship',
+            'cisco-internship': 'Cisco Virtual Internship',
+            
+            // DSA & Programming
+            'smart-coder': 'Smart Coder - SmartInterviews',
+            'graph-theory': 'Graph Theory Programming Camp - AlgoUniversity',
+            'python-bootcamp': '100 Days of Code Complete Python Pro Bootcamp - Udemy',
+            'java-fundamentals': 'Java Fundamentals - Infosys',
+            'python-fundamentals': 'Python Fundamentals - Infosys',
+            'dsa-infosys': 'Data Structures - Infosys',
+            'c-programming': 'C programming Course - Infosys',
+            'c-programming-101': 'C programming 101 - Infosys',
+            'cpp-essentials': 'C++ Essentials - Cisco',
+            
+            // AI
+            'chatgpt-ai-apps': 'Build AI Apps with ChatGPT, Dall-E, and GPT-4 - Scrimba',
+            'applied-ai': 'Applied AI Learn Build and Create an AI Agent - IBM SkillBuild',
+            'google-ai-essentials': 'Google AI Essentials V1 - Coursera',
+            'modern-ai': 'Introduction to Modern AI - Cisco',
+            
+            // Web Development
+            'react-js': 'React.js - Infosys',
+            'mongodb-toolkit': 'MongoDB Developers ToolKit - GeeksForGeeks',
+            'mongodb-sql': 'MongoDB for SQL Experts - MongoDB',
+            'relation-to-document': 'Relation to Document Model - MongoDB',
+            
+            // Networks & Cloud
+            'ccna-intro': 'CCNA - Introduction to Networks - Cisco',
+            'cisco-packet-tracer': 'Exploring Networking with Cisco Packet Tracer - Cisco',
+            'vip-networking': 'VIP 2025 Networking Essentials - Cisco',
+            'journey-to-cloud-culture': 'Journey to Cloud: Transforming your Culture - IBM',
+            'journey-to-cloud-solution': 'Journey to Cloud: Envisioning Your Solution - IBM',
+            'intro-to-os': 'Introduction to OS - Cisco',
+            
+            // NPTEL
+            'nptel-os': 'Introduction to Operating System - NPTEL (66% - TOP 5%)',
+            'nptel-db': 'Introduction to Database System - NPTEL (56%)',
+            
+            // IoT
+            'iot-intro': 'Introduction to IoT and Digital Transformation - Cisco',
+            
+            // Participation
+            'gdg-devfest': 'GDG DevFest 2025',
+            'aws-summit': 'AWS Summit 2025',
+            'codefiesta': 'CodeFiesta 5.0 Hackathon - SKSVMA College of Engineering',
+            'techhack': 'TechHack#3 Hackathon - Anurag University',
+            'hackattack': 'Hackattack#1 Hackathon - Anurag University',
+            'innoquest': 'Innoquest#4 Hackathon - Anurag University',
+            'tejas-expo': 'Tejas2k25 Expo - Anurag University',
+            'icacii': 'ICACII International Conference - Anurag University'
+        };
+
+        // View certificate function
+        function viewCertificate(id) {
+            const imagePath = certificateImages[id];
+            const title = certificateTitles[id];
+            
+            if (imagePath) {
+                document.getElementById('modalTitle').textContent = title;
+                document.getElementById('modalImage').src = imagePath;
+                document.getElementById('modalImage').alt = title;
+                
+                const modal = new bootstrap.Modal(document.getElementById('certificateModal'));
+                modal.show();
+            }
+        }
+
+        // Filter certificates function
+        function filterCertificates(category) {
+            const items = document.querySelectorAll('.certificate-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(category) || 
+                    (category === 'all' && btn.textContent === 'All Certificates')) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Show/hide items
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // Initialize filter on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            filterCertificates('all');
+        });
+    </script>
+</body>
+</html>
