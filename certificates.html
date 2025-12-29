@@ -5,32 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificates | V Yashwanth Kumar</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Certificate Styles */
+        /* Certificate Page Animations */
         .certificate-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
-            border: none;
-            border-radius: 10px;
-            overflow: hidden;
             background: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-radius: 20px;
+            padding: 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(78, 84, 200, 0.1);
+            height: 100%;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .certificate-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(78, 84, 200, 0.15);
         }
         
         .certificate-image {
             width: 100%;
             height: 200px;
             overflow: hidden;
-            position: relative;
         }
         
         .certificate-image img {
@@ -41,65 +50,126 @@
         }
         
         .certificate-card:hover .certificate-image img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
         
         .certificate-content {
-            padding: 20px;
+            padding: 1.5rem;
         }
         
         .certificate-badge {
             display: inline-block;
-            padding: 4px 12px;
+            padding: 0.3rem 0.8rem;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 0.8rem;
             color: white;
         }
         
-        .badge-internship { background-color: #e83e8c; }
-        .badge-dsa { background-color: #6610f2; }
-        .badge-ai { background-color: #dc3545; }
-        .badge-web { background-color: #28a745; }
-        .badge-networks { background-color: #fd7e14; }
-        .badge-nptel { background-color: #6f42c1; }
-        .badge-iot { background-color: #20c997; }
-        .badge-participation { background-color: #17a2b8; }
+        .badge-internship { background: linear-gradient(135deg, #e83e8c, #d63384); }
+        .badge-dsa { background: linear-gradient(135deg, #6610f2, #6f42c1); }
+        .badge-ai { background: linear-gradient(135deg, #dc3545, #c82333); }
+        .badge-web { background: linear-gradient(135deg, #28a745, #218838); }
+        .badge-networks { background: linear-gradient(135deg, #fd7e14, #e96b0c); }
+        .badge-nptel { background: linear-gradient(135deg, #6f42c1, #5a32a3); }
+        .badge-iot { background: linear-gradient(135deg, #20c997, #17a589); }
+        .badge-participation { background: linear-gradient(135deg, #17a2b8, #138496); }
         
         .certificate-org {
-            color: #6c757d;
+            color: #666;
             font-size: 0.9rem;
-            margin-bottom: 10px;
+            margin-bottom: 1rem;
         }
         
         /* Filter Buttons */
         .certificate-filter {
-            margin-bottom: 30px;
+            margin-bottom: 3rem;
         }
         
         .filter-buttons {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 0.8rem;
             justify-content: center;
         }
         
         .filter-btn {
-            padding: 8px 20px;
-            border: 2px solid #dee2e6;
+            padding: 0.6rem 1.5rem;
+            border: 2px solid rgba(102, 126, 234, 0.2);
             background: white;
             color: #495057;
             border-radius: 50px;
             transition: all 0.3s ease;
             font-weight: 500;
+            font-family: 'Poppins', sans-serif;
         }
         
         .filter-btn:hover,
         .filter-btn.active {
-            background: #0d6efd;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            border-color: #0d6efd;
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* Page Header */
+        .page-header {
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: gradientShift 10s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .page-header .lead {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        /* Google Cloud Profile */
+        .google-cloud-profile {
+            background: linear-gradient(135deg, #4285f4, #34a853, #fbbc05, #ea4335);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            box-shadow: 0 15px 35px rgba(66, 133, 244, 0.2);
+            transition: all 0.4s ease;
+        }
+        
+        .google-cloud-profile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(66, 133, 244, 0.3);
+        }
+        
+        .google-cloud-profile a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .google-cloud-profile a:hover {
+            border-bottom-color: white;
+            text-decoration: none;
         }
         
         /* Modal Styles */
@@ -107,8 +177,8 @@
             width: 100%;
             max-height: 500px;
             overflow: hidden;
-            border-radius: 8px;
-            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            border: 1px solid rgba(78, 84, 200, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -122,77 +192,106 @@
             object-fit: contain;
         }
         
-        /* Page Header */
-        .page-header {
-            padding: 120px 0 60px;
+        /* Certificate Item Animation */
+        .certificate-item {
+            animation-delay: calc(var(--animation-order) * 0.1s);
+        }
+        
+        /* View Button */
+        .certificate-view-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .certificate-view-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            color: white;
+        }
+        
+        /* Counter Animation */
+        .counter {
+            font-size: 2.5rem;
+            font-weight: 700;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
         }
         
-        .page-header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
-        /* Google Cloud Profile */
-        .google-cloud-profile {
-            background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
-            color: white;
-            border-radius: 10px;
-            padding: 30px;
-            margin: 40px 0;
-        }
-        
-        .google-cloud-profile a {
-            color: white;
-            text-decoration: underline;
-        }
-        
-        .google-cloud-profile a:hover {
-            color: #f1f1f1;
+        .counter-label {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
         }
         
         /* Responsive */
+        @media (max-width: 992px) {
+            .page-header h1 {
+                font-size: 3rem;
+            }
+            
+            .google-cloud-profile {
+                padding: 2rem;
+            }
+        }
+        
         @media (max-width: 768px) {
             .page-header h1 {
                 font-size: 2.5rem;
             }
             
-            .certificate-modal-image {
-                max-height: 400px;
-            }
-            
             .filter-buttons {
                 justify-content: flex-start;
                 overflow-x: auto;
-                padding-bottom: 10px;
+                padding-bottom: 1rem;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            
+            .filter-buttons::-webkit-scrollbar {
+                display: none;
             }
             
             .filter-btn {
                 white-space: nowrap;
             }
+            
+            .counter {
+                font-size: 2rem;
+            }
         }
         
         @media (max-width: 576px) {
+            .page-header {
+                padding: 120px 0 60px;
+            }
+            
             .page-header h1 {
                 font-size: 2rem;
             }
             
-            .certificate-modal-image {
-                max-height: 300px;
+            .google-cloud-profile {
+                padding: 1.5rem;
+                text-align: center;
+            }
+            
+            .certificate-view-btn {
+                width: 100%;
+                justify-content: center;
             }
         }
         
-        /* Certificate Item Animation */
-        .certificate-item {
-            animation: fadeInUp 0.5s ease;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+        /* Stagger animations */
+        @keyframes staggerFadeIn {
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -216,7 +315,7 @@
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="about.html">Skills & DSA</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="projects.html">Projects</a>
@@ -237,8 +336,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1 class="display-4 fw-bold">Certificates</h1>
-                    <p class="lead">Professional certifications and achievements</p>
+                    <h1 class="display-4 fw-bold typewriter">My Certificates</h1>
+                    <p class="lead mt-3 floating-element" style="animation-duration: 4s;">Professional certifications and achievements showcasing my continuous learning journey</p>
                 </div>
             </div>
         </div>
@@ -247,15 +346,15 @@
     <!-- Google Cloud Profile -->
     <section class="section-padding">
         <div class="container">
-            <div class="google-cloud-profile">
+            <div class="google-cloud-profile stagger-animation" style="animation-delay: 0.3s;">
                 <div class="row align-items-center">
-                    <div class="col-md-2 text-center">
-                        <i class="fab fa-google fa-4x mb-3 mb-md-0"></i>
+                    <div class="col-md-2 text-center mb-4 mb-md-0">
+                        <i class="fab fa-google fa-4x"></i>
                     </div>
                     <div class="col-md-10">
-                        <h3>Google Cloud Skill Boost Profile</h3>
-                        <p>View all my Google Cloud certifications and skill badges</p>
-                        <a href="https://www.skills.google/public_profiles/cbc71777-09db-4ef1-b6c1-7469d69b7549" target="_blank">
+                        <h3 class="mb-3">Google Cloud Skill Boost Profile</h3>
+                        <p class="mb-4">View all my Google Cloud certifications, skill badges, and hands-on labs in one place.</p>
+                        <a href="https://www.skills.google/public_profiles/cbc71777-09db-4ef1-b6c1-7469d69b7549" target="_blank" class="d-inline-block">
                             https://www.skills.google/public_profiles/cbc71777-09db-4ef1-b6c1-7469d69b7549
                         </a>
                     </div>
@@ -267,28 +366,54 @@
     <!-- Certificate Filter -->
     <section class="section-padding">
         <div class="container">
-            <div class="row mb-4">
+            <div class="row mb-5">
                 <div class="col-12">
                     <div class="certificate-filter">
                         <div class="filter-buttons">
-                            <button class="filter-btn active" onclick="filterCertificates('all')">All Certificates</button>
-                            <button class="filter-btn" onclick="filterCertificates('internship')">Virtual Internships</button>
-                            <button class="filter-btn" onclick="filterCertificates('dsa')">DSA & Programming</button>
-                            <button class="filter-btn" onclick="filterCertificates('ai')">AI</button>
-                            <button class="filter-btn" onclick="filterCertificates('web')">Web Development</button>
-                            <button class="filter-btn" onclick="filterCertificates('networks')">Networks & Cloud</button>
-                            <button class="filter-btn" onclick="filterCertificates('nptel')">NPTEL</button>
-                            <button class="filter-btn" onclick="filterCertificates('iot')">IoT</button>
-                            <button class="filter-btn" onclick="filterCertificates('participation')">Participation</button>
+                            <button class="filter-btn active" onclick="filterCertificates('all')">
+                                <i class="fas fa-layer-group me-2"></i>All Certificates
+                            </button>
+                            <button class="filter-btn" onclick="filterCertificates('internship')">
+                                <i class="fas fa-briefcase me-2"></i>Virtual Internships
+                            </button>
+                            <button class="filter-btn" onclick="filterCertificates('dsa')">
+                                <i class="fas fa-code me-2"></i>DSA & Programming
+                            </button>
+                            <button class="filter-btn" onclick="filterCertificates('ai')">
+                                <i class="fas fa-brain me-2"></i>AI & ML
+                            </button>
+                            <button class="filter-btn" onclick="filterCertificates('web')">
+                                <i class="fas fa-globe me-2"></i>Web Development
+                            </button>
+                            <button class="filter-btn" onclick="filterCertificates('networks')">
+                                <i class="fas fa-network-wired me-2"></i>Networks & Cloud
+                            </button>
+                            <button class="filter-btn" onclick="filterCertificates('nptel')">
+                                <i class="fas fa-graduation-cap me-2"></i>NPTEL
+                            </button>
+                            <button class="filter-btn" onclick="filterCertificates('iot')">
+                                <i class="fas fa-microchip me-2"></i>IoT
+                            </button>
+                            <button class="filter-btn" onclick="filterCertificates('participation')">
+                                <i class="fas fa-users me-2"></i>Participation
+                            </button>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Certificate Count -->
+            <div class="row mb-5 text-center">
+                <div class="col-12">
+                    <div class="counter" id="certificateCount">35</div>
+                    <div class="counter-label">Certificates & Counting</div>
                 </div>
             </div>
 
             <!-- Certificates Grid -->
             <div class="row g-4" id="certificatesContainer">
                 <!-- Virtual Internships -->
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="internship">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="internship" style="--animation-order: 1;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/gen-ai-internship.jpg" alt="Gen AI Virtual Internship">
@@ -297,12 +422,14 @@
                             <div class="certificate-badge badge-internship">Virtual Internship</div>
                             <h5>Gen AI Virtual Internship</h5>
                             <p class="certificate-org">AICTE - Google Cloud</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('gen-ai-internship')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('gen-ai-internship')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="internship">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="internship" style="--animation-order: 2;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/aiml-internship.jpg" alt="AIML Virtual Internship">
@@ -311,12 +438,14 @@
                             <div class="certificate-badge badge-internship">Virtual Internship</div>
                             <h5>AIML Virtual Internship</h5>
                             <p class="certificate-org">AICTE - Google Cloud</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('aiml-internship')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('aiml-internship')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="internship">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="internship" style="--animation-order: 3;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/servicenow-internship.jpg" alt="ServiceNow Virtual Internship">
@@ -325,12 +454,14 @@
                             <div class="certificate-badge badge-internship">Virtual Internship</div>
                             <h5>ServiceNow Virtual Internship</h5>
                             <p class="certificate-org">ServiceNow</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('servicenow-internship')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('servicenow-internship')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="internship">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="internship" style="--animation-order: 4;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/cisco-internship.jpg" alt="Cisco Virtual Internship">
@@ -339,13 +470,15 @@
                             <div class="certificate-badge badge-internship">Virtual Internship</div>
                             <h5>Cisco Virtual Internship</h5>
                             <p class="certificate-org">Cisco</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('cisco-internship')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('cisco-internship')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- DSA & Programming -->
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa" style="--animation-order: 5;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/smart-coder.jpg" alt="Smart Coder">
@@ -354,12 +487,14 @@
                             <div class="certificate-badge badge-dsa">DSA</div>
                             <h5>Smart Coder</h5>
                             <p class="certificate-org">SmartInterviews</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('smart-coder')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('smart-coder')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa" style="--animation-order: 6;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/graph-theory.jpg" alt="Graph Theory Programming Camp">
@@ -368,12 +503,14 @@
                             <div class="certificate-badge badge-dsa">DSA</div>
                             <h5>Graph Theory Programming Camp</h5>
                             <p class="certificate-org">AlgoUniversity</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('graph-theory')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('graph-theory')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa" style="--animation-order: 7;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/python-bootcamp.jpg" alt="100 Days of Code Python Bootcamp">
@@ -382,12 +519,14 @@
                             <div class="certificate-badge badge-dsa">Programming</div>
                             <h5>100 Days of Code Python Bootcamp</h5>
                             <p class="certificate-org">Udemy</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('python-bootcamp')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('python-bootcamp')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa" style="--animation-order: 8;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/java-fundamentals.jpg" alt="Java Fundamentals">
@@ -396,12 +535,14 @@
                             <div class="certificate-badge badge-dsa">Programming</div>
                             <h5>Java Fundamentals</h5>
                             <p class="certificate-org">Infosys</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('java-fundamentals')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('java-fundamentals')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa" style="--animation-order: 9;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/python-fundamentals.jpg" alt="Python Fundamentals">
@@ -410,12 +551,14 @@
                             <div class="certificate-badge badge-dsa">Programming</div>
                             <h5>Python Fundamentals</h5>
                             <p class="certificate-org">Infosys</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('python-fundamentals')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('python-fundamentals')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa" style="--animation-order: 10;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/dsa-infosys.jpg" alt="Data Structures">
@@ -424,12 +567,14 @@
                             <div class="certificate-badge badge-dsa">DSA</div>
                             <h5>Data Structures</h5>
                             <p class="certificate-org">Infosys</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('dsa-infosys')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('dsa-infosys')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa" style="--animation-order: 11;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/c-programming.jpg" alt="C Programming Course">
@@ -438,12 +583,14 @@
                             <div class="certificate-badge badge-dsa">Programming</div>
                             <h5>C Programming Course</h5>
                             <p class="certificate-org">Infosys</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('c-programming')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('c-programming')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa" style="--animation-order: 12;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/c-programming-101.jpg" alt="C Programming 101">
@@ -452,12 +599,14 @@
                             <div class="certificate-badge badge-dsa">Programming</div>
                             <h5>C Programming 101</h5>
                             <p class="certificate-org">Infosys</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('c-programming-101')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('c-programming-101')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="dsa" style="--animation-order: 13;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/cpp-essentials.jpg" alt="C++ Essentials">
@@ -466,13 +615,15 @@
                             <div class="certificate-badge badge-dsa">Programming</div>
                             <h5>C++ Essentials</h5>
                             <p class="certificate-org">Cisco</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('cpp-essentials')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('cpp-essentials')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- AI -->
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="ai">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="ai" style="--animation-order: 14;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/chatgpt-ai-apps.jpg" alt="Build AI Apps with ChatGPT">
@@ -481,12 +632,14 @@
                             <div class="certificate-badge badge-ai">AI</div>
                             <h5>Build AI Apps with ChatGPT</h5>
                             <p class="certificate-org">Scrimba</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('chatgpt-ai-apps')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('chatgpt-ai-apps')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="ai">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="ai" style="--animation-order: 15;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/applied-ai.jpg" alt="Applied AI">
@@ -495,12 +648,14 @@
                             <div class="certificate-badge badge-ai">AI</div>
                             <h5>Applied AI</h5>
                             <p class="certificate-org">IBM SkillBuild</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('applied-ai')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('applied-ai')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="ai">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="ai" style="--animation-order: 16;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/google-ai-essentials.jpg" alt="Google AI Essentials">
@@ -509,12 +664,14 @@
                             <div class="certificate-badge badge-ai">AI</div>
                             <h5>Google AI Essentials</h5>
                             <p class="certificate-org">Coursera</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('google-ai-essentials')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('google-ai-essentials')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="ai">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="ai" style="--animation-order: 17;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/modern-ai.jpg" alt="Introduction to Modern AI">
@@ -523,13 +680,15 @@
                             <div class="certificate-badge badge-ai">AI</div>
                             <h5>Introduction to Modern AI</h5>
                             <p class="certificate-org">Cisco</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('modern-ai')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('modern-ai')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Web Development -->
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="web">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="web" style="--animation-order: 18;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/react-js.jpg" alt="React.js">
@@ -538,12 +697,14 @@
                             <div class="certificate-badge badge-web">Web Development</div>
                             <h5>React.js</h5>
                             <p class="certificate-org">Infosys</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('react-js')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('react-js')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="web">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="web" style="--animation-order: 19;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/mongodb-toolkit.jpg" alt="MongoDB Developers Toolkit">
@@ -552,12 +713,14 @@
                             <div class="certificate-badge badge-web">Web Development</div>
                             <h5>MongoDB Developers Toolkit</h5>
                             <p class="certificate-org">GeeksForGeeks</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('mongodb-toolkit')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('mongodb-toolkit')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="web">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="web" style="--animation-order: 20;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/mongodb-sql.jpg" alt="MongoDB for SQL Experts">
@@ -566,12 +729,14 @@
                             <div class="certificate-badge badge-web">Web Development</div>
                             <h5>MongoDB for SQL Experts</h5>
                             <p class="certificate-org">MongoDB</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('mongodb-sql')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('mongodb-sql')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="web">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="web" style="--animation-order: 21;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/relation-to-document.jpg" alt="Relation to Document Model">
@@ -580,13 +745,15 @@
                             <div class="certificate-badge badge-web">Web Development</div>
                             <h5>Relation to Document Model</h5>
                             <p class="certificate-org">MongoDB</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('relation-to-document')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('relation-to-document')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Networks & Cloud -->
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks" style="--animation-order: 22;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/ccna-intro.jpg" alt="CCNA Introduction to Networks">
@@ -595,12 +762,14 @@
                             <div class="certificate-badge badge-networks">Networks</div>
                             <h5>CCNA Introduction to Networks</h5>
                             <p class="certificate-org">Cisco</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('ccna-intro')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('ccna-intro')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks" style="--animation-order: 23;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/cisco-packet-tracer.jpg" alt="Exploring Networking with Cisco Packet Tracer">
@@ -609,12 +778,14 @@
                             <div class="certificate-badge badge-networks">Networks</div>
                             <h5>Exploring Networking with Cisco Packet Tracer</h5>
                             <p class="certificate-org">Cisco</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('cisco-packet-tracer')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('cisco-packet-tracer')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks" style="--animation-order: 24;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/vip-networking.jpg" alt="VIP 2025 Networking Essentials">
@@ -623,12 +794,14 @@
                             <div class="certificate-badge badge-networks">Networks</div>
                             <h5>VIP 2025 Networking Essentials</h5>
                             <p class="certificate-org">Cisco</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('vip-networking')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('vip-networking')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks" style="--animation-order: 25;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/journey-to-cloud-culture.jpg" alt="Journey to Cloud: Transforming your Culture">
@@ -637,12 +810,14 @@
                             <div class="certificate-badge badge-networks">Cloud</div>
                             <h5>Journey to Cloud: Transforming your Culture</h5>
                             <p class="certificate-org">IBM</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('journey-to-cloud-culture')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('journey-to-cloud-culture')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks" style="--animation-order: 26;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/journey-to-cloud-solution.jpg" alt="Journey to Cloud: Envisioning Your Solution">
@@ -651,12 +826,14 @@
                             <div class="certificate-badge badge-networks">Cloud</div>
                             <h5>Journey to Cloud: Envisioning Your Solution</h5>
                             <p class="certificate-org">IBM</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('journey-to-cloud-solution')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('journey-to-cloud-solution')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="networks" style="--animation-order: 27;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/intro-to-os.jpg" alt="Introduction to OS">
@@ -665,13 +842,15 @@
                             <div class="certificate-badge badge-networks">OS</div>
                             <h5>Introduction to OS</h5>
                             <p class="certificate-org">Cisco</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('intro-to-os')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('intro-to-os')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- NPTEL -->
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="nptel">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="nptel" style="--animation-order: 28;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/nptel-os.jpg" alt="Introduction to Operating System">
@@ -680,12 +859,14 @@
                             <div class="certificate-badge badge-nptel">NPTEL</div>
                             <h5>Introduction to Operating System</h5>
                             <p class="certificate-org">NPTEL (66% - TOP 5%)</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('nptel-os')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('nptel-os')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="nptel">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="nptel" style="--animation-order: 29;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/nptel-db.jpg" alt="Introduction to Database System">
@@ -694,13 +875,15 @@
                             <div class="certificate-badge badge-nptel">NPTEL</div>
                             <h5>Introduction to Database System</h5>
                             <p class="certificate-org">NPTEL (56%)</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('nptel-db')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('nptel-db')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- IoT -->
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="iot">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="iot" style="--animation-order: 30;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/iot-intro.jpg" alt="Introduction to IoT">
@@ -709,13 +892,15 @@
                             <div class="certificate-badge badge-iot">IoT</div>
                             <h5>Introduction to IoT</h5>
                             <p class="certificate-org">Cisco</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('iot-intro')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('iot-intro')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Participation Certificates -->
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation" style="--animation-order: 31;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/gdg-devfest.jpg" alt="GDG DevFest 2025">
@@ -724,12 +909,14 @@
                             <div class="certificate-badge badge-participation">Participation</div>
                             <h5>GDG DevFest 2025</h5>
                             <p class="certificate-org">Google Developer Groups</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('gdg-devfest')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('gdg-devfest')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation" style="--animation-order: 32;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/aws-summit.jpg" alt="AWS Summit 2025">
@@ -738,12 +925,14 @@
                             <div class="certificate-badge badge-participation">Participation</div>
                             <h5>AWS Summit 2025</h5>
                             <p class="certificate-org">Amazon Web Services</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('aws-summit')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('aws-summit')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation" style="--animation-order: 33;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/codefiesta.jpg" alt="CodeFiesta 5.0">
@@ -752,12 +941,14 @@
                             <div class="certificate-badge badge-participation">Participation</div>
                             <h5>CodeFiesta 5.0 Hackathon</h5>
                             <p class="certificate-org">SKSVMA College of Engineering</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('codefiesta')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('codefiesta')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation" style="--animation-order: 34;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/techhack.jpg" alt="TechHack#3">
@@ -766,12 +957,14 @@
                             <div class="certificate-badge badge-participation">Participation</div>
                             <h5>TechHack#3 Hackathon</h5>
                             <p class="certificate-org">Anurag University</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('techhack')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('techhack')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation" style="--animation-order: 35;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/hackattack.jpg" alt="Hackattack#1">
@@ -780,12 +973,14 @@
                             <div class="certificate-badge badge-participation">Participation</div>
                             <h5>Hackattack#1 Hackathon</h5>
                             <p class="certificate-org">Anurag University</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('hackattack')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('hackattack')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation" style="--animation-order: 36;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/innoquest.jpg" alt="Innoquest#4">
@@ -794,12 +989,14 @@
                             <div class="certificate-badge badge-participation">Participation</div>
                             <h5>Innoquest#4 Hackathon</h5>
                             <p class="certificate-org">Anurag University</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('innoquest')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('innoquest')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation" style="--animation-order: 37;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/tejas-expo.jpg" alt="Tejas2k25 Expo">
@@ -808,12 +1005,14 @@
                             <div class="certificate-badge badge-participation">Participation</div>
                             <h5>Tejas2k25 Expo</h5>
                             <p class="certificate-org">Anurag University</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('tejas-expo')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('tejas-expo')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation">
+                <div class="col-lg-4 col-md-6 certificate-item" data-category="participation" style="--animation-order: 38;">
                     <div class="certificate-card">
                         <div class="certificate-image">
                             <img src="images/icacii.jpg" alt="ICACII Conference">
@@ -822,7 +1021,9 @@
                             <div class="certificate-badge badge-participation">Participation</div>
                             <h5>ICACII International Conference</h5>
                             <p class="certificate-org">Anurag University</p>
-                            <button class="btn btn-sm btn-outline-primary" onclick="viewCertificate('icacii')">View Certificate</button>
+                            <button class="certificate-view-btn" onclick="viewCertificate('icacii')">
+                                <i class="fas fa-eye me-2"></i>View Certificate
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -854,28 +1055,28 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-4 mb-4">
                     <h4>V Yashwanth Kumar</h4>
                     <p>Full-Stack Developer & ML Enthusiast</p>
                     <p class="small">B.Tech Computer Science & Engineering<br>Anurag University</p>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 mb-4">
                     <h5>Quick Links</h5>
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
+                        <li><a href="about.html">Skills & DSA</a></li>
                         <li><a href="projects.html">Projects</a></li>
                         <li><a href="certificates.html">Certificates</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 mb-4">
                     <h5>Contact</h5>
                     <p><i class="fas fa-envelope me-2"></i> yashwanthkumarv155@gmail.com</p>
                     <p><i class="fas fa-phone me-2"></i> +91 9951810271</p>
                     <div class="social-links">
                         <a href="https://github.com/YashwanthChowdaryV" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/www.linkedin.com/in/vankayalapati-yashwanth-kumar-730091315/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://linkedin.com/in/vankayalapati-yashwanth-kumar-730091315/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
                         <a href="https://twitter.com/yourusername" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
                         <a href="https://instagram.com/__yashwanth.15" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -885,12 +1086,13 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <p class="mb-0">&copy; 2024 V Yashwanth Kumar. All rights reserved.</p>
-                    <p class="mt-2 small">Thank you for visiting my portfolio!</p>
+                    <p class="mt-2 small">Crafted with <i class="fas fa-heart text-danger"></i> and passion for innovation</p>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Certificate images mapping
@@ -1026,12 +1228,13 @@
         function filterCertificates(category) {
             const items = document.querySelectorAll('.certificate-item');
             const buttons = document.querySelectorAll('.filter-btn');
+            let count = 0;
             
             // Update active button
             buttons.forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.textContent.toLowerCase().includes(category) || 
-                    (category === 'all' && btn.textContent === 'All Certificates')) {
+                    (category === 'all' && btn.textContent.includes('All Certificates'))) {
                     btn.classList.add('active');
                 }
             });
@@ -1040,23 +1243,52 @@
             items.forEach(item => {
                 if (category === 'all' || item.getAttribute('data-category') === category) {
                     item.style.display = 'block';
+                    count++;
+                    // Add animation delay based on position
                     setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
+                        item.style.animation = `fadeInUp 0.8s ease calc(var(--animation-order) * 0.1s) forwards`;
                     }, 100);
                 } else {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        item.style.display = 'none';
-                    }, 300);
+                    item.style.animation = 'none';
+                    item.style.display = 'none';
                 }
             });
+            
+            // Update counter
+            document.getElementById('certificateCount').textContent = count;
         }
 
-        // Initialize filter on page load
+        // Initialize animations on page load
         document.addEventListener('DOMContentLoaded', function() {
-            filterCertificates('all');
+            // Set initial count
+            const totalItems = document.querySelectorAll('.certificate-item').length;
+            document.getElementById('certificateCount').textContent = totalItems;
+            
+            // Animate certificate cards on load
+            setTimeout(() => {
+                const items = document.querySelectorAll('.certificate-item');
+                items.forEach((item, index) => {
+                    item.style.animation = `fadeInUp 0.8s ease ${index * 0.05}s forwards`;
+                });
+            }, 300);
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Set current year in footer
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('footer .text-center p').forEach(p => {
+                if (p.textContent.includes('2024')) {
+                    p.textContent = p.textContent.replace('2024', currentYear);
+                }
+            });
         });
     </script>
 </body>
