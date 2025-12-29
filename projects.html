@@ -466,6 +466,61 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
+        /* Footer Styles */
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .footer h4, .footer h5 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #8f94fb;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background: #8f94fb;
+            transform: translateY(-3px);
+        }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .timeline-horizontal {
@@ -533,7 +588,7 @@
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="skills.html">Skills & DSA</a>
+                        <a class="nav-link" href="about.html">Skills & DSA</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="projects.html">Projects</a>
@@ -1088,26 +1143,26 @@
         </div>
     </section>
 
-   <!-- Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-4 mb-4">
                     <h4>V Yashwanth Kumar</h4>
                     <p>Full-Stack Developer & ML Enthusiast</p>
                     <p class="small">B.Tech Computer Science & Engineering<br>Anurag University</p>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 mb-4">
                     <h5>Quick Links</h5>
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="skills.html">Skills & DSA</a></li>
+                        <li><a href="about.html">Skills & DSA</a></li>
                         <li><a href="projects.html">Projects</a></li>
                         <li><a href="certificates.html">Certificates</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 mb-4">
                     <h5>Contact</h5>
                     <p><i class="fas fa-envelope me-2"></i> yashwanthkumarv155@gmail.com</p>
                     <p><i class="fas fa-phone me-2"></i> +91 9951810271</p>
@@ -1123,7 +1178,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <p class="mb-0">&copy; 2024 V Yashwanth Kumar. All rights reserved.</p>
-                    <p class="mt-2 small">Thank you for visiting my portfolio!</p>
+                    <p class="mt-2 small">Crafted with <i class="fas fa-heart text-danger"></i> and passion for innovation</p>
                 </div>
             </div>
         </div>
