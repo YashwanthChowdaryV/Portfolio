@@ -8,7 +8,514 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* Custom Animation Styles */
+        :root {
+            --primary-color: #4e54c8;
+            --secondary-color: #8f94fb;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --success-color: #28a745;
+            --info-color: #17a2b8;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --purple-color: #6f42c1;
+            --blue-color: #0d6efd;
+        }
+
+        /* Page Header Animations */
+        .page-header {
+            padding: 5rem 0 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,202.7C672,203,768,181,864,181.3C960,181,1056,203,1152,202.7C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            animation: wave 20s linear infinite;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Project Cards with Enhanced Animations */
+        .project-card {
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-card-inner {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+            border: 1px solid rgba(78, 84, 200, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(78, 84, 200, 0.05), transparent);
+            transition: 0.5s;
+        }
+
+        .project-card-inner:hover::before {
+            left: 100%;
+        }
+
+        .project-card-inner:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(78, 84, 200, 0.15);
+        }
+
+        .project-header {
+            padding: 1.5rem 1.5rem 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-badge {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(78, 84, 200, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .project-date {
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 500;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+        }
+
+        .project-image {
+            padding: 0 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder {
+            height: 220px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,0,0,0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .project-card-inner:hover .image-placeholder::before {
+            opacity: 1;
+        }
+
+        .project-card-inner:hover .image-placeholder i {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .image-placeholder i {
+            transition: all 0.5s ease;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+        }
+
+        /* Gradient backgrounds */
+        .bg-primary-gradient { background: linear-gradient(45deg, #4e54c8, #8f94fb); }
+        .bg-success-gradient { background: linear-gradient(45deg, #28a745, #20c997); }
+        .bg-info-gradient { background: linear-gradient(45deg, #17a2b8, #0dcaf0); }
+        .bg-warning-gradient { background: linear-gradient(45deg, #ffc107, #ffca2c); }
+        .bg-danger-gradient { background: linear-gradient(45deg, #dc3545, #fd7e14); }
+        .bg-purple-gradient { background: linear-gradient(45deg, #6f42c1, #a370f7); }
+        .bg-blue-gradient { background: linear-gradient(45deg, #0d6efd, #0dcaf0); }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+            background: linear-gradient(45deg, var(--dark-color), #444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .project-card-inner:hover .project-content h3 {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-preview {
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .preview-section {
+            margin-bottom: 1.2rem;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .preview-section h6 {
+            color: var(--primary-color);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .preview-section p {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 0;
+            padding-left: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tech-tag {
+            background: white;
+            border: 1px solid rgba(78, 84, 200, 0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(78, 84, 200, 0.1);
+        }
+
+        .tech-tag:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 84, 200, 0.2);
+        }
+
+        .read-more-btn {
+            width: 100%;
+            padding: 1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(78, 84, 200, 0.3);
+        }
+
+        .read-more-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .read-more-btn:hover::before {
+            left: 100%;
+        }
+
+        .read-more-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(78, 84, 200, 0.4);
+        }
+
+        /* Category Titles */
+        .category-title {
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(45deg, var(--primary-color), var(--secondary-color)) 1;
+            display: inline-block;
+            background: linear-gradient(45deg, var(--dark-color), #555);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+
+        .category-title:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Project Statistics */
+        .project-stat {
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(78, 84, 200, 0.1);
+        }
+
+        .project-stat:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(78, 84, 200, 0.15);
+        }
+
+        .project-stat h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Development Timeline */
+        .timeline-horizontal {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-horizontal::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            right: 5%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: translateY(-50%);
+            z-index: 1;
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(78, 84, 200, 0.3);
+        }
+
+        .timeline-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            flex: 1;
+            padding: 0 1rem;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin: 0 auto 1rem;
+            box-shadow: 0 10px 20px rgba(78, 84, 200, 0.3);
+            transition: all 0.3s ease;
+            border: 3px solid white;
+        }
+
+        .timeline-step:hover .step-number {
+            transform: scale(1.2) rotate(360deg);
+            box-shadow: 0 15px 30px rgba(78, 84, 200, 0.4);
+        }
+
+        .step-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(78, 84, 200, 0.1);
+        }
+
+        .timeline-step:hover .step-content {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(78, 84, 200, 0.15);
+        }
+
+        /* Modal Enhancements */
+        .modal-content {
+            border-radius: 25px;
+            border: none;
+            box-shadow: 0 25px 75px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: modalSlideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes modalSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 25px 25px 0 0;
+            padding: 2rem;
+            border-bottom: none;
+        }
+
+        .modal-body {
+            padding: 2.5rem;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        /* Section Padding */
+        .section-padding {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        /* Navigation Fix */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .timeline-horizontal {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            
+            .timeline-horizontal::before {
+                display: none;
+            }
+            
+            .timeline-step {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 4rem 0;
+            }
+            
+            .project-stat {
+                padding: 1.5rem;
+            }
+            
+            .page-header {
+                padding: 4rem 0 2rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation Delays */
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+        .project-card:nth-child(5) { animation-delay: 0.5s; }
+        .project-card:nth-child(6) { animation-delay: 0.6s; }
+        .project-card:nth-child(7) { animation-delay: 0.7s; }
+        .project-card:nth-child(8) { animation-delay: 0.8s; }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -26,7 +533,7 @@
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="skills.html">Skills & DSA</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="projects.html">Projects</a>
@@ -47,8 +554,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1 class="display-4 fw-bold">My Projects</h1>
-                    <p class="lead">Innovative solutions across AI, IoT, and Web Development</p>
+                    <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">My Projects</h1>
+                    <p class="lead animate__animated animate__fadeInUp">Innovative solutions across AI, IoT, and Web Development</p>
                 </div>
             </div>
         </div>
@@ -594,7 +1101,7 @@
                     <h5>Quick Links</h5>
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
+                        <li><a href="skills.html">Skills & DSA</a></li>
                         <li><a href="projects.html">Projects</a></li>
                         <li><a href="certificates.html">Certificates</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -605,10 +1112,10 @@
                     <p><i class="fas fa-envelope me-2"></i> yashwanthkumarv155@gmail.com</p>
                     <p><i class="fas fa-phone me-2"></i> +91 9951810271</p>
                     <div class="social-links">
-                        <a href="https://github.com/yourusername" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com/in/yourusername" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/YashwanthChowdaryV" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/vankayalapati-yashwanth-kumar-730091315/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
                         <a href="https://twitter.com/yourusername" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="https://instagram.com/yourusername" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="https://instagram.com/__yashwanth.15" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -643,6 +1150,1680 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // Project Details Data
+        const projectDetails = {
+            "academic-planning": {
+                title: "AI-Driven Academic Execution Planning Platform",
+                content: `
+                    <div class="project-detail">
+                        <div class="project-meta mb-4">
+                            <span class="badge bg-primary me-2">IBM SkillBuild Competition</span>
+                            <span class="badge bg-info">December 2025</span>
+                            <span class="badge bg-success">AI + Web</span>
+                        </div>
+                        
+                        <div class="project-context mb-4">
+                            <h4><i class="fas fa-trophy me-2"></i>Project Context</h4>
+                            <p>This project was developed for the <strong>IBM SkillBuild Applied AI "Build AI Agents 2025/26" competition</strong>. The challenge was to create an AI agent that could solve real-world planning problems with practical constraints.</p>
+                        </div>
+                        
+                        <div class="project-problem mb-4">
+                            <h4><i class="fas fa-exclamation-circle me-2"></i>Problem Statement</h4>
+                            <p>Students often create unrealistic study plans, underestimate time requirements, lack structured execution phases, and don't account for academic constraints like exam schedules, prerequisite knowledge gaps, and resource availability.</p>
+                        </div>
+                        
+                        <div class="project-solution mb-4">
+                            <h4><i class="fas fa-lightbulb me-2"></i>Core Solution</h4>
+                            <p>An intelligent AI agent that acts as an institutional planning engine:</p>
+                            <ul>
+                                <li>Converts learning goals into realistic, phased execution plans</li>
+                                <li>Respects academic constraints (prerequisites, time availability, resource access)</li>
+                                <li>Includes fallback strategies and contingency planning</li>
+                                <li>Provides feasibility analysis before plan execution</li>
+                                <li>Generates milestone-based tracking systems</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="technical-implementation mb-4">
+                            <h4><i class="fas fa-code me-2"></i>Technical Implementation</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Frontend (React.js)</h5>
+                                    <ul>
+                                        <li>Interactive plan visualization dashboard</li>
+                                        <li>Drag-and-drop timeline interface</li>
+                                        <li>Real-time progress tracking</li>
+                                        <li>Responsive design for all devices</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Backend (FastAPI + LLM)</h5>
+                                    <ul>
+                                        <li>Groq API integration for fast LLM inference</li>
+                                        <li>LLaMA 3 model for intelligent planning</li>
+                                        <li>Firestore database for user data persistence</li>
+                                        <li>RESTful API architecture</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-stack-details mb-4">
+                            <h4><i class="fas fa-tools me-2"></i>Complete Tech Stack</h4>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-primary p-2">React.js</span>
+                                <span class="badge bg-primary p-2">FastAPI</span>
+                                <span class="badge bg-info p-2">Groq API</span>
+                                <span class="badge bg-warning p-2">Firestore</span>
+                                <span class="badge bg-success p-2">Google Colab</span>
+                                <span class="badge bg-dark p-2">LLaMA 3</span>
+                                <span class="badge bg-secondary p-2">Python</span>
+                                <span class="badge bg-danger p-2">JavaScript</span>
+                            </div>
+                        </div>
+                        
+                        <div class="key-features mb-4">
+                            <h4><i class="fas fa-star me-2"></i>Key Features</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>AI-powered realistic planning with constraint consideration</li>
+                                        <li>Interactive Gantt-chart visualization</li>
+                                        <li>Progress tracking with milestone alerts</li>
+                                        <li>Resource requirement estimation</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>Fallback strategy generation</li>
+                                        <li>Export plans to PDF/Calendar formats</li>
+                                        <li>Collaborative planning features</li>
+                                        <li>Mobile-responsive interface</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-outcome">
+                            <h4><i class="fas fa-chart-line me-2"></i>Project Outcome</h4>
+                            <p>Successfully submitted to IBM SkillBuild competition. The platform demonstrates how AI can transform academic planning from guesswork to data-driven strategy, potentially improving student success rates by 30-40% through realistic planning.</p>
+                        </div>
+                    </div>
+                `
+            },
+            "plant-care": {
+                title: "AI-Enabled Smart Plant Care System",
+                content: `
+                    <div class="project-detail">
+                        <div class="project-meta mb-4">
+                            <span class="badge bg-success me-2">Smart India Hackathon 2025</span>
+                            <span class="badge bg-info">October 2025</span>
+                            <span class="badge bg-warning">AIML + IoT + Web</span>
+                        </div>
+                        
+                        <div class="project-context mb-4">
+                            <h4><i class="fas fa-users me-2"></i>Project Context</h4>
+                            <p>Built for <strong>Smart India Hackathon 2025</strong>. Although our team wasn't selected for the final round, we committed to completing the project to demonstrate our capabilities in IoT and AI integration for agricultural technology.</p>
+                            <p><strong>Team:</strong> 4 members | <strong>Duration:</strong> 2 months</p>
+                        </div>
+                        
+                        <div class="project-problem mb-4">
+                            <h4><i class="fas fa-exclamation-circle me-2"></i>Problem Statement</h4>
+                            <ul>
+                                <li>Late pest and disease detection in crops leading to significant yield loss</li>
+                                <li>Manual irrigation systems wasting water resources</li>
+                                <li>Lack of centralized monitoring for large agricultural areas</li>
+                                <li>No early warning system for environmental stress factors</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-solution mb-4">
+                            <h4><i class="fas fa-lightbulb me-2"></i>Core Solution</h4>
+                            <p>An end-to-end smart plant care system integrating IoT sensors with computer vision AI:</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>IoT Monitoring Layer</h5>
+                                    <ul>
+                                        <li>ESP32-CAM modules for image capture</li>
+                                        <li>Soil moisture sensors for automated irrigation</li>
+                                        <li>Environmental sensors (temperature, humidity)</li>
+                                        <li>Solar-powered operation for field deployment</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>AI Analysis Layer</h5>
+                                    <ul>
+                                        <li>TensorFlow model for plant disease detection</li>
+                                        <li>OpenCV for image preprocessing</li>
+                                        <li>Custom dataset of 5000+ plant images</li>
+                                        <li>Real-time inference on edge devices</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="system-architecture mb-4">
+                            <h4><i class="fas fa-sitemap me-2"></i>System Architecture</h4>
+                            <ol>
+                                <li><strong>Data Collection:</strong> ESP32-CAM captures plant images every 6 hours</li>
+                                <li><strong>Image Processing:</strong> OpenCV preprocesses images (resize, normalize)</li>
+                                <li><strong>AI Inference:</strong> TensorFlow model identifies diseases/pests</li>
+                                <li><strong>Data Storage:</strong> Images and results stored in Firebase</li>
+                                <li><strong>Alert System:</strong> Notifications sent via mobile app/web dashboard</li>
+                                <li><strong>Automated Response:</strong> Irrigation system activated based on soil moisture</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="tech-stack-details mb-4">
+                            <h4><i class="fas fa-tools me-2"></i>Complete Tech Stack</h4>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-primary p-2">ESP32-CAM</span>
+                                <span class="badge bg-success p-2">TensorFlow</span>
+                                <span class="badge bg-warning p-2">Firebase</span>
+                                <span class="badge bg-info p-2">Python</span>
+                                <span class="badge bg-danger p-2">Google Drive API</span>
+                                <span class="badge bg-dark p-2">OpenCV</span>
+                                <span class="badge bg-secondary p-2">Arduino IDE</span>
+                                <span class="badge bg-purple p-2">React Native</span>
+                            </div>
+                        </div>
+                        
+                        <div class="key-features mb-4">
+                            <h4><i class="fas fa-star me-2"></i>Key Features Implemented</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>Real-time plant health monitoring with 92% accuracy</li>
+                                        <li>Automated irrigation based on soil moisture levels</li>
+                                        <li>Early pest detection with image classification</li>
+                                        <li>Mobile app dashboard for remote monitoring</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>Historical data analysis and trends</li>
+                                        <li>Alert system for critical conditions</li>
+                                        <li>Solar-powered for off-grid operation</li>
+                                        <li>Scalable architecture for large farms</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="challenges-learned mb-4">
+                            <h4><i class="fas fa-graduation-cap me-2"></i>Challenges & Learnings</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Challenges</h5>
+                                    <ul>
+                                        <li>Limited dataset for Indian crop diseases</li>
+                                        <li>ESP32-CAM memory constraints for image processing</li>
+                                        <li>Real-time data synchronization in rural areas</li>
+                                        <li>Model optimization for edge deployment</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Learnings</h5>
+                                    <ul>
+                                        <li>IoT device power management strategies</li>
+                                        <li>Transfer learning for small datasets</li>
+                                        <li>End-to-end system integration</li>
+                                        <li>Team collaboration in hardware-software projects</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-outcome">
+                            <h4><i class="fas fa-chart-line me-2"></i>Project Outcome</h4>
+                            <p>Successfully built a functional prototype that can detect 5 common plant diseases with 92% accuracy. The system demonstrates how IoT and AI can revolutionize traditional agriculture, potentially reducing water usage by 40% and crop loss by 30% through early detection.</p>
+                            <p><strong>Future Scope:</strong> Integration with drone imaging, expansion to more crop types, commercialization for small farmers.</p>
+                        </div>
+                    </div>
+                `
+            },
+            "sign-language": {
+                title: "Computer Vision–Based Hand Gesture Recognition",
+                content: `
+                    <div class="project-detail">
+                        <div class="project-meta mb-4">
+                            <span class="badge bg-info me-2">Innoquest#1</span>
+                            <span class="badge bg-secondary">Nov 2024 – Dec 2024</span>
+                            <span class="badge bg-primary">Computer Vision</span>
+                        </div>
+                        
+                        <div class="project-context mb-4">
+                            <h4><i class="fas fa-university me-2"></i>Project Context</h4>
+                            <p>Developed during my <strong>2nd year</strong> as part of <strong>Innoquest#1</strong> - a university innovation challenge. This was our first exposure to computer vision and deep learning, representing a significant learning curve in a completely new technical domain.</p>
+                            <p><strong>Team:</strong> 3 members | <strong>Duration:</strong> 6 weeks</p>
+                        </div>
+                        
+                        <div class="project-overview mb-4">
+                            <h4><i class="fas fa-eye me-2"></i>Project Overview</h4>
+                            <p>A prototype computer vision system that recognizes hand gestures from a standard webcam and displays the corresponding output on a web-based dashboard. The system demonstrates real-time gesture recognition using deep learning techniques without requiring specialized hardware.</p>
+                        </div>
+                        
+                        <div class="project-problem mb-4">
+                            <h4><i class="fas fa-exclamation-circle me-2"></i>Problem Statement</h4>
+                            <p>Communication barriers exist between sign language users and non-signers. There is a need for an accessible, low-cost system that can interpret hand gestures using commonly available devices such as webcams, particularly in educational and public service settings.</p>
+                        </div>
+                        
+                        <div class="what-implemented mb-4">
+                            <h4><i class="fas fa-check-circle me-2"></i>What Was Implemented (Core Work)</h4>
+                            
+                            <div class="implementation-section mb-3">
+                                <h5>🔹 Gesture Recognition Pipeline</h5>
+                                <ul>
+                                    <li>Implemented a real-time webcam-based gesture recognition pipeline</li>
+                                    <li>Used MobileNetV2 (convolutional neural network) trained on ASL alphabet image dataset</li>
+                                    <li>Performed static hand gesture classification</li>
+                                    <li>Successfully trained a multi-class ASL model (A–Z) for experimentation</li>
+                                    <li>Verified model performance on controlled input data (85% accuracy on test set)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="implementation-section mb-3">
+                                <h5>🔹 Computer Vision Processing</h5>
+                                <ul>
+                                    <li>Webcam frame capture using OpenCV with 30 FPS</li>
+                                    <li>Hand region extraction using MediaPipe-based hand detection</li>
+                                    <li>Image preprocessing pipeline: resize (224x224), normalization, augmentation</li>
+                                    <li>Real-time inference on live camera feed with latency < 200ms</li>
+                                    <li>Background subtraction for improved accuracy</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="implementation-section mb-3">
+                                <h5>🔹 Web-Based Dashboard (Prototype)</h5>
+                                <ul>
+                                    <li>Designed a basic web dashboard to visualize gesture recognition output</li>
+                                    <li>Displayed live camera feed with bounding boxes</li>
+                                    <li>Real-time display of detected gesture with confidence scores</li>
+                                    <li>Currently focused on single stable gestures for demonstration</li>
+                                    <li>Clean and simple UI for user testing and demonstration</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="technical-details mb-4">
+                            <h4><i class="fas fa-code me-2"></i>Technical Implementation Details</h4>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Model Training</h5>
+                                    <ul>
+                                        <li><strong>Dataset:</strong> ASL Alphabet dataset (87,000 images)</li>
+                                        <li><strong>Model:</strong> MobileNetV2 with transfer learning</li>
+                                        <li><strong>Training:</strong> 50 epochs with Adam optimizer</li>
+                                        <li><strong>Accuracy:</strong> 85% on validation set</li>
+                                        <li><strong>Framework:</strong> PyTorch with CUDA acceleration</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>System Architecture</h5>
+                                    <ul>
+                                        <li><strong>Input:</strong> Webcam stream (640x480)</li>
+                                        <li><strong>Processing:</strong> MediaPipe for hand detection</li>
+                                        <li><strong>Classification:</strong> Custom-trained MobileNetV2</li>
+                                        <li><strong>Output:</strong> Web dashboard with real-time feedback</li>
+                                        <li><strong>Latency:</strong> End-to-end < 200ms</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-stack-details mb-4">
+                            <h4><i class="fas fa-tools me-2"></i>Complete Technology Stack</h4>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-primary p-2">Python 3.9</span>
+                                <span class="badge bg-info p-2">OpenCV 4.8</span>
+                                <span class="badge bg-warning p-2">PyTorch 2.0</span>
+                                <span class="badge bg-success p-2">MobileNetV2</span>
+                                <span class="badge bg-danger p-2">MediaPipe</span>
+                                <span class="badge bg-secondary p-2">Flask</span>
+                                <span class="badge bg-dark p-2">HTML/CSS/JS</span>
+                                <span class="badge bg-purple p-2">Bootstrap</span>
+                            </div>
+                        </div>
+                        
+                        <div class="challenges-learned mb-4">
+                            <h4><i class="fas fa-graduation-cap me-2"></i>Challenges & Learnings</h4>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Technical Challenges</h5>
+                                    <ul>
+                                        <li>Lighting variations affecting detection accuracy</li>
+                                        <li>Background complexity in real-world settings</li>
+                                        <li>Real-time performance optimization</li>
+                                        <li>Dataset imbalance for certain letters</li>
+                                        <li>Webcam quality and resolution limitations</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Key Learnings</h5>
+                                    <ul>
+                                        <li>Computer vision pipeline design and optimization</li>
+                                        <li>Transfer learning with pre-trained models</li>
+                                        <li>Real-time system architecture</li>
+                                        <li>Web integration for AI applications</li>
+                                        <li>Team collaboration in research-oriented projects</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievements-future mb-4">
+                            <h4><i class="fas fa-trophy me-2"></i>Achievements & Future Scope</h4>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Project Achievements</h5>
+                                    <ul>
+                                        <li>Successfully built a working prototype in 6 weeks</li>
+                                        <li>Demonstrated real-time gesture recognition</li>
+                                        <li>Presented at Innoquest#1 university exhibition</li>
+                                        <li>Received positive feedback for accessibility focus</li>
+                                        <li>Foundation for future computer vision projects</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Future Enhancements</h5>
+                                    <ul>
+                                        <li>Dynamic gesture recognition (sign language sentences)</li>
+                                        <li>Mobile app deployment</li>
+                                        <li>Multi-hand gesture detection</li>
+                                        <li>Integration with text-to-speech</li>
+                                        <li>Support for regional sign languages</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-outcome">
+                            <h4><i class="fas fa-chart-line me-2"></i>Project Outcome</h4>
+                            <p>This project served as an excellent introduction to computer vision and deep learning. Despite being our first experience with this technology stack, we successfully built a functional prototype that recognizes ASL alphabet gestures with 85% accuracy. The project demonstrated the potential of AI for accessibility applications and provided valuable hands-on experience in end-to-end AI system development.</p>
+                            <p><strong>Impact:</strong> Showcased at university exhibition, inspired further projects in assistive technology, and built foundational knowledge for subsequent AI/ML projects.</p>
+                        </div>
+                    </div>
+                `
+            },
+            "blue-future": {
+                title: "Blue Future - Smart Water Management System",
+                content: `
+                    <div class="project-detail">
+                        <div class="project-meta mb-4">
+                            <span class="badge bg-primary me-2">TEJAS2025</span>
+                            <span class="badge bg-info">In Progress</span>
+                            <span class="badge bg-success">IoT + AI</span>
+                            <span class="badge bg-warning">Group Project (10 members)</span>
+                        </div>
+                        
+                        <div class="project-context mb-4">
+                            <h4><i class="fas fa-users me-2"></i>Project Context</h4>
+                            <p>This is a <strong>group project with 10 members</strong> initiated through connections made at <strong>TEJAS2025</strong> expo. After meeting seniors at the expo, they invited our junior team to collaborate on this department-assigned project. We're currently working as junior team members under senior guidance.</p>
+                            <p><strong>Team Structure:</strong> 4 seniors (lead roles) + 6 juniors (implementation roles)</p>
+                            <p><strong>Current Status:</strong> Active development, expected completion Q1 2026</p>
+                        </div>
+                        
+                        <div class="project-overview mb-4">
+                            <h4><i class="fas fa-tint me-2"></i>Project Overview</h4>
+                            <p>An IoT and AI-driven comprehensive water management system designed to prevent overflow, monitor water quality in real-time, and provide intelligent insights for urban and rural water management. The system addresses both residential and agricultural water management needs.</p>
+                        </div>
+                        
+                        <div class="project-problem mb-4">
+                            <h4><i class="fas fa-exclamation-circle me-2"></i>Problem Statement</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Urban Issues</h5>
+                                    <ul>
+                                        <li>Water wastage from tank overflow in apartments</li>
+                                        <li>Lack of real-time quality monitoring in supply lines</li>
+                                        <li>Manual operation of pumps and valves</li>
+                                        <li>No predictive maintenance for water infrastructure</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Rural/Agricultural Issues</h5>
+                                    <ul>
+                                        <li>Inefficient irrigation water usage</li>
+                                        <li>Groundwater depletion without monitoring</li>
+                                        <li>Contamination detection delays</li>
+                                        <li>Lack of data-driven water management</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-solution mb-4">
+                            <h4><i class="fas fa-lightbulb me-2"></i>Core Solution Architecture</h4>
+                            
+                            <div class="solution-component mb-3">
+                                <h5>🔹 IoT Sensor Network</h5>
+                                <ul>
+                                    <li><strong>Water Level Sensors:</strong> Ultrasonic sensors for tank monitoring</li>
+                                    <li><strong>Quality Sensors:</strong> pH, turbidity, TDS, temperature sensors</li>
+                                    <li><strong>Flow Meters:</strong> Measure water consumption patterns</li>
+                                    <li><strong>Actuators:</strong> Automated valves and pump controllers</li>
+                                    <li><strong>Communication:</strong> LoRa modules for long-range, low-power data transmission</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="solution-component mb-3">
+                                <h5>🔹 AI-Powered Analytics</h5>
+                                <ul>
+                                    <li><strong>Gemini AI Integration:</strong> For predictive analytics and insights</li>
+                                    <li><strong>Anomaly Detection:</strong> Identify leaks and contamination events</li>
+                                    <li><strong>Consumption Forecasting:</strong> Predict water usage patterns</li>
+                                    <li><strong>Quality Trend Analysis:</strong> Monitor changes in water parameters</li>
+                                    <li><strong>Optimization Algorithms:</strong> Suggest efficient usage schedules</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="solution-component">
+                                <h5>🔹 Dashboard & Control System</h5>
+                                <ul>
+                                    <li><strong>Web Dashboard:</strong> Real-time monitoring and control</li>
+                                    <li><strong>Mobile App:</strong> Alerts and remote control</li>
+                                    <li><strong>Automated Controls:</strong> Valve operation based on levels</li>
+                                    <li><strong>Reporting:</strong> Consumption reports and insights</li>
+                                    <li><strong>Multi-user Access:</strong> Different roles (admin, user, maintenance)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="system-architecture mb-4">
+                            <h4><i class="fas fa-sitemap me-2"></i>System Architecture</h4>
+                            <div class="architecture-diagram">
+                                <ol>
+                                    <li><strong>Edge Layer:</strong> Arduino with sensors collecting data</li>
+                                    <li><strong>Communication Layer:</strong> LoRa modules transmitting to gateway</li>
+                                    <li><strong>Gateway Layer:</strong> Raspberry Pi aggregating data</li>
+                                    <li><strong>Cloud Layer:</strong> Node.js server with MongoDB database</li>
+                                    <li><strong>AI Layer:</strong> Gemini AI for analytics and predictions</li>
+                                    <li><strong>Presentation Layer:</strong> React.js dashboard and mobile app</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-stack-details mb-4">
+                            <h4><i class="fas fa-tools me-2"></i>Complete Tech Stack</h4>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-primary p-2">Arduino Uno/Nano</span>
+                                <span class="badge bg-info p-2">LoRa Modules</span>
+                                <span class="badge bg-success p-2">Node.js</span>
+                                <span class="badge bg-warning p-2">MongoDB</span>
+                                <span class="badge bg-danger p-2">Gemini AI</span>
+                                <span class="badge bg-secondary p-2">React.js</span>
+                                <span class="badge bg-dark p-2">Raspberry Pi</span>
+                                <span class="badge bg-purple p-2">Python</span>
+                                <span class="badge bg-teal p-2">MQTT</span>
+                            </div>
+                        </div>
+                        
+                        <div class="my-role mb-4">
+                            <h4><i class="fas fa-user me-2"></i>My Role in the Project</h4>
+                            <p>As a junior team member, I'm contributing in the following areas:</p>
+                            <ul>
+                                <li><strong>Frontend Development:</strong> Building React.js components for the dashboard</li>
+                                <li><strong>API Integration:</strong> Connecting frontend with Node.js backend</li>
+                                <li><strong>Sensor Testing:</strong> Testing and calibrating water quality sensors</li>
+                                <li><strong>Documentation:</strong> Maintaining project documentation and progress reports</li>
+                                <li><strong>Testing:</strong> Participating in system integration testing</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="current-progress mb-4">
+                            <h4><i class="fas fa-tasks me-2"></i>Current Progress</h4>
+                            <div class="progress mb-2" style="height: 25px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60% Complete</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Completed Tasks</h6>
+                                    <ul>
+                                        <li>✅ Requirements gathering and system design</li>
+                                        <li>✅ Sensor selection and procurement</li>
+                                        <li>✅ Basic dashboard UI development</li>
+                                        <li>✅ Backend API structure</li>
+                                        <li>✅ LoRa communication testing</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>In Progress</h6>
+                                    <ul>
+                                        <li>🔄 AI model integration with Gemini API</li>
+                                        <li>🔄 Mobile app development</li>
+                                        <li>🔄 Advanced analytics implementation</li>
+                                        <li>🔄 System integration testing</li>
+                                        <li>🔄 Documentation and deployment planning</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="expected-outcomes mb-4">
+                            <h4><i class="fas fa-bullseye me-2"></i>Expected Outcomes</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Technical Outcomes</h5>
+                                    <ul>
+                                        <li>Real-time water monitoring with < 5-second latency</li>
+                                        <li>Automated overflow prevention system</li>
+                                        <li>Water quality alerts for contamination</li>
+                                        <li>Predictive maintenance scheduling</li>
+                                        <li>30% reduction in water wastage</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Project Outcomes</h5>
+                                    <ul>
+                                        <li>Department project completion and presentation</li>
+                                        <li>Potential for commercialization or startup</li>
+                                        <li>Research paper publication opportunity</li>
+                                        <li>Demonstration at next TEJAS expo</li>
+                                        <li>Foundation for larger smart city projects</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="challenges-insights mb-4">
+                            <h4><i class="fas fa-graduation-cap me-2"></i>Challenges & Insights</h4>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Technical Challenges</h5>
+                                    <ul>
+                                        <li>Sensor calibration for accurate readings</li>
+                                        <li>LoRa network reliability in urban areas</li>
+                                        <li>Real-time data synchronization</li>
+                                        <li>Power management for remote sensors</li>
+                                        <li>AI model accuracy with limited historical data</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Team & Project Insights</h5>
+                                    <ul>
+                                        <li>Large team coordination and task allocation</li>
+                                        <li>Mentorship from senior team members</li>
+                                        <li>Balancing academic commitments with project</li>
+                                        <li>Hardware-software integration challenges</li>
+                                        <li>Learning from experienced team members</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-outcome">
+                            <h4><i class="fas fa-chart-line me-2"></i>Project Significance</h4>
+                            <p>Blue Future represents my first experience in a large-scale, department-sponsored project. Working alongside seniors has provided invaluable mentorship in system design, project management, and advanced IoT concepts. The project addresses critical water management issues that affect both urban and rural communities in India.</p>
+                            <p><strong>Learning Value:</strong> Exposure to professional project workflows, team collaboration in large groups, hardware-software integration at scale, and working on a real-world problem with societal impact.</p>
+                            <p><strong>Future Potential:</strong> This project could evolve into a startup, research publication, or be integrated into smart city initiatives. The skills and experience gained will be foundational for my career in IoT and AI applications.</p>
+                        </div>
+                    </div>
+                `
+            },
+            "dinetech": {
+                title: "DineTech - Restaurant Communication System",
+                content: `
+                    <div class="project-detail">
+                        <div class="project-meta mb-4">
+                            <span class="badge bg-warning me-2">TEJAS2025 Expo</span>
+                            <span class="badge bg-info">January 2025</span>
+                            <span class="badge bg-success">IoT System</span>
+                        </div>
+                        
+                        <div class="project-context mb-4">
+                            <h4><i class="fas fa-university me-2"></i>Project Context</h4>
+                            <p>Built specifically for the <strong>TEJAS2025 Expo at Anurag University</strong>, where I represented both the <strong>Department of Computer Science & Engineering</strong> and the <strong>IoT Club</strong>. The expo showcased innovative projects from across the university to industry visitors and faculty.</p>
+                            <p><strong>Expo Context:</strong> Annual technology exhibition with 100+ projects, industry judges, and potential funding opportunities</p>
+                        </div>
+                        
+                        <div class="project-overview mb-4">
+                            <h4><i class="fas fa-utensils me-2"></i>Project Overview</h4>
+                            <p>An IoT-based communication system designed specifically for restaurants to improve customer-waiter interaction. The system replaces traditional call bells with a smart, wireless solution that displays table requests on a centralized screen in the kitchen/service area.</p>
+                        </div>
+                        
+                        <div class="project-problem mb-4">
+                            <h4><i class="fas fa-exclamation-circle me-2"></i>Problem Statement</h4>
+                            <p>Observed during visits to local restaurants:</p>
+                            <ul>
+                                <li><strong>Inefficient Communication:</strong> Customers waving or shouting to get waiter attention</li>
+                                <li><strong>Delayed Service:</strong> Waiters missing customer requests during busy hours</li>
+                                <li><strong>Order Mistakes:</strong> Miscommunication leading to wrong orders</li>
+                                <li><strong>Customer Frustration:</strong> Poor experience affecting restaurant reputation</li>
+                                <li><strong>Staff Stress:</strong> Waiters overwhelmed during peak hours</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-solution mb-4">
+                            <h4><i class="fas fa-lightbulb me-2"></i>Core Solution</h4>
+                            
+                            <div class="solution-component mb-3">
+                                <h5>🔹 Customer Interface (Table-side)</h5>
+                                <ul>
+                                    <li><strong>Wireless Buttons:</strong> ESP8266-based buttons at each table</li>
+                                    <li><strong>Multiple Request Types:</strong> Separate buttons for "Waiter Needed," "Bill Request," "Water Refill"</li>
+                                    <li><strong>LED Feedback:</strong> Visual confirmation when request is sent</li>
+                                    <li><strong>Low Power Design:</strong> Battery-operated with 6-month lifespan</li>
+                                    <li><strong>Simple Interface:</strong> Intuitive for customers of all ages</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="solution-component mb-3">
+                                <h5>🔹 Waiter/Kitchen Display</h5>
+                                <ul>
+                                    <li><strong>Central Display:</strong> Large LCD screen showing all table requests</li>
+                                    <li><strong>Real-time Updates:</strong> Immediate display of new requests</li>
+                                    <li><strong>Priority System:</strong> Color-coded requests based on urgency</li>
+                                    <li><strong>Sound Alerts:</strong> Distinct sounds for different request types</li>
+                                    <li><strong>Acknowledgment Feature:</strong> Waiters can mark requests as handled</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="solution-component">
+                                <h5>🔹 System Features</h5>
+                                <ul>
+                                    <li><strong>Wireless Communication:</strong> MQTT protocol for reliable data transmission</li>
+                                    <li><strong>Multi-table Support:</strong> Scalable for restaurants with 2-50 tables</li>
+                                    <li><strong>Battery Monitoring:</strong> Alerts when button batteries are low</li>
+                                    <li><strong>Easy Installation:</strong> No wiring required for table buttons</li>
+                                    <li><strong>Cost-effective:</strong> Affordable solution for small to medium restaurants</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="technical-implementation mb-4">
+                            <h4><i class="fas fa-code me-2"></i>Technical Implementation</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Hardware Components</h5>
+                                    <ul>
+                                        <li>ESP8266 NodeMCU modules (wireless microcontrollers)</li>
+                                        <li>Tactile push buttons with LED indicators</li>
+                                        <li>3.7V Li-ion batteries with charging circuits</li>
+                                        <li>20x4 LCD display for central monitoring</li>
+                                        <li>Buzzer for audio alerts</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Software Architecture</h5>
+                                    <ul>
+                                        <li>MQTT broker for message routing</li>
+                                        <li>Arduino IDE for ESP8266 programming</li>
+                                        <li>C++ for embedded software</li>
+                                        <li>Simple web interface for configuration</li>
+                                        <li>JSON for data serialization</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-stack-details mb-4">
+                            <h4><i class="fas fa-tools me-2"></i>Complete Tech Stack</h4>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-primary p-2">ESP8266</span>
+                                <span class="badge bg-info p-2">Arduino IDE</span>
+                                <span class="badge bg-success p-2">MQTT Protocol</span>
+                                <span class="badge bg-warning p-2">C++</span>
+                                <span class="badge bg-danger p-2">LCD Display</span>
+                                <span class="badge bg-secondary p-2">Li-ion Batteries</span>
+                                <span class="badge bg-dark p-2">JSON</span>
+                            </div>
+                        </div>
+                        
+                        <div class="key-features mb-4">
+                            <h4><i class="fas fa-star me-2"></i>Key Features Implemented</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>Real-time table request monitoring</li>
+                                        <li>Multiple request types with priority levels</li>
+                                        <li>Wireless communication with 30m range</li>
+                                        <li>Low power consumption (6-month battery life)</li>
+                                        <li>Easy installation with no wiring required</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>Visual and audio alerts for staff</li>
+                                        <li>Request acknowledgment system</li>
+                                        <li>Battery level monitoring</li>
+                                        <li>Scalable architecture</li>
+                                        <li>Cost-effective solution</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="expo-presentation mb-4">
+                            <h4><i class="fas fa-microphone me-2"></i>Expo Presentation & Reception</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Presentation Highlights</h5>
+                                    <ul>
+                                        <li>Live demonstration with working prototype</li>
+                                        <li>Detailed explanation of problem-solution approach</li>
+                                        <li>Cost-benefit analysis for restaurant owners</li>
+                                        <li>Comparison with traditional systems</li>
+                                        <li>Future enhancement roadmap</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Feedback Received</h5>
+                                    <ul>
+                                        <li>Positive feedback from faculty and industry judges</li>
+                                        <li>Recognition for practical problem-solving approach</li>
+                                        <li>Interest from local restaurant owners</li>
+                                        <li>Suggestions for commercialization</li>
+                                        <li>Encouragement for patent filing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="challenges-learned mb-4">
+                            <h4><i class="fas fa-graduation-cap me-2"></i>Challenges & Learnings</h4>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Technical Challenges</h5>
+                                    <ul>
+                                        <li>Wireless interference in crowded restaurant environments</li>
+                                        <li>Battery life optimization for continuous operation</li>
+                                        <li>Reliable MQTT communication in noisy environments</li>
+                                        <li>Button durability for high-usage scenarios</li>
+                                        <li>Cost optimization for mass production</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Key Learnings</h5>
+                                    <ul>
+                                        <li>End-to-end IoT system development</li>
+                                        <li>Wireless communication protocols</li>
+                                        <li>Power management strategies</li>
+                                        <li>User-centric design principles</li>
+                                        <li>Presentation and demonstration skills</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-outcome">
+                            <h4><i class="fas fa-chart-line me-2"></i>Project Outcome</h4>
+                            <p>Successfully presented at TEJAS2025 Expo with a fully functional prototype. The project demonstrated how IoT technology can solve real-world problems in the hospitality industry. Received positive feedback from both academic and industry evaluators, with suggestions for further development and potential commercialization.</p>
+                            <p><strong>Impact:</strong> Showcased practical application of IoT technology, built presentation and demonstration skills, and gained experience in translating theoretical knowledge into working solutions.</p>
+                            <p><strong>Future Scope:</strong> Integration with restaurant POS systems, mobile app for waiters, analytics dashboard for restaurant owners, and potential startup opportunity.</p>
+                        </div>
+                    </div>
+                `
+            },
+            "weather-system": {
+                title: "Smart Weather Monitoring System",
+                content: `
+                    <div class="project-detail">
+                        <div class="project-meta mb-4">
+                            <span class="badge bg-info me-2">First Hackathon</span>
+                            <span class="badge bg-secondary">July 2024</span>
+                            <span class="badge bg-success">IoT Weather Station</span>
+                        </div>
+                        
+                        <div class="project-context mb-4">
+                            <h4><i class="fas fa-trophy me-2"></i>Project Context</h4>
+                            <p>My <strong>first hackathon experience</strong> in the IoT domain. This project was developed during a 48-hour hackathon in July 2024, where I had the opportunity to apply my IoT knowledge in a competitive environment and learn from other participants.</p>
+                            <p><strong>Hackathon Theme:</strong> Smart Solutions for Environmental Monitoring</p>
+                            <p><strong>Duration:</strong> 48 hours</p>
+                        </div>
+                        
+                        <div class="project-overview mb-4">
+                            <h4><i class="fas fa-cloud-sun me-2"></i>Project Overview</h4>
+                            <p>A self-contained IoT weather station that collects multiple environmental parameters and transmits data wirelessly to a web dashboard for real-time monitoring and analysis. Designed for both educational and practical applications.</p>
+                        </div>
+                        
+                        <div class="project-problem mb-4">
+                            <h4><i class="fas fa-exclamation-circle me-2"></i>Problem Statement</h4>
+                            <ul>
+                                <li>Commercial weather stations are expensive and often lack customization options</li>
+                                <li>Limited access to localized weather data for specific applications</li>
+                                <li>No real-time monitoring for research or agricultural purposes</li>
+                                <li>Lack of affordable solutions for educational institutions</li>
+                                <li>Difficulty in collecting historical weather data for analysis</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-solution mb-4">
+                            <h4><i class="fas fa-lightbulb me-2"></i>Core Solution</h4>
+                            
+                            <div class="solution-component mb-3">
+                                <h5>🔹 Sensor Integration</h5>
+                                <ul>
+                                    <li><strong>Temperature & Humidity:</strong> DHT22 sensor for accurate readings</li>
+                                    <li><strong>Barometric Pressure:</strong> BMP180 for pressure and altitude data</li>
+                                    <li><strong>Rain Detection:</strong> Rain sensor for precipitation monitoring</li>
+                                    <li><strong>Wind Speed:</strong> Anemometer for wind measurements</li>
+                                    <li><strong>Light Intensity:</strong> LDR sensor for sunlight monitoring</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="solution-component mb-3">
+                                <h5>🔹 Data Processing & Transmission</h5>
+                                <ul>
+                                    <li><strong>Raspberry Pi:</strong> Central processing unit</li>
+                                    <li><strong>Wi-Fi Connectivity:</strong> Built-in wireless for data transmission</li>
+                                    <li><strong>Real-time Processing:</strong> Continuous sensor data collection</li>
+                                    <li><strong>Data Logging:</strong> Local storage for offline access</li>
+                                    <li><strong>API Integration:</strong> REST API for data access</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="solution-component">
+                                <h5>🔹 User Interface</h5>
+                                <ul>
+                                    <li><strong>Web Dashboard:</strong> Real-time data visualization</li>
+                                    <li><strong>Mobile Responsive:</strong> Access from any device</li>
+                                    <li><strong>Historical Graphs:</strong> Trend analysis over time</li>
+                                    <li><strong>Alerts & Notifications:</strong> Threshold-based alerts</li>
+                                    <li><strong>Data Export:</strong> CSV export for further analysis</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="system-architecture mb-4">
+                            <h4><i class="fas fa-sitemap me-2"></i>System Architecture</h4>
+                            <ol>
+                                <li><strong>Sensor Layer:</strong> Multiple environmental sensors collecting data</li>
+                                <li><strong>Processing Layer:</strong> Raspberry Pi processing sensor readings</li>
+                                <li><strong>Communication Layer:</strong> Wi-Fi transmission to web server</li>
+                                <li><strong>Storage Layer:</strong> Database for historical data storage</li>
+                                <li><strong>Presentation Layer:</strong> Web dashboard for data visualization</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="tech-stack-details mb-4">
+                            <h4><i class="fas fa-tools me-2"></i>Complete Tech Stack</h4>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-primary p-2">Raspberry Pi 4</span>
+                                <span class="badge bg-info p-2">Python</span>
+                                <span class="badge bg-success p-2">DHT22 Sensor</span>
+                                <span class="badge bg-warning p-2">BMP180 Sensor</span>
+                                <span class="badge bg-danger p-2">Flask</span>
+                                <span class="badge bg-secondary p-2">SQLite</span>
+                                <span class="badge bg-dark p-2">HTML/CSS/JS</span>
+                                <span class="badge bg-purple p-2">Chart.js</span>
+                            </div>
+                        </div>
+                        
+                        <div class="key-features mb-4">
+                            <h4><i class="fas fa-star me-2"></i>Key Features Implemented</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>Real-time monitoring of 5+ environmental parameters</li>
+                                        <li>Web-based dashboard with live updates</li>
+                                        <li>Historical data visualization with interactive graphs</li>
+                                        <li>Mobile-responsive design</li>
+                                        <li>Local data storage for offline access</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>Threshold-based alert system</li>
+                                        <li>Data export functionality</li>
+                                        <li>Weather trend analysis</li>
+                                        <li>Easy sensor calibration</li>
+                                        <li>Low power consumption mode</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="hackathon-experience mb-4">
+                            <h4><i class="fas fa-users me-2"></i>Hackathon Experience</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Challenges Faced</h5>
+                                    <ul>
+                                        <li>Sensor calibration within tight timeframe</li>
+                                        <li>Wi-Fi connectivity issues in hackathon venue</li>
+                                        <li>Limited hardware resources</li>
+                                        <li>Team coordination under pressure</li>
+                                        <li>Presentation preparation alongside development</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Skills Developed</h5>
+                                    <ul>
+                                        <li>Rapid prototyping under time constraints</li>
+                                        <li>Sensor integration and calibration</li>
+                                        <li>Real-time data visualization</li>
+                                        <li>Team collaboration in high-pressure environment</li>
+                                        <li>Effective presentation of technical concepts</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="technical-achievements mb-4">
+                            <h4><i class="fas fa-cogs me-2"></i>Technical Achievements</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Hardware Integration</h5>
+                                    <ul>
+                                        <li>Successfully integrated 5 different sensors</li>
+                                        <li>Implemented reliable data collection pipeline</li>
+                                        <li>Achieved sensor accuracy within ±2%</li>
+                                        <li>Optimized power consumption</li>
+                                        <li>Ensured stable wireless connectivity</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Software Development</h5>
+                                    <ul>
+                                        <li>Built complete full-stack application in 48 hours</li>
+                                        <li>Implemented real-time data updates</li>
+                                        <li>Created intuitive user interface</li>
+                                        <li>Developed robust error handling</li>
+                                        <li>Ensured cross-device compatibility</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-outcome">
+                            <h4><i class="fas fa-chart-line me-2"></i>Project Outcome & Learnings</h4>
+                            <p>Successfully completed the hackathon with a fully functional prototype. While we didn't win any prizes, the experience was invaluable for my development as an IoT engineer. The project demonstrated the practical application of IoT concepts and provided hands-on experience with sensor integration, data processing, and web development.</p>
+                            <p><strong>Key Learnings:</strong> Importance of planning in hackathons, value of modular code structure, effective team communication strategies, and balancing feature development with time constraints.</p>
+                            <p><strong>Future Enhancements:</strong> Integration with weather APIs for forecasting, mobile app development, solar power integration for remote deployment, and machine learning for weather pattern prediction.</p>
+                        </div>
+                    </div>
+                `
+            },
+            "farmtools": {
+                title: "FarmTools - Agricultural Equipment Marketplace",
+                content: `
+                    <div class="project-detail">
+                        <div class="project-meta mb-4">
+                            <span class="badge bg-success me-2">HackAttack 2025</span>
+                            <span class="badge bg-info">2025</span>
+                            <span class="badge bg-primary">Full Stack</span>
+                        </div>
+                        
+                        <div class="project-context mb-4">
+                            <h4><i class="fas fa-code me-2"></i>Project Context</h4>
+                            <p>Developed at <strong>HackAttack 2025</strong>, a competitive hackathon focusing on agricultural technology solutions. This project aimed to address the challenges faced by small-scale farmers in accessing affordable farming equipment through technology.</p>
+                            <p><strong>Hackathon Theme:</strong> Digital Solutions for Agricultural Challenges</p>
+                            <p><strong>Team Size:</strong> 3 members</p>
+                        </div>
+                        
+                        <div class="project-overview mb-4">
+                            <h4><i class="fas fa-tractor me-2"></i>Project Overview</h4>
+                            <p>A full-stack MERN (MongoDB, Express.js, React.js, Node.js) marketplace platform connecting farmers directly with agricultural equipment suppliers. The platform enables transparent pricing, equipment rental options, and direct communication between farmers and suppliers.</p>
+                        </div>
+                        
+                        <div class="project-problem mb-4">
+                            <h4><i class="fas fa-exclamation-circle me-2"></i>Problem Statement</h4>
+                            <ul>
+                                <li>Farmers face high equipment costs due to multiple intermediaries</li>
+                                <li>Limited access to modern farming equipment in rural areas</li>
+                                <li>Lack of transparency in equipment pricing and availability</li>
+                                <li>Difficulty in finding reliable equipment suppliers</li>
+                                <li>No platform for equipment rental or sharing among farmers</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-solution mb-4">
+                            <h4><i class="fas fa-lightbulb me-2"></i>Core Solution</h4>
+                            
+                            <div class="solution-component mb-3">
+                                <h5>🔹 Farmer Features</h5>
+                                <ul>
+                                    <li><strong>Equipment Search:</strong> Filter by type, price, location</li>
+                                    <li><strong>Direct Messaging:</strong> Chat with suppliers</li>
+                                    <li><strong>Rental Options:</strong> Daily/weekly/monthly rentals</li>
+                                    <li><strong>Reviews & Ratings:</strong> Rate equipment and suppliers</li>
+                                    <li><strong>Booking System:</strong> Reserve equipment in advance</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="solution-component mb-3">
+                                <h5>🔹 Supplier Features</h5>
+                                <ul>
+                                    <li><strong>Inventory Management:</strong> Add, update, delete equipment listings</li>
+                                    <li><strong>Order Management:</strong> Track bookings and rentals</li>
+                                    <li><strong>Analytics Dashboard:</strong> Sales and performance metrics</li>
+                                    <li><strong>Profile Management:</strong> Business information and verification</li>
+                                    <li><strong>Communication Center:</strong> Manage farmer inquiries</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="solution-component">
+                                <h5>🔹 Platform Features</h5>
+                                <ul>
+                                    <li><strong>Secure Payments:</strong> Integrated payment gateway</li>
+                                    <li><strong>Location Services:</strong> Find nearby equipment</li>
+                                    <li><strong>Document Verification:</strong> Supplier authentication</li>
+                                    <li><strong>Notifications:</strong> Real-time updates</li>
+                                    <li><strong>Multi-language Support:</strong> Regional language options</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="technical-architecture mb-4">
+                            <h4><i class="fas fa-sitemap me-2"></i>Technical Architecture</h4>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h5>Frontend (React.js)</h5>
+                                    <ul>
+                                        <li>Component-based architecture</li>
+                                        <li>Responsive design with Bootstrap</li>
+                                        <li>State management with Redux</li>
+                                        <li>Real-time updates with Socket.io</li>
+                                        <li>Progressive Web App features</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5>Backend (Node.js + Express)</h5>
+                                    <ul>
+                                        <li>RESTful API design</li>
+                                        <li>JWT authentication</li>
+                                        <li>Role-based access control</li>
+                                        <li>File upload handling</li>
+                                        <li>Email notification system</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5>Database (MongoDB)</h5>
+                                    <ul>
+                                        <li>NoSQL document storage</li>
+                                        <li>User profiles and equipment data</li>
+                                        <li>Transaction history</li>
+                                        <li>Chat messages and notifications</li>
+                                        <li>Geospatial queries for location</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-stack-details mb-4">
+                            <h4><i class="fas fa-tools me-2"></i>Complete Tech Stack</h4>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-primary p-2">MongoDB</span>
+                                <span class="badge bg-info p-2">Express.js</span>
+                                <span class="badge bg-success p-2">React.js</span>
+                                <span class="badge bg-warning p-2">Node.js</span>
+                                <span class="badge bg-danger p-2">JWT Auth</span>
+                                <span class="badge bg-secondary p-2">Redux</span>
+                                <span class="badge bg-dark p-2">Socket.io</span>
+                                <span class="badge bg-purple p-2">Bootstrap</span>
+                            </div>
+                        </div>
+                        
+                        <div class="key-features mb-4">
+                            <h4><i class="fas fa-star me-2"></i>Key Features Implemented</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>User authentication with JWT tokens</li>
+                                        <li>Equipment search with advanced filters</li>
+                                        <li>Real-time chat between farmers and suppliers</li>
+                                        <li>Booking and reservation system</li>
+                                        <li>Payment integration (demo version)</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>Review and rating system</li>
+                                        <li>Mobile-responsive design</li>
+                                        <li>Email notifications</li>
+                                        <li>Image upload for equipment listings</li>
+                                        <li>Admin dashboard for platform management</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="hackathon-performance mb-4">
+                            <h4><i class="fas fa-trophy me-2"></i>Hackathon Performance</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>What Went Well</h5>
+                                    <ul>
+                                        <li>Completed all core features within timeframe</li>
+                                        <li>Implemented clean and intuitive UI</li>
+                                        <li>Successfully integrated all MERN stack components</li>
+                                        <li>Effective team collaboration and task distribution</li>
+                                        <li>Clear presentation and demonstration</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Areas for Improvement</h5>
+                                    <ul>
+                                        <li>Payment gateway integration incomplete</li>
+                                        <li>Limited testing on different devices</li>
+                                        <li>Could have added more advanced features</li>
+                                        <li>Documentation could be more comprehensive</li>
+                                        <li>Performance optimization needed</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="technical-challenges mb-4">
+                            <h4><i class="fas fa-cogs me-2"></i>Technical Challenges Overcome</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Frontend Challenges</h5>
+                                    <ul>
+                                        <li>State management across multiple components</li>
+                                        <li>Real-time chat implementation</li>
+                                        <li>Responsive design for all screen sizes</li>
+                                        <li>Image optimization and upload</li>
+                                        <li>Form validation and error handling</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Backend Challenges</h5>
+                                    <ul>
+                                        <li>JWT authentication implementation</li>
+                                        <li>Database schema design</li>
+                                        <li>Real-time communication with Socket.io</li>
+                                        <li>File handling and storage</li>
+                                        <li>API security and validation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-outcome">
+                            <h4><i class="fas fa-chart-line me-2"></i>Project Outcome & Learnings</h4>
+                            <p>Successfully delivered a functional prototype at HackAttack 2025. The project demonstrated our ability to build a full-stack application from scratch within tight deadlines. Received positive feedback for addressing a real-world agricultural challenge with a practical technology solution.</p>
+                            <p><strong>Key Learnings:</strong> MERN stack development, real-time application features, team collaboration in hackathon environment, presentation skills, and importance of user-centered design.</p>
+                            <p><strong>Future Scope:</strong> Mobile app development, AI-based equipment recommendations, IoT integration for equipment monitoring, blockchain for transparent transactions, and expansion to other agricultural services.</p>
+                        </div>
+                    </div>
+                `
+            },
+            "language-learning": {
+                title: "AI Language Learning Platform",
+                content: `
+                    <div class="project-detail">
+                        <div class="project-meta mb-4">
+                            <span class="badge bg-primary me-2">CodeFiesta 5.0</span>
+                            <span class="badge bg-success">4th Place</span>
+                            <span class="badge bg-warning">AI + Web</span>
+                        </div>
+                        
+                        <div class="project-context mb-4">
+                            <h4><i class="fas fa-university me-2"></i>Project Context</h4>
+                            <p>Developed at <strong>SKSVMA College CodeFiesta 5.0</strong> in Karnataka, a statewide hackathon attracting participants from across Karnataka. Our team secured <strong>4th place</strong> among 50+ participating teams, demonstrating the potential of AI in education technology.</p>
+                            <p><strong>Hackathon Theme:</strong> AI-Powered Educational Solutions</p>
+                            <p><strong>Achievement:</strong> 4th Place Winner</p>
+                        </div>
+                        
+                        <div class="project-overview mb-4">
+                            <h4><i class="fas fa-language me-2"></i>Project Overview</h4>
+                            <p>An AI-powered language learning platform that creates personalized learning journeys based on individual proficiency levels, learning styles, and goals. The platform uses machine learning algorithms to adapt content and suggest vocabulary in real-time.</p>
+                        </div>
+                        
+                        <div class="project-problem mb-4">
+                            <h4><i class="fas fa-exclamation-circle me-2"></i>Problem Statement</h4>
+                            <ul>
+                                <li>Traditional language learning apps offer one-size-fits-all approaches</li>
+                                <li>Lack of personalized vocabulary recommendations</li>
+                                <li>No adaptive learning paths based on progress</li>
+                                <li>Limited speaking and pronunciation practice</li>
+                                <li>Difficulty in tracking comprehensive progress metrics</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="project-solution mb-4">
+                            <h4><i class="fas fa-lightbulb me-2"></i>Core Solution</h4>
+                            
+                            <div class="solution-component mb-3">
+                                <h5>🔹 AI-Powered Personalization</h5>
+                                <ul>
+                                    <li><strong>Adaptive Learning Paths:</strong> Customized based on proficiency tests</li>
+                                    <li><strong>Vocabulary Suggestions:</strong> ML algorithms recommend relevant words</li>
+                                    <li><strong>Progress Prediction:</strong> AI predicts learning trajectory</li>
+                                    <li><strong>Content Adaptation:</strong> Adjusts difficulty based on performance</li>
+                                    <li><strong>Learning Style Recognition:</strong> Identifies optimal learning methods</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="solution-component mb-3">
+                                <h5>🔹 Learning Features</h5>
+                                <ul>
+                                    <li><strong>Interactive Lessons:</strong> Gamified learning experience</li>
+                                    <li><strong>Pronunciation Analysis:</strong> Speech recognition for feedback</li>
+                                    <li><strong>Progress Tracking:</strong> Comprehensive analytics dashboard</li>
+                                    <li><strong>Community Features:</strong> Connect with other learners</li>
+                                    <li><strong>Daily Challenges:</strong> Personalized practice exercises</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="solution-component">
+                                <h5>🔹 Platform Capabilities</h5>
+                                <ul>
+                                    <li><strong>Multi-language Support:</strong> English, Spanish, French, German</li>
+                                    <li><strong>Mobile & Web Access:</strong> Cross-platform availability</li>
+                                    <li><strong>Offline Mode:</strong> Download lessons for offline use</li>
+                                    <li><strong>Teacher Dashboard:</strong> For classroom integration</li>
+                                    <li><strong>API Access:</strong> For integration with other platforms</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="ai-implementation mb-4">
+                            <h4><i class="fas fa-brain me-2"></i>AI Implementation</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Machine Learning Models</h5>
+                                    <ul>
+                                        <li><strong>Recommendation System:</strong> Collaborative filtering for vocabulary</li>
+                                        <li><strong>Proficiency Assessment:</strong> NLP for evaluating language skills</li>
+                                        <li><strong>Progress Prediction:</strong> Time series forecasting</li>
+                                        <li><strong>Content Classification:</strong> Categorizing learning materials</li>
+                                        <li><strong>Speech Recognition:</strong> For pronunciation analysis</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Data Processing</h5>
+                                    <ul>
+                                        <li><strong>User Behavior Analysis:</strong> Tracking learning patterns</li>
+                                        <li><strong>Content Optimization:</strong> A/B testing for effectiveness</li>
+                                        <li><strong>Feedback Processing:</strong> Sentiment analysis on user feedback</li>
+                                        <li><strong>Performance Metrics:</strong> Learning efficiency calculations</li>
+                                        <li><strong>Dataset Management:</strong> Curated language learning datasets</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-stack-details mb-4">
+                            <h4><i class="fas fa-tools me-2"></i>Complete Tech Stack</h4>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-primary p-2">Django</span>
+                                <span class="badge bg-info p-2">Python</span>
+                                <span class="badge bg-success p-2">PostgreSQL</span>
+                                <span class="badge bg-warning p-2">React.js</span>
+                                <span class="badge bg-danger p-2">TensorFlow</span>
+                                <span class="badge bg-secondary p-2">REST API</span>
+                                <span class="badge bg-dark p-2">NLTK</span>
+                                <span class="badge bg-purple p-2">Web Speech API</span>
+                            </div>
+                        </div>
+                        
+                        <div class="key-features mb-4">
+                            <h4><i class="fas fa-star me-2"></i>Key Features Implemented</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>AI-powered vocabulary recommendations</li>
+                                        <li>Personalized learning paths</li>
+                                        <li>Real-time pronunciation feedback</li>
+                                        <li>Comprehensive progress analytics</li>
+                                        <li>Adaptive difficulty adjustment</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li>Gamified learning experience</li>
+                                        <li>Multi-language support</li>
+                                        <li>Mobile-responsive design</li>
+                                        <li>Community features</li>
+                                        <li>Offline learning capability</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="competition-performance mb-4">
+                            <h4><i class="fas fa-trophy me-2"></i>Competition Performance</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Strengths Recognized</h5>
+                                    <ul>
+                                        <li>Innovative use of AI in education</li>
+                                        <li>Comprehensive feature set</li>
+                                        <li>Clean and intuitive user interface</li>
+                                        <li>Technical implementation quality</li>
+                                        <li>Practical applicability</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Judges' Feedback</h5>
+                                    <ul>
+                                        <li>Appreciated the personalization algorithms</li>
+                                        <li>Praised the user experience design</li>
+                                        <li>Recognized the technical complexity handled</li>
+                                        <li>Suggested business model considerations</li>
+                                        <li>Encouraged further development</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="technical-achievements mb-4">
+                            <h4><i class="fas fa-cogs me-2"></i>Technical Achievements</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>AI/ML Implementation</h5>
+                                    <ul>
+                                        <li>Successfully integrated multiple ML models</li>
+                                        <li>Implemented real-time recommendations</li>
+                                        <li>Achieved 85% accuracy in proficiency assessment</li>
+                                        <li>Optimized model performance for web deployment</li>
+                                        <li>Handled large language datasets efficiently</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Full-Stack Development</h5>
+                                    <ul>
+                                        <li>Built scalable Django backend</li>
+                                        <li>Implemented responsive React frontend</li>
+                                        <li>Integrated speech recognition APIs</li>
+                                        <li>Ensured data security and privacy</li>
+                                        <li>Optimized for performance and speed</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-outcome">
+                            <h4><i class="fas fa-chart-line me-2"></i>Project Outcome & Learnings</h4>
+                            <p>Secured <strong>4th place</strong> in a competitive statewide hackathon, validating our approach to AI-powered language learning. The project demonstrated the potential of personalized education through technology and received recognition for both technical implementation and user experience design.</p>
+                            <p><strong>Key Learnings:</strong> AI integration in web applications, team collaboration under competition pressure, presentation skills for technical projects, importance of user testing, and balancing features with development time.</p>
+                            <p><strong>Future Scope:</strong> Mobile app development, expansion to more languages, integration with formal education systems, advanced speech recognition features, and potential commercialization as a standalone product.</p>
+                        </div>
+                    </div>
+                `
+            },
+            "handcricket": {
+                title: "HandCricket Game",
+                content: `
+                    <div class="project-detail">
+                        <div class="project-meta mb-4">
+                            <span class="badge bg-danger me-2">First Web Project</span>
+                            <span class="badge bg-info">Web Game</span>
+                            <span class="badge bg-success">JavaScript</span>
+                        </div>
+                        
+                        <div class="project-context mb-4">
+                            <h4><i class="fas fa-gamepad me-2"></i>Project Context</h4>
+                            <p>My <strong>first web development project</strong>, created as a personal learning exercise to understand frontend development concepts. This project marked the beginning of my web development journey and introduced me to HTML, CSS, and JavaScript fundamentals.</p>
+                            <p><strong>Personal Significance:</strong> Foundation project that sparked my interest in web development</p>
+                            <p><strong>Learning Focus:</strong> DOM manipulation, event handling, CSS styling</p>
+                        </div>
+                        
+                        <div class="project-overview mb-4">
+                            <h4><i class="fas fa-baseball-ball me-2"></i>Project Overview</h4>
+                            <p>An interactive web-based hand cricket game with IPL team themes, allowing users to play against the computer with real-time scoring, team selection, and game statistics. The game replicates the popular hand cricket game with enhanced digital features.</p>
+                        </div>
+                        
+                        <div class="project-concept mb-4">
+                            <h4><i class="fas fa-lightbulb me-2"></i>Project Concept</h4>
+                            <p>Digital adaptation of the popular hand cricket game that many of us played during school days. The game converts the physical hand gestures into digital interactions while maintaining the core rules and excitement of the original game.</p>
+                        </div>
+                        
+                        <div class="game-features mb-4">
+                            <h4><i class="fas fa-star me-2"></i>Game Features</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Core Gameplay</h5>
+                                    <ul>
+                                        <li><strong>IPL Team Selection:</strong> Choose from popular IPL teams</li>
+                                        <li><strong>Real-time Scoring:</strong> Live score updates</li>
+                                        <li><strong>Computer AI:</strong> Intelligent opponent with varying difficulty</li>
+                                        <li><strong>Game Rules:</strong> Accurate implementation of hand cricket rules</li>
+                                        <li><strong>Wicket System:</strong> Player gets out on matching numbers</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Enhanced Features</h5>
+                                    <ul>
+                                        <li><strong>Player Statistics:</strong> Track performance metrics</li>
+                                        <li><strong>Sound Effects:</strong> Cricket sounds for actions</li>
+                                        <li><strong>Visual Effects:</strong> Animations for wickets and boundaries</li>
+                                        <li><strong>Score History:</strong> Previous match results</li>
+                                        <li><strong>Responsive Design:</strong> Play on any device</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="technical-implementation mb-4">
+                            <h4><i class="fas fa-code me-2"></i>Technical Implementation</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Frontend Development</h5>
+                                    <ul>
+                                        <li><strong>HTML5:</strong> Semantic markup structure</li>
+                                        <li><strong>CSS3:</strong> Responsive styling with animations</li>
+                                        <li><strong>JavaScript ES6:</strong> Game logic and interactivity</li>
+                                        <li><strong>Canvas API:</strong> For visual elements and animations</li>
+                                        <li><strong>Local Storage:</strong> For saving game statistics</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Game Logic</h5>
+                                    <ul>
+                                        <li><strong>Random Number Generation:</strong> For computer moves</li>
+                                        <li><strong>Score Calculation:</strong> Real-time scoring system</li>
+                                        <li><strong>Game State Management:</strong> Tracking innings, wickets, etc.</li>
+                                        <li><strong>Event Handling:</strong> User interactions and game events</li>
+                                        <li><strong>AI Algorithm:</strong> Computer decision-making logic</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-stack-details mb-4">
+                            <h4><i class="fas fa-tools me-2"></i>Complete Tech Stack</h4>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-primary p-2">HTML5</span>
+                                <span class="badge bg-info p-2">CSS3</span>
+                                <span class="badge bg-success p-2">JavaScript ES6</span>
+                                <span class="badge bg-warning p-2">Firebase</span>
+                                <span class="badge bg-danger p-2">Canvas API</span>
+                                <span class="badge bg-secondary p-2">Local Storage</span>
+                                <span class="badge bg-dark p-2">Howler.js</span>
+                                <span class="badge bg-purple p-2">Bootstrap</span>
+                            </div>
+                        </div>
+                        
+                        <div class="game-mechanics mb-4">
+                            <h4><i class="fas fa-cogs me-2"></i>Game Mechanics</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Playing Rules</h5>
+                                    <ul>
+                                        <li>Players select numbers 1-6 simultaneously</li>
+                                        <li>If numbers match, batting player is out</li>
+                                        <li>If numbers don't match, batting player scores runs</li>
+                                        <li>Each player gets 10 wickets</li>
+                                        <li>Highest score after both innings wins</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Special Features</h5>
+                                    <ul>
+                                        <li><strong>Power Play:</strong> Double points for boundaries</li>
+                                        <li><strong>Super Over:</strong> Tie-breaker rounds</li>
+                                        <li><strong>Player Skills:</strong> Special abilities for teams</li>
+                                        <li><strong>Weather Effects:</strong> Random game conditions</li>
+                                        <li><strong>Tournament Mode:</strong> Multiple match series</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="development-journey mb-4">
+                            <h4><i class="fas fa-road me-2"></i>Development Journey</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Initial Challenges</h5>
+                                    <ul>
+                                        <li>Understanding DOM manipulation</li>
+                                        <li>Implementing game state management</li>
+                                        <li>Creating responsive design</li>
+                                        <li>Debugging JavaScript logic</li>
+                                        <li>Optimizing performance</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Skills Developed</h5>
+                                    <ul>
+                                        <li>HTML structure and semantics</li>
+                                        <li>CSS styling and animations</li>
+                                        <li>JavaScript programming fundamentals</li>
+                                        <li>Problem-solving for game logic</li>
+                                        <li>Debugging and testing techniques</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ui-design mb-4">
+                            <h4><i class="fas fa-paint-brush me-2"></i>UI/UX Design</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Design Elements</h5>
+                                    <ul>
+                                        <li><strong>Color Scheme:</strong> Cricket-themed colors</li>
+                                        <li><strong>Typography:</strong> Sporty and readable fonts</li>
+                                        <li><strong>Animations:</strong> Smooth transitions and effects</li>
+                                        <li><strong>Icons:</strong> Custom cricket-related icons</li>
+                                        <li><strong>Layout:</strong> Intuitive game interface</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>User Experience</h5>
+                                    <ul>
+                                        <li>Simple and intuitive controls</li>
+                                        <li>Clear game instructions</li>
+                                        <li>Immediate feedback for actions</li>
+                                        <li>Progress indicators</li>
+                                        <li>Accessibility considerations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-outcome">
+                            <h4><i class="fas fa-chart-line me-2"></i>Project Outcome & Significance</h4>
+                            <p>Successfully created a fully functional web game that provided entertainment while serving as an excellent learning project. This project laid the foundation for my web development skills and demonstrated the practical application of frontend technologies.</p>
+                            <p><strong>Key Learnings:</strong> Importance of planning before coding, value of incremental development, debugging strategies, user experience considerations, and the satisfaction of building something from scratch.</p>
+                            <p><strong>Future Enhancements:</strong> Multiplayer online mode, mobile app version, advanced AI opponents, tournament systems, integration with social media, and real-time statistics tracking.</p>
+                            <p><strong>Personal Impact:</strong> This project ignited my passion for web development and motivated me to pursue more complex projects, eventually leading to my interest in full-stack development and modern web technologies.</p>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // Initialize modals and event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get modal elements
+            const projectModal = new bootstrap.Modal(document.getElementById('projectModal'));
+            const modalLabel = document.getElementById('projectModalLabel');
+            const modalBody = document.getElementById('projectModalBody');
+            
+            // Add click event listeners to all read more buttons
+            const readMoreButtons = document.querySelectorAll('.read-more-btn');
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const projectId = this.getAttribute('data-project');
+                    
+                    if (projectDetails[projectId]) {
+                        modalLabel.textContent = projectDetails[projectId].title;
+                        modalBody.innerHTML = projectDetails[projectId].content;
+                        projectModal.show();
+                    } else {
+                        console.error('Project details not found for:', projectId);
+                    }
+                });
+            });
+            
+            // Animate elements on scroll
+            function animateOnScroll() {
+                const elements = document.querySelectorAll('.project-card');
+                
+                elements.forEach((element, index) => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.animationDelay = `${index * 0.1}s`;
+                        element.style.animationPlayState = 'running';
+                    }
+                });
+            }
+            
+            // Initial animation check
+            animateOnScroll();
+            
+            // Animate on scroll
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Add hover effects to timeline steps
+            const timelineSteps = document.querySelectorAll('.timeline-step');
+            timelineSteps.forEach(step => {
+                step.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                step.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Add smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#' || href === '#!') return;
+                    
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                    navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                    navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                }
+            });
+            
+            // Initialize tooltips
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+
+        // Parallax effect for page header
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const pageHeader = document.querySelector('.page-header');
+            
+            if (pageHeader) {
+                pageHeader.style.backgroundPositionY = scrolled * 0.5 + 'px';
+            }
+        });
+    </script>
 </body>
 </html>
