@@ -5,26 +5,439 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | V Yashwanth Kumar</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Custom styles for contact page */
+        .page-header {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .contact-info-card, .email-direct-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(78, 84, 200, 0.1);
+            height: 100%;
+        }
+        
+        .contact-info-card:hover, .email-direct-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(78, 84, 200, 0.15);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 1.2rem;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-icon i {
+            color: white;
+        }
+        
+        .contact-details h5 {
+            margin-bottom: 0.3rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .email-link, .phone-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .email-link:hover, .phone-link:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+        
+        .social-icons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn i {
+            margin-right: 0.7rem;
+            font-size: 1.2rem;
+        }
+        
+        .social-btn.github {
+            background: linear-gradient(135deg, #333, #555);
+        }
+        
+        .social-btn.linkedin {
+            background: linear-gradient(135deg, #0077b5, #00a0dc);
+        }
+        
+        .social-btn.twitter {
+            background: linear-gradient(135deg, #1da1f2, #0d95e8);
+        }
+        
+        .social-btn.instagram {
+            background: linear-gradient(135deg, #e4405f, #fd1d1d);
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .email-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .email-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .email-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .topic-item {
+            background: rgba(102, 126, 234, 0.08);
+            padding: 1.2rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .topic-item:hover {
+            background: rgba(102, 126, 234, 0.15);
+            transform: translateY(-3px);
+        }
+        
+        .topic-item i {
+            color: #667eea;
+            margin-right: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .expectation-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        
+        .expectation-item {
+            display: flex;
+            align-items: center;
+            background: rgba(102, 126, 234, 0.05);
+            padding: 1.2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .expectation-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .expectation-item i {
+            font-size: 1.8rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .expectation-item h6 {
+            margin-bottom: 0.3rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .availability-status {
+            display: flex;
+            align-items: flex-start;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .status-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 1.5rem;
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+        
+        .status-indicator.available {
+            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        .opportunity-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .opportunity-list li {
+            margin-bottom: 0.8rem;
+            padding: 0.5rem;
+            background: rgba(0, 210, 255, 0.05);
+            border-radius: 8px;
+        }
+        
+        .availability-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            height: 100%;
+        }
+        
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .collab-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .preference-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .preference-item {
+            display: flex;
+            align-items: center;
+            background: rgba(102, 126, 234, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        
+        .preference-item i {
+            margin-right: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .location-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid rgba(78, 84, 200, 0.1);
+        }
+        
+        .location-icon {
+            margin-bottom: 2rem;
+        }
+        
+        .location-highlights {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .highlight {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .highlight i {
+            font-size: 1.8rem;
+            color: #667eea;
+        }
+        
+        /* Animations */
+        .stagger-animation {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .social-icons-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .contact-info-card, .email-direct-card {
+                padding: 2rem;
+            }
+            
+            .location-card {
+                padding: 2rem;
+            }
+            
+            .location-highlights {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem 1rem;
+            }
+            
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .email-btn {
+                width: 100%;
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
     <!-- Navigation -->
- <div id="navbar-container"></div>
- <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-        <!-- ... entire navbar code ... -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-name">V Yashwanth Kumar</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">Skills & DSA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="certificates.html">Certificates</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
+
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1 class="display-4 fw-bold">Get In Touch</h1>
-                    <p class="lead">Let's build something amazing together</p>
+                    <h1 class="display-4 fw-bold stagger-animation" style="animation-delay: 0.2s;">Get In Touch</h1>
+                    <p class="lead stagger-animation" style="animation-delay: 0.4s;">Let's build something amazing together</p>
                 </div>
             </div>
         </div>
@@ -36,13 +449,13 @@
             <div class="row">
                 <!-- Contact Information -->
                 <div class="col-lg-5 mb-5 mb-lg-0">
-                    <div class="contact-info-card">
+                    <div class="contact-info-card stagger-animation" style="animation-delay: 0.3s;">
                         <h2 class="mb-4">Contact Information</h2>
                         <p class="mb-4">Feel free to reach out for collaborations, opportunities, or just to say hello!</p>
                         
                         <div class="contact-item mb-4">
                             <div class="contact-icon">
-                                <i class="fas fa-envelope fa-2x text-primary"></i>
+                                <i class="fas fa-envelope fa-2x"></i>
                             </div>
                             <div class="contact-details">
                                 <h5>Email</h5>
@@ -54,7 +467,7 @@
                         
                         <div class="contact-item mb-4">
                             <div class="contact-icon">
-                                <i class="fas fa-phone fa-2x text-primary"></i>
+                                <i class="fas fa-phone fa-2x"></i>
                             </div>
                             <div class="contact-details">
                                 <h5>Phone</h5>
@@ -66,7 +479,7 @@
                         
                         <div class="contact-item mb-4">
                             <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
+                                <i class="fas fa-map-marker-alt fa-2x"></i>
                             </div>
                             <div class="contact-details">
                                 <h5>Location</h5>
@@ -76,7 +489,7 @@
                         
                         <div class="contact-item mb-4">
                             <div class="contact-icon">
-                                <i class="fas fa-university fa-2x text-primary"></i>
+                                <i class="fas fa-university fa-2x"></i>
                             </div>
                             <div class="contact-details">
                                 <h5>Education</h5>
@@ -111,7 +524,7 @@
                 
                 <!-- Email Direct Section -->
                 <div class="col-lg-7">
-                    <div class="email-direct-card">
+                    <div class="email-direct-card stagger-animation" style="animation-delay: 0.5s;">
                         <div class="email-header">
                             <i class="fas fa-paper-plane fa-3x text-primary mb-3"></i>
                             <h2 class="mb-3">Send me an Email</h2>
@@ -154,21 +567,21 @@
                             <h5 class="mb-3">What to Expect</h5>
                             <div class="expectation-list">
                                 <div class="expectation-item">
-                                    <i class="fas fa-clock text-primary"></i>
+                                    <i class="fas fa-clock"></i>
                                     <div>
                                         <h6>Quick Response</h6>
                                         <p>I typically respond within 24 hours</p>
                                     </div>
                                 </div>
                                 <div class="expectation-item">
-                                    <i class="fas fa-comment-dots text-primary"></i>
+                                    <i class="fas fa-comment-dots"></i>
                                     <div>
                                         <h6>Clear Communication</h6>
                                         <p>Detailed and professional responses</p>
                                     </div>
                                 </div>
                                 <div class="expectation-item">
-                                    <i class="fas fa-handshake text-primary"></i>
+                                    <i class="fas fa-handshake"></i>
                                     <div>
                                         <h6>Follow-up</h6>
                                         <p>I'll follow up to ensure we're aligned</p>
@@ -185,8 +598,8 @@
     <!-- Availability Section -->
     <section class="section-padding bg-light">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
+            <div class="row align-items-center stagger-animation" style="animation-delay: 0.7s;">
+                <div class="col-lg-6 mb-5 mb-lg-0">
                     <h2 class="mb-4">Current Availability</h2>
                     <div class="availability-status">
                         <div class="status-indicator available"></div>
@@ -225,15 +638,15 @@
                             <h6 class="mb-2">Preferred Contact Methods</h6>
                             <div class="preference-list">
                                 <div class="preference-item">
-                                    <i class="fas fa-envelope text-primary"></i>
+                                    <i class="fas fa-envelope"></i>
                                     <span>Email - Primary</span>
                                 </div>
                                 <div class="preference-item">
-                                    <i class="fab fa-linkedin text-primary"></i>
+                                    <i class="fab fa-linkedin"></i>
                                     <span>LinkedIn - Professional</span>
                                 </div>
                                 <div class="preference-item">
-                                    <i class="fas fa-phone text-primary"></i>
+                                    <i class="fas fa-phone"></i>
                                     <span>Phone - After initial contact</span>
                                 </div>
                             </div>
@@ -247,7 +660,7 @@
     <!-- Location Section -->
     <section class="section-padding">
         <div class="container">
-            <div class="row">
+            <div class="row stagger-animation" style="animation-delay: 0.9s;">
                 <div class="col-12 text-center mb-5">
                     <h2 class="display-6 fw-bold">Location</h2>
                     <p class="lead">Based in Hyderabad, India</p>
@@ -284,41 +697,122 @@
     </section>
 
     <!-- Footer -->
-          <div id="footer-container"></div>
-    
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4>V Yashwanth Kumar</h4>
+                    <p>Full-Stack Developer & ML Enthusiast</p>
+                    <p class="small">B.Tech Computer Science & Engineering<br>Anurag University</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">Skills & DSA</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="certificates.html">Certificates</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Contact</h5>
+                    <p><i class="fas fa-envelope me-2"></i> yashwanthkumarv155@gmail.com</p>
+                    <p><i class="fas fa-phone me-2"></i> +91 9951810271</p>
+                    <div class="social-links">
+                        <a href="https://github.com/YashwanthChowdaryV" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/vankayalapati-yashwanth-kumar-730091315/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com/yourusername" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com/__yashwanth.15" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2024 V Yashwanth Kumar. All rights reserved.</p>
+                    <p class="mt-2 small">Crafted with <i class="fas fa-heart text-danger"></i> and passion for innovation</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-
-    
+    <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- JavaScript to load components -->
     <script>
-        // Load navbar
-        fetch('navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-container').innerHTML = data;
-                // Load common.js after navbar is loaded
-                const script = document.createElement('script');
-                script.src = 'common.js';
-                document.body.appendChild(script);
-            })
-            .catch(error => console.error('Error loading navbar:', error));
-        
-        // Load footer
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-container').innerHTML = data;
-            })
-            .catch(error => console.error('Error loading footer:', error));
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            function animateOnScroll() {
+                const elements = document.querySelectorAll('.stagger-animation');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.animationPlayState = 'running';
+                    }
+                });
+            }
+            
+            // Set initial animation state
+            const staggerElements = document.querySelectorAll('.stagger-animation');
+            staggerElements.forEach(el => {
+                el.style.animationPlayState = 'paused';
+            });
+            
+            // Animate on scroll
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Initial check
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Email topic click handlers
+            document.querySelectorAll('.topic-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const topic = this.getAttribute('data-topic');
+                    let subject = 'Portfolio Inquiry';
+                    let body = 'Hello Yashwanth,\n\nI came across your portfolio and wanted to connect...';
+                    
+                    switch(topic) {
+                        case 'internship':
+                            subject = 'Internship Opportunity';
+                            body = 'Hello Yashwanth,\n\nI came across your portfolio and would like to discuss a potential internship opportunity...';
+                            break;
+                        case 'project':
+                            subject = 'Project Collaboration';
+                            body = 'Hello Yashwanth,\n\nI saw your portfolio and I\'m interested in collaborating on a project...';
+                            break;
+                        case 'freelance':
+                            subject = 'Freelance Work Inquiry';
+                            body = 'Hello Yashwanth,\n\nI have a freelance project that might be a good fit for your skills...';
+                            break;
+                        case 'question':
+                            subject = 'Technical Question';
+                            body = 'Hello Yashwanth,\n\nI have a technical question regarding your work/projects...';
+                            break;
+                    }
+                    
+                    const encodedSubject = encodeURIComponent(subject);
+                    const encodedBody = encodeURIComponent(body);
+                    const mailtoLink = `mailto:yashwanthkumarv155@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
+                    
+                    window.location.href = mailtoLink;
+                });
+            });
+        });
     </script>
-
-    <script src="script.js"></script>
-    
 </body>
-
 </html>
-
-
-
-
