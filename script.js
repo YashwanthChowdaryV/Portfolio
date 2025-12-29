@@ -995,4 +995,673 @@ document.addEventListener('DOMContentLoaded', function() {
 // Initialize modals when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializeProjectModals();
+
+
+// Project Details Data
+const projectDetails = {
+    "academic-planning": {
+        title: "AI-Driven Academic Execution Planning Platform",
+        content: `
+            <div class="project-detail">
+                <div class="project-meta mb-4">
+                    <span class="badge bg-primary me-2">IBM SkillBuild Competition</span>
+                    <span class="badge bg-info">December 2025</span>
+                    <span class="badge bg-success">AI + Web</span>
+                </div>
+                
+                <div class="project-context mb-4">
+                    <h4><i class="fas fa-trophy me-2"></i>Project Context</h4>
+                    <p>This project was developed for the <strong>IBM SkillBuild Applied AI "Build AI Agents 2025/26" competition</strong>. The challenge was to create an AI agent that could solve real-world planning problems with practical constraints.</p>
+                </div>
+                
+                <div class="project-problem mb-4">
+                    <h4><i class="fas fa-exclamation-circle me-2"></i>Problem Statement</h4>
+                    <p>Students often create unrealistic study plans, underestimate time requirements, lack structured execution phases, and don't account for academic constraints like exam schedules, prerequisite knowledge gaps, and resource availability.</p>
+                </div>
+                
+                <div class="project-solution mb-4">
+                    <h4><i class="fas fa-lightbulb me-2"></i>Core Solution</h4>
+                    <p>An intelligent AI agent that acts as an institutional planning engine:</p>
+                    <ul>
+                        <li>Converts learning goals into realistic, phased execution plans</li>
+                        <li>Respects academic constraints (prerequisites, time availability, resource access)</li>
+                        <li>Includes fallback strategies and contingency planning</li>
+                        <li>Provides feasibility analysis before plan execution</li>
+                        <li>Generates milestone-based tracking systems</li>
+                    </ul>
+                </div>
+                
+                <div class="technical-implementation mb-4">
+                    <h4><i class="fas fa-code me-2"></i>Technical Implementation</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Frontend (React.js)</h5>
+                            <ul>
+                                <li>Interactive plan visualization dashboard</li>
+                                <li>Drag-and-drop timeline interface</li>
+                                <li>Real-time progress tracking</li>
+                                <li>Responsive design for all devices</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Backend (FastAPI + LLM)</h5>
+                            <ul>
+                                <li>Groq API integration for fast LLM inference</li>
+                                <li>LLaMA 3 model for intelligent planning</li>
+                                <li>Firestore database for user data persistence</li>
+                                <li>RESTful API architecture</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tech-stack-details mb-4">
+                    <h4><i class="fas fa-tools me-2"></i>Complete Tech Stack</h4>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge bg-primary p-2">React.js</span>
+                        <span class="badge bg-primary p-2">FastAPI</span>
+                        <span class="badge bg-info p-2">Groq API</span>
+                        <span class="badge bg-warning p-2">Firestore</span>
+                        <span class="badge bg-success p-2">Google Colab</span>
+                        <span class="badge bg-dark p-2">LLaMA 3</span>
+                        <span class="badge bg-secondary p-2">Python</span>
+                        <span class="badge bg-danger p-2">JavaScript</span>
+                    </div>
+                </div>
+                
+                <div class="key-features mb-4">
+                    <h4><i class="fas fa-star me-2"></i>Key Features</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul>
+                                <li>AI-powered realistic planning with constraint consideration</li>
+                                <li>Interactive Gantt-chart visualization</li>
+                                <li>Progress tracking with milestone alerts</li>
+                                <li>Resource requirement estimation</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul>
+                                <li>Fallback strategy generation</li>
+                                <li>Export plans to PDF/Calendar formats</li>
+                                <li>Collaborative planning features</li>
+                                <li>Mobile-responsive interface</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-outcome">
+                    <h4><i class="fas fa-chart-line me-2"></i>Project Outcome</h4>
+                    <p>Successfully submitted to IBM SkillBuild competition. The platform demonstrates how AI can transform academic planning from guesswork to data-driven strategy, potentially improving student success rates by 30-40% through realistic planning.</p>
+                </div>
+            </div>
+        `
+    },
+    "plant-care": {
+        title: "AI-Enabled Smart Plant Care System",
+        content: `
+            <div class="project-detail">
+                <div class="project-meta mb-4">
+                    <span class="badge bg-success me-2">Smart India Hackathon 2025</span>
+                    <span class="badge bg-info">October 2025</span>
+                    <span class="badge bg-warning">AIML + IoT + Web</span>
+                </div>
+                
+                <div class="project-context mb-4">
+                    <h4><i class="fas fa-users me-2"></i>Project Context</h4>
+                    <p>Built for <strong>Smart India Hackathon 2025</strong>. Although our team wasn't selected for the final round, we committed to completing the project to demonstrate our capabilities in IoT and AI integration for agricultural technology.</p>
+                    <p><strong>Team:</strong> 4 members | <strong>Duration:</strong> 2 months</p>
+                </div>
+                
+                <div class="project-problem mb-4">
+                    <h4><i class="fas fa-exclamation-circle me-2"></i>Problem Statement</h4>
+                    <ul>
+                        <li>Late pest and disease detection in crops leading to significant yield loss</li>
+                        <li>Manual irrigation systems wasting water resources</li>
+                        <li>Lack of centralized monitoring for large agricultural areas</li>
+                        <li>No early warning system for environmental stress factors</li>
+                    </ul>
+                </div>
+                
+                <div class="project-solution mb-4">
+                    <h4><i class="fas fa-lightbulb me-2"></i>Core Solution</h4>
+                    <p>An end-to-end smart plant care system integrating IoT sensors with computer vision AI:</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>IoT Monitoring Layer</h5>
+                            <ul>
+                                <li>ESP32-CAM modules for image capture</li>
+                                <li>Soil moisture sensors for automated irrigation</li>
+                                <li>Environmental sensors (temperature, humidity)</li>
+                                <li>Solar-powered operation for field deployment</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>AI Analysis Layer</h5>
+                            <ul>
+                                <li>TensorFlow model for plant disease detection</li>
+                                <li>OpenCV for image preprocessing</li>
+                                <li>Custom dataset of 5000+ plant images</li>
+                                <li>Real-time inference on edge devices</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="system-architecture mb-4">
+                    <h4><i class="fas fa-sitemap me-2"></i>System Architecture</h4>
+                    <ol>
+                        <li><strong>Data Collection:</strong> ESP32-CAM captures plant images every 6 hours</li>
+                        <li><strong>Image Processing:</strong> OpenCV preprocesses images (resize, normalize)</li>
+                        <li><strong>AI Inference:</strong> TensorFlow model identifies diseases/pests</li>
+                        <li><strong>Data Storage:</strong> Images and results stored in Firebase</li>
+                        <li><strong>Alert System:</strong> Notifications sent via mobile app/web dashboard</li>
+                        <li><strong>Automated Response:</strong> Irrigation system activated based on soil moisture</li>
+                    </ol>
+                </div>
+                
+                <div class="tech-stack-details mb-4">
+                    <h4><i class="fas fa-tools me-2"></i>Complete Tech Stack</h4>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge bg-primary p-2">ESP32-CAM</span>
+                        <span class="badge bg-success p-2">TensorFlow</span>
+                        <span class="badge bg-warning p-2">Firebase</span>
+                        <span class="badge bg-info p-2">Python</span>
+                        <span class="badge bg-danger p-2">Google Drive API</span>
+                        <span class="badge bg-dark p-2">OpenCV</span>
+                        <span class="badge bg-secondary p-2">Arduino IDE</span>
+                        <span class="badge bg-purple p-2">React Native</span>
+                    </div>
+                </div>
+                
+                <div class="key-features mb-4">
+                    <h4><i class="fas fa-star me-2"></i>Key Features Implemented</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul>
+                                <li>Real-time plant health monitoring with 92% accuracy</li>
+                                <li>Automated irrigation based on soil moisture levels</li>
+                                <li>Early pest detection with image classification</li>
+                                <li>Mobile app dashboard for remote monitoring</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul>
+                                <li>Historical data analysis and trends</li>
+                                <li>Alert system for critical conditions</li>
+                                <li>Solar-powered for off-grid operation</li>
+                                <li>Scalable architecture for large farms</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="challenges-learned mb-4">
+                    <h4><i class="fas fa-graduation-cap me-2"></i>Challenges & Learnings</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Challenges</h5>
+                            <ul>
+                                <li>Limited dataset for Indian crop diseases</li>
+                                <li>ESP32-CAM memory constraints for image processing</li>
+                                <li>Real-time data synchronization in rural areas</li>
+                                <li>Model optimization for edge deployment</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Learnings</h5>
+                            <ul>
+                                <li>IoT device power management strategies</li>
+                                <li>Transfer learning for small datasets</li>
+                                <li>End-to-end system integration</li>
+                                <li>Team collaboration in hardware-software projects</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-outcome">
+                    <h4><i class="fas fa-chart-line me-2"></i>Project Outcome</h4>
+                    <p>Successfully built a functional prototype that can detect 5 common plant diseases with 92% accuracy. The system demonstrates how IoT and AI can revolutionize traditional agriculture, potentially reducing water usage by 40% and crop loss by 30% through early detection.</p>
+                    <p><strong>Future Scope:</strong> Integration with drone imaging, expansion to more crop types, commercialization for small farmers.</p>
+                </div>
+            </div>
+        `
+    },
+    "sign-language": {
+        title: "Computer Vision–Based Hand Gesture Recognition",
+        content: `
+            <div class="project-detail">
+                <div class="project-meta mb-4">
+                    <span class="badge bg-info me-2">Innoquest#1</span>
+                    <span class="badge bg-secondary">Nov 2024 – Dec 2024</span>
+                    <span class="badge bg-primary">Computer Vision</span>
+                </div>
+                
+                <div class="project-context mb-4">
+                    <h4><i class="fas fa-university me-2"></i>Project Context</h4>
+                    <p>Developed during my <strong>2nd year</strong> as part of <strong>Innoquest#1</strong> - a university innovation challenge. This was our first exposure to computer vision and deep learning, representing a significant learning curve in a completely new technical domain.</p>
+                    <p><strong>Team:</strong> 3 members | <strong>Duration:</strong> 6 weeks</p>
+                </div>
+                
+                <div class="project-overview mb-4">
+                    <h4><i class="fas fa-eye me-2"></i>Project Overview</h4>
+                    <p>A prototype computer vision system that recognizes hand gestures from a standard webcam and displays the corresponding output on a web-based dashboard. The system demonstrates real-time gesture recognition using deep learning techniques without requiring specialized hardware.</p>
+                </div>
+                
+                <div class="project-problem mb-4">
+                    <h4><i class="fas fa-exclamation-circle me-2"></i>Problem Statement</h4>
+                    <p>Communication barriers exist between sign language users and non-signers. There is a need for an accessible, low-cost system that can interpret hand gestures using commonly available devices such as webcams, particularly in educational and public service settings.</p>
+                </div>
+                
+                <div class="what-implemented mb-4">
+                    <h4><i class="fas fa-check-circle me-2"></i>What Was Implemented (Core Work)</h4>
+                    
+                    <div class="implementation-section mb-3">
+                        <h5>🔹 Gesture Recognition Pipeline</h5>
+                        <ul>
+                            <li>Implemented a real-time webcam-based gesture recognition pipeline</li>
+                            <li>Used MobileNetV2 (convolutional neural network) trained on ASL alphabet image dataset</li>
+                            <li>Performed static hand gesture classification</li>
+                            <li>Successfully trained a multi-class ASL model (A–Z) for experimentation</li>
+                            <li>Verified model performance on controlled input data (85% accuracy on test set)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="implementation-section mb-3">
+                        <h5>🔹 Computer Vision Processing</h5>
+                        <ul>
+                            <li>Webcam frame capture using OpenCV with 30 FPS</li>
+                            <li>Hand region extraction using MediaPipe-based hand detection</li>
+                            <li>Image preprocessing pipeline: resize (224x224), normalization, augmentation</li>
+                            <li>Real-time inference on live camera feed with latency < 200ms</li>
+                            <li>Background subtraction for improved accuracy</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="implementation-section mb-3">
+                        <h5>🔹 Web-Based Dashboard (Prototype)</h5>
+                        <ul>
+                            <li>Designed a basic web dashboard to visualize gesture recognition output</li>
+                            <li>Displayed live camera feed with bounding boxes</li>
+                            <li>Real-time display of detected gesture with confidence scores</li>
+                            <li>Currently focused on single stable gestures for demonstration</li>
+                            <li>Clean and simple UI for user testing and demonstration</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="technical-details mb-4">
+                    <h4><i class="fas fa-code me-2"></i>Technical Implementation Details</h4>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Model Training</h5>
+                            <ul>
+                                <li><strong>Dataset:</strong> ASL Alphabet dataset (87,000 images)</li>
+                                <li><strong>Model:</strong> MobileNetV2 with transfer learning</li>
+                                <li><strong>Training:</strong> 50 epochs with Adam optimizer</li>
+                                <li><strong>Accuracy:</strong> 85% on validation set</li>
+                                <li><strong>Framework:</strong> PyTorch with CUDA acceleration</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>System Architecture</h5>
+                            <ul>
+                                <li><strong>Input:</strong> Webcam stream (640x480)</li>
+                                <li><strong>Processing:</strong> MediaPipe for hand detection</li>
+                                <li><strong>Classification:</strong> Custom-trained MobileNetV2</li>
+                                <li><strong>Output:</strong> Web dashboard with real-time feedback</li>
+                                <li><strong>Latency:</strong> End-to-end < 200ms</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tech-stack-details mb-4">
+                    <h4><i class="fas fa-tools me-2"></i>Complete Technology Stack</h4>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge bg-primary p-2">Python 3.9</span>
+                        <span class="badge bg-info p-2">OpenCV 4.8</span>
+                        <span class="badge bg-warning p-2">PyTorch 2.0</span>
+                        <span class="badge bg-success p-2">MobileNetV2</span>
+                        <span class="badge bg-danger p-2">MediaPipe</span>
+                        <span class="badge bg-secondary p-2">Flask</span>
+                        <span class="badge bg-dark p-2">HTML/CSS/JS</span>
+                        <span class="badge bg-purple p-2">Bootstrap</span>
+                    </div>
+                </div>
+                
+                <div class="challenges-learned mb-4">
+                    <h4><i class="fas fa-graduation-cap me-2"></i>Challenges & Learnings</h4>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Technical Challenges</h5>
+                            <ul>
+                                <li>Lighting variations affecting detection accuracy</li>
+                                <li>Background complexity in real-world settings</li>
+                                <li>Real-time performance optimization</li>
+                                <li>Dataset imbalance for certain letters</li>
+                                <li>Webcam quality and resolution limitations</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Key Learnings</h5>
+                            <ul>
+                                <li>Computer vision pipeline design and optimization</li>
+                                <li>Transfer learning with pre-trained models</li>
+                                <li>Real-time system architecture</li>
+                                <li>Web integration for AI applications</li>
+                                <li>Team collaboration in research-oriented projects</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="achievements-future mb-4">
+                    <h4><i class="fas fa-trophy me-2"></i>Achievements & Future Scope</h4>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Project Achievements</h5>
+                            <ul>
+                                <li>Successfully built a working prototype in 6 weeks</li>
+                                <li>Demonstrated real-time gesture recognition</li>
+                                <li>Presented at Innoquest#1 university exhibition</li>
+                                <li>Received positive feedback for accessibility focus</li>
+                                <li>Foundation for future computer vision projects</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Future Enhancements</h5>
+                            <ul>
+                                <li>Dynamic gesture recognition (sign language sentences)</li>
+                                <li>Mobile app deployment</li>
+                                <li>Multi-hand gesture detection</li>
+                                <li>Integration with text-to-speech</li>
+                                <li>Support for regional sign languages</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-outcome">
+                    <h4><i class="fas fa-chart-line me-2"></i>Project Outcome</h4>
+                    <p>This project served as an excellent introduction to computer vision and deep learning. Despite being our first experience with this technology stack, we successfully built a functional prototype that recognizes ASL alphabet gestures with 85% accuracy. The project demonstrated the potential of AI for accessibility applications and provided valuable hands-on experience in end-to-end AI system development.</p>
+                    <p><strong>Impact:</strong> Showcased at university exhibition, inspired further projects in assistive technology, and built foundational knowledge for subsequent AI/ML projects.</p>
+                </div>
+            </div>
+        `
+    },
+    "blue-future": {
+        title: "Blue Future - Smart Water Management System",
+        content: `
+            <div class="project-detail">
+                <div class="project-meta mb-4">
+                    <span class="badge bg-primary me-2">TEJAS2025</span>
+                    <span class="badge bg-info">In Progress</span>
+                    <span class="badge bg-success">IoT + AI</span>
+                    <span class="badge bg-warning">Group Project (10 members)</span>
+                </div>
+                
+                <div class="project-context mb-4">
+                    <h4><i class="fas fa-users me-2"></i>Project Context</h4>
+                    <p>This is a <strong>group project with 10 members</strong> initiated through connections made at <strong>TEJAS2025</strong> expo. After meeting seniors at the expo, they invited our junior team to collaborate on this department-assigned project. We're currently working as junior team members under senior guidance.</p>
+                    <p><strong>Team Structure:</strong> 4 seniors (lead roles) + 6 juniors (implementation roles)</p>
+                    <p><strong>Current Status:</strong> Active development, expected completion Q1 2026</p>
+                </div>
+                
+                <div class="project-overview mb-4">
+                    <h4><i class="fas fa-tint me-2"></i>Project Overview</h4>
+                    <p>An IoT and AI-driven comprehensive water management system designed to prevent overflow, monitor water quality in real-time, and provide intelligent insights for urban and rural water management. The system addresses both residential and agricultural water management needs.</p>
+                </div>
+                
+                <div class="project-problem mb-4">
+                    <h4><i class="fas fa-exclamation-circle me-2"></i>Problem Statement</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Urban Issues</h5>
+                            <ul>
+                                <li>Water wastage from tank overflow in apartments</li>
+                                <li>Lack of real-time quality monitoring in supply lines</li>
+                                <li>Manual operation of pumps and valves</li>
+                                <li>No predictive maintenance for water infrastructure</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Rural/Agricultural Issues</h5>
+                            <ul>
+                                <li>Inefficient irrigation water usage</li>
+                                <li>Groundwater depletion without monitoring</li>
+                                <li>Contamination detection delays</li>
+                                <li>Lack of data-driven water management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-solution mb-4">
+                    <h4><i class="fas fa-lightbulb me-2"></i>Core Solution Architecture</h4>
+                    
+                    <div class="solution-component mb-3">
+                        <h5>🔹 IoT Sensor Network</h5>
+                        <ul>
+                            <li><strong>Water Level Sensors:</strong> Ultrasonic sensors for tank monitoring</li>
+                            <li><strong>Quality Sensors:</strong> pH, turbidity, TDS, temperature sensors</li>
+                            <li><strong>Flow Meters:</strong> Measure water consumption patterns</li>
+                            <li><strong>Actuators:</strong> Automated valves and pump controllers</li>
+                            <li><strong>Communication:</strong> LoRa modules for long-range, low-power data transmission</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-component mb-3">
+                        <h5>🔹 AI-Powered Analytics</h5>
+                        <ul>
+                            <li><strong>Gemini AI Integration:</strong> For predictive analytics and insights</li>
+                            <li><strong>Anomaly Detection:</strong> Identify leaks and contamination events</li>
+                            <li><strong>Consumption Forecasting:</strong> Predict water usage patterns</li>
+                            <li><strong>Quality Trend Analysis:</strong> Monitor changes in water parameters</li>
+                            <li><strong>Optimization Algorithms:</strong> Suggest efficient usage schedules</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-component">
+                        <h5>🔹 Dashboard & Control System</h5>
+                        <ul>
+                            <li><strong>Web Dashboard:</strong> Real-time monitoring and control</li>
+                            <li><strong>Mobile App:</strong> Alerts and remote control</li>
+                            <li><strong>Automated Controls:</strong> Valve operation based on levels</li>
+                            <li><strong>Reporting:</strong> Consumption reports and insights</li>
+                            <li><strong>Multi-user Access:</strong> Different roles (admin, user, maintenance)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="system-architecture mb-4">
+                    <h4><i class="fas fa-sitemap me-2"></i>System Architecture</h4>
+                    <div class="architecture-diagram">
+                        <div class="text-center mb-3">
+                            <small class="text-muted">[Architecture visualization would be implemented]</small>
+                        </div>
+                        <ol>
+                            <li><strong>Edge Layer:</strong> Arduino with sensors collecting data</li>
+                            <li><strong>Communication Layer:</strong> LoRa modules transmitting to gateway</li>
+                            <li><strong>Gateway Layer:</strong> Raspberry Pi aggregating data</li>
+                            <li><strong>Cloud Layer:</strong> Node.js server with MongoDB database</li>
+                            <li><strong>AI Layer:</strong> Gemini AI for analytics and predictions</li>
+                            <li><strong>Presentation Layer:</strong> React.js dashboard and mobile app</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="tech-stack-details mb-4">
+                    <h4><i class="fas fa-tools me-2"></i>Complete Tech Stack</h4>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge bg-primary p-2">Arduino Uno/Nano</span>
+                        <span class="badge bg-info p-2">LoRa Modules</span>
+                        <span class="badge bg-success p-2">Node.js</span>
+                        <span class="badge bg-warning p-2">MongoDB</span>
+                        <span class="badge bg-danger p-2">Gemini AI</span>
+                        <span class="badge bg-secondary p-2">React.js</span>
+                        <span class="badge bg-dark p-2">Raspberry Pi</span>
+                        <span class="badge bg-purple p-2">Python</span>
+                        <span class="badge bg-teal p-2">MQTT</span>
+                    </div>
+                </div>
+                
+                <div class="my-role mb-4">
+                    <h4><i class="fas fa-user me-2"></i>My Role in the Project</h4>
+                    <p>As a junior team member, I'm contributing in the following areas:</p>
+                    <ul>
+                        <li><strong>Frontend Development:</strong> Building React.js components for the dashboard</li>
+                        <li><strong>API Integration:</strong> Connecting frontend with Node.js backend</li>
+                        <li><strong>Sensor Testing:</strong> Testing and calibrating water quality sensors</li>
+                        <li><strong>Documentation:</strong> Maintaining project documentation and progress reports</li>
+                        <li><strong>Testing:</strong> Participating in system integration testing</li>
+                    </ul>
+                </div>
+                
+                <div class="current-progress mb-4">
+                    <h4><i class="fas fa-tasks me-2"></i>Current Progress</h4>
+                    <div class="progress mb-2" style="height: 25px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60% Complete</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Completed Tasks</h6>
+                            <ul>
+                                <li>✅ Requirements gathering and system design</li>
+                                <li>✅ Sensor selection and procurement</li>
+                                <li>✅ Basic dashboard UI development</li>
+                                <li>✅ Backend API structure</li>
+                                <li>✅ LoRa communication testing</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>In Progress</h6>
+                            <ul>
+                                <li>🔄 AI model integration with Gemini API</li>
+                                <li>🔄 Mobile app development</li>
+                                <li>🔄 Advanced analytics implementation</li>
+                                <li>🔄 System integration testing</li>
+                                <li>🔄 Documentation and deployment planning</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="expected-outcomes mb-4">
+                    <h4><i class="fas fa-bullseye me-2"></i>Expected Outcomes</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Technical Outcomes</h5>
+                            <ul>
+                                <li>Real-time water monitoring with < 5-second latency</li>
+                                <li>Automated overflow prevention system</li>
+                                <li>Water quality alerts for contamination</li>
+                                <li>Predictive maintenance scheduling</li>
+                                <li>30% reduction in water wastage</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Project Outcomes</h5>
+                            <ul>
+                                <li>Department project completion and presentation</li>
+                                <li>Potential for commercialization or startup</li>
+                                <li>Research paper publication opportunity</li>
+                                <li>Demonstration at next TEJAS expo</li>
+                                <li>Foundation for larger smart city projects</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="challenges-insights mb-4">
+                    <h4><i class="fas fa-graduation-cap me-2"></i>Challenges & Insights</h4>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Technical Challenges</h5>
+                            <ul>
+                                <li>Sensor calibration for accurate readings</li>
+                                <li>LoRa network reliability in urban areas</li>
+                                <li>Real-time data synchronization</li>
+                                <li>Power management for remote sensors</li>
+                                <li>AI model accuracy with limited historical data</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Team & Project Insights</h5>
+                            <ul>
+                                <li>Large team coordination and task allocation</li>
+                                <li>Mentorship from senior team members</li>
+                                <li>Balancing academic commitments with project</li>
+                                <li>Hardware-software integration challenges</li>
+                                <li>Learning from experienced team members</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-outcome">
+                    <h4><i class="fas fa-chart-line me-2"></i>Project Significance</h4>
+                    <p>Blue Future represents my first experience in a large-scale, department-sponsored project. Working alongside seniors has provided invaluable mentorship in system design, project management, and advanced IoT concepts. The project addresses critical water management issues that affect both urban and rural communities in India.</p>
+                    <p><strong>Learning Value:</strong> Exposure to professional project workflows, team collaboration in large groups, hardware-software integration at scale, and working on a real-world problem with societal impact.</p>
+                    <p><strong>Future Potential:</strong> This project could evolve into a startup, research publication, or be integrated into smart city initiatives. The skills and experience gained will be foundational for my career in IoT and AI applications.</p>
+                </div>
+            </div>
+        `
+    },
+    "dinetech": {
+        title: "DineTech - Restaurant Communication System",
+        content: `
+            <div class="project-detail">
+                <div class="project-meta mb-4">
+                    <span class="badge bg-warning me-2">TEJAS2025 Expo</span>
+                    <span class="badge bg-info">January 2025</span>
+                    <span class="badge bg-success">IoT System</span>
+                </div>
+                
+                <div class="project-context mb-4">
+                    <h4><i class="fas fa-university me-2"></i>Project Context</h4>
+                    <p>Built specifically for the <strong>TEJAS2025 Expo at Anurag University</strong>, where I represented both the <strong>Department of Computer Science & Engineering</strong> and the <strong>IoT Club</strong>. The expo showcased innovative projects from across the university to industry visitors and faculty.</p>
+                    <p><strong>Expo Context:</strong> Annual technology exhibition with 100+ projects, industry judges, and potential funding opportunities</p>
+                </div>
+                
+                <div class="project-overview mb-4">
+                    <h4><i class="fas fa-utensils me-2"></i>Project Overview</h4>
+                    <p>An IoT-based communication system designed specifically for restaurants to improve customer-waiter interaction. The system replaces traditional call bells with a smart, wireless solution that displays table requests on a centralized screen in the kitchen/service area.</p>
+                </div>
+                
+                <div class="project-problem mb-4">
+                    <h4><i class="fas fa-exclamation-circle me-2"></i>Problem Statement</h4>
+                    <p>Observed during visits to local restaurants:</p>
+                    <ul>
+                        <li><strong>Inefficient Communication:</strong> Customers waving or shouting to get waiter attention</li>
+                        <li><strong>Delayed Service:</strong> Waiters missing customer requests during busy hours</li>
+                        <li><strong>Order Mistakes:</strong> Miscommunication leading to wrong orders</li>
+                        <li><strong>Customer Frustration:</strong> Poor experience affecting restaurant reputation</li>
+                        <li><strong>Staff Stress:</strong> Waiters overwhelmed during peak hours</li>
+                    </ul>
+                </div>
+                
+                <div class="project-solution mb-4">
+                    <h4><i class="fas fa-lightbulb me-2"></i>Core Solution</h4>
+                    
+                    <div class="solution-component mb-3">
+                        <h5>🔹 Customer Interface (Table-side)</h5>
+                        <ul>
+                            <li><strong>Wireless Buttons:</strong> ESP8266-based buttons at each table</li>
+                            <li><strong>Multiple Request Types:</strong> Separate buttons for "Waiter Needed," "Bill Request," "Water Refill"</li>
+                            <li><strong>LED Feedback:</strong> Visual confirmation when request is sent</li>
+                            <li><strong>Low Power Design:</strong> Battery-operated with 6-month lifespan</li>
+                            <li><strong>Simple Interface:</strong> Intuitive for customers of all ages</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="solution-component mb-3">
+                        <h5>🔹 Waiter/K
+
 });
