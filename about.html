@@ -5,235 +5,361 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | V Yashwanth Kumar</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Custom animations for about page */
+        .skill-card, .dsa-card, .experience-card, .profile-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .skill-card.visible, .dsa-card.visible, .experience-card.visible, .profile-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .skill-bar .skill-level {
+            width: 0;
+            transition: width 1.5s ease-in-out 0.3s;
+        }
+        
+        .skill-bar.animated .skill-level {
+            width: var(--skill-level);
+        }
+        
+        .page-header {
+            padding: 140px 0 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: gradientShift 10s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .skill-category-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(78, 84, 200, 0.1);
+            height: 100%;
+        }
+        
+        .skill-category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(78, 84, 200, 0.15);
+        }
+        
+        .skill-category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+        }
+        
+        .skill-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .skill-item span {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 4px;
+        }
+        
+        .dsa-card, .experience-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(78, 84, 200, 0.1);
+            height: 100%;
+            transition: all 0.4s ease;
+        }
+        
+        .dsa-card:hover, .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(78, 84, 200, 0.15);
+        }
+        
+        .dsa-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .skills-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .skills-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .skills-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .coding-profiles-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(78, 84, 200, 0.1);
+        }
+        
+        .profile-item {
+            display: flex;
+            align-items: center;
+            padding: 1.2rem;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .profile-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            padding: 0.5rem;
+        }
+        
+        .profile-icon img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .profile-info {
+            flex: 1;
+        }
+        
+        .profile-link {
+            color: #667eea;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-link:hover {
+            color: #764ba2;
+            transform: scale(1.2);
+        }
+        
+        .experience-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            gap: 1.5rem;
+        }
+        
+        .experience-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .experience-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .skill-tag {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .badge.bg-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2) !important;
+        }
+        
+        /* Typewriter effect for headings */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #667eea;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #667eea; }
+        }
+        
+        /* Floating animation */
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Pulse animation */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .skill-category-card,
+            .dsa-card,
+            .experience-card,
+            .coding-profiles-section {
+                padding: 1.5rem;
+            }
+            
+            .experience-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .profile-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+            
+            .profile-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-header {
+                padding: 120px 0 40px;
+            }
+            
+            .skill-category-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .dsa-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <span class="brand-name">V Yashwanth Kumar</span>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">Skills & DSA</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="projects.html">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="certificates.html">Certificates</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-            </ul>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-name">V Yashwanth Kumar</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">Skills & DSA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="certificates.html">Certificates</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<style>
-    /* Navbar CSS */
-    :root {
-        --navbar-primary-color: #667eea;
-        --navbar-secondary-color: #764ba2;
-        --navbar-dark-color: #333;
-        --navbar-light-color: #fff;
-    }
-
-    .navbar {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        padding: 1rem 0;
-        transition: all 0.3s ease;
-        z-index: 1000;
-    }
-
-    .navbar.scrolled {
-        padding: 0.7rem 0;
-        background: rgba(255, 255, 255, 0.98);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .navbar-brand {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 700;
-        font-size: 1.5rem;
-        color: var(--navbar-dark-color) !important;
-        display: flex;
-        align-items: center;
-    }
-
-    .brand-name {
-        background: linear-gradient(135deg, var(--navbar-primary-color) 0%, var(--navbar-secondary-color) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        transition: all 0.3s ease;
-    }
-
-    .navbar-brand:hover .brand-name {
-        transform: scale(1.05);
-    }
-
-    .navbar-nav {
-        gap: 0.5rem;
-    }
-
-    .nav-link {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 500;
-        color: var(--navbar-dark-color) !important;
-        padding: 0.5rem 1rem !important;
-        border-radius: 50px;
-        transition: all 0.3s ease;
-        position: relative;
-        margin: 0 0.2rem;
-    }
-
-    .nav-link::before {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 2px;
-        background: linear-gradient(90deg, var(--navbar-primary-color), var(--navbar-secondary-color));
-        transition: width 0.3s ease;
-    }
-
-    .nav-link:hover::before,
-    .nav-link.active::before {
-        width: 70%;
-    }
-
-    .nav-link:hover,
-    .nav-link.active {
-        color: var(--navbar-primary-color) !important;
-        background: rgba(102, 126, 234, 0.05);
-    }
-
-    .navbar-toggler {
-        border: none;
-        padding: 0.5rem;
-        border-radius: 10px;
-        background: rgba(102, 126, 234, 0.1);
-        transition: all 0.3s ease;
-    }
-
-    .navbar-toggler:focus {
-        box-shadow: none;
-    }
-
-    .navbar-toggler:hover {
-        background: rgba(102, 126, 234, 0.2);
-        transform: scale(1.05);
-    }
-
-    .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28102, 126, 234, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 991.98px) {
-        .navbar-collapse {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 15px;
-            padding: 1rem;
-            margin-top: 1rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.1);
-        }
-        
-        .nav-link {
-            margin: 0.2rem 0;
-            text-align: center;
-        }
-        
-        .nav-link::before {
-            display: none;
-        }
-        
-        .nav-link:hover,
-        .nav-link.active {
-            background: rgba(102, 126, 234, 0.1);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .navbar-brand {
-            font-size: 1.3rem;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .navbar {
-            padding: 0.8rem 0;
-        }
-        
-        .navbar.scrolled {
-            padding: 0.5rem 0;
-        }
-        
-        .navbar-brand {
-            font-size: 1.2rem;
-        }
-    }
-</style>
-
-<script>
-    // Navbar JavaScript
-    document.addEventListener('DOMContentLoaded', function() {
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-        
-        // Smooth scrolling for navbar links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (this.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
-    });
-</script>
-
-
-
-    
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1 class="display-4 fw-bold">My Skills & DSA</h1>
-                
+                    <h1 class="display-4 fw-bold typewriter">My Skills & DSA</h1>
+                    <p class="lead mt-3 floating-element" style="animation-duration: 4s;">Mastering the art of problem solving and software development</p>
                 </div>
             </div>
         </div>
@@ -244,7 +370,7 @@
         <div class="container">
             <div class="row mb-4">
                 <div class="col-12 text-center">
-                    <h2 class="display-6 fw-bold">Technical Skills</h2>
+                    <h2 class="display-6 fw-bold pulse">Technical Skills</h2>
                     <p class="text-muted">My expertise across different domains</p>
                 </div>
             </div>
@@ -252,34 +378,34 @@
             <div class="row">
                 <!-- Programming Languages -->
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="skill-category-card">
+                    <div class="skill-category-card skill-card">
                         <div class="skill-category-header">
-                            <i class="fas fa-code fa-2x text-primary me-3"></i>
+                            <i class="fas fa-code fa-2x text-primary me-3 floating-element" style="animation-duration: 3s;"></i>
                             <h4>Programming Languages</h4>
                         </div>
                         <div class="skill-items">
                             <div class="skill-item">
                                 <span>Python</span>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 95%"></div>
+                                <div class="skill-bar" data-level="95">
+                                    <div class="skill-level"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
                                 <span>JavaScript</span>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 90%"></div>
+                                <div class="skill-bar" data-level="90">
+                                    <div class="skill-level"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
                                 <span>Java</span>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 85%"></div>
+                                <div class="skill-bar" data-level="85">
+                                    <div class="skill-level"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
                                 <span>C Programming</span>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 90%"></div>
+                                <div class="skill-bar" data-level="90">
+                                    <div class="skill-level"></div>
                                 </div>
                             </div>
                         </div>
@@ -288,34 +414,34 @@
 
                 <!-- Web Technologies -->
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="skill-category-card">
+                    <div class="skill-category-card skill-card">
                         <div class="skill-category-header">
-                            <i class="fas fa-globe fa-2x text-primary me-3"></i>
+                            <i class="fas fa-globe fa-2x text-primary me-3 floating-element" style="animation-duration: 3s;"></i>
                             <h4>Web Technologies</h4>
                         </div>
-                            <div class="skill-item">
-                                <span>HTML CSS BOOTSTRAP</span>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 80%"></div>
-                                </div>
                         <div class="skill-items">
                             <div class="skill-item">
-                                <span>React.js</span>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 85%"></div>
+                                <span>HTML CSS BOOTSTRAP</span>
+                                <div class="skill-bar" data-level="80">
+                                    <div class="skill-level"></div>
                                 </div>
                             </div>
+                            <div class="skill-item">
+                                <span>React.js</span>
+                                <div class="skill-bar" data-level="85">
+                                    <div class="skill-level"></div>
+                                </div>
                             </div>
                             <div class="skill-item">
                                 <span>Node.js</span>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 75%"></div>
+                                <div class="skill-bar" data-level="75">
+                                    <div class="skill-level"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
                                 <span>SpringBoot</span>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 75%"></div>
+                                <div class="skill-bar" data-level="75">
+                                    <div class="skill-level"></div>
                                 </div>
                             </div>
                         </div>
@@ -324,34 +450,34 @@
 
                 <!-- Databases & IoT -->
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="skill-category-card">
+                    <div class="skill-category-card skill-card">
                         <div class="skill-category-header">
-                            <i class="fas fa-database fa-2x text-primary me-3"></i>
+                            <i class="fas fa-database fa-2x text-primary me-3 floating-element" style="animation-duration: 3s;"></i>
                             <h4>Databases & IoT</h4>
                         </div>
                         <div class="skill-items">
                             <div class="skill-item">
                                 <span>No SQL: Firebase and MongoDB</span>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 85%"></div>
+                                <div class="skill-bar" data-level="85">
+                                    <div class="skill-level"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
                                 <span>SQL</span>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 90%"></div>
+                                <div class="skill-bar" data-level="90">
+                                    <div class="skill-level"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
                                 <span>Raspberry Pi</span>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 85%"></div>
+                                <div class="skill-bar" data-level="85">
+                                    <div class="skill-level"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
                                 <span>Arduino/ESP8266</span>
-                                <div class="skill-bar">
-                                    <div class="skill-level" style="width: 80%"></div>
+                                <div class="skill-bar" data-level="80">
+                                    <div class="skill-level"></div>
                                 </div>
                             </div>
                         </div>
@@ -366,16 +492,16 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col-12 text-center">
-                    <h2 class="display-6 fw-bold">DSA & Competitive Programming</h2>
+                    <h2 class="display-6 fw-bold pulse">DSA & Competitive Programming</h2>
                     <p class="text-muted">My journey in problem solving and algorithms</p>
                 </div>
             </div>
             
             <div class="row align-items-center">
-                <div class="col-lg-6">
+                <div class="col-lg-6 mb-4 mb-lg-0">
                     <div class="dsa-card">
                         <div class="dsa-header">
-                            <i class="fas fa-laptop-code fa-2x text-primary me-3"></i>
+                            <i class="fas fa-laptop-code fa-2x text-primary me-3 floating-element" style="animation-duration: 3s;"></i>
                             <div>
                                 <h4>Smart Interviews Smart Coder Program</h4>
                                 <p class="text-primary fw-bold mb-0">February 2025 - October 2025</p>
@@ -394,7 +520,7 @@
                 
                 <div class="col-lg-6">
                     <div class="coding-profiles-section">
-                        <h4 class="mb-4">Coding Platforms</h4>
+                        <h4 class="mb-4 pulse">Coding Platforms</h4>
                         <div class="profile-item">
                             <div class="profile-icon">
                                 <img src="data:image/png;base64,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" alt="LeetCode">
@@ -425,7 +551,7 @@
                         
                         <div class="profile-item">
                             <div class="profile-icon">
-                                <img src="data:image/jpeg;base64,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" alt="CodeChef">
+                                <img src="data:image/jpeg;base64,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" alt="CodeChef">
                             </div>
                             <div class="profile-info">
                                 <h6>CodeChef</h6>
@@ -436,19 +562,21 @@
                                 <i class="fas fa-external-link-alt"></i>
                             </a>
                         </div>
-<div class="profile-item">
-    <div class="profile-icon">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSA0oVIp5J_H9XmnysKPfxQTxEMkC9NTI0aw&s" alt="InterviewBit">
-    </div>
-    <div class="profile-info">
-        <h6>InterviewBit</h6>
-        <p class="text-muted small">University Rank - 1</p>
-        <p class="text-muted small">Comany Specific DSA Practice</p>
-    </div>
-    <a href="https://www.interviewbit.com/profile/Yashwanth3062" target="_blank" class="profile-link">
-        <i class="fas fa-external-link-alt"></i>
-    </a>
-</div>
+                        
+                        <div class="profile-item">
+                            <div class="profile-icon">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSA0oVIp5J_H9XmnysKPfxQTxEMkC9NTI0aw&s" alt="InterviewBit">
+                            </div>
+                            <div class="profile-info">
+                                <h6>InterviewBit</h6>
+                                <p class="text-muted small">University Rank - 1</p>
+                                <p class="text-muted small">Company Specific DSA Practice</p>
+                            </div>
+                            <a href="https://www.interviewbit.com/profile/Yashwanth3062" target="_blank" class="profile-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        
                         <div class="profile-item">
                             <div class="profile-icon">
                                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAsVBMVEX///9PgcH/1ACuDwpHfL+ctNj/0QD/9typAADv3NxhjMatBAD/4XTTl5f/1zC0NDI9d72Co9Fpksm6y+Tc5fGnvd08dr3T3u5WhsPo7vawxOGhudv/9tP/7rH/1hP//vfZoJ+wFxP/54v/7az/6JT//fL/9Mr/3VL/31z/4Wz/5ID/8Lv/2z/57u3lwcDqzMveray/U1G6RkTJc3HQiIfNgYD/++nEZmX25+a5QT7CXVtLKWyXAAADgElEQVR4nO3daVPaQBjA8RhjDAQxAcJlBe8DgXJVab//B2s4qu10Zo+nQ5Nt///XZmd/86zgG7OeR0RERERERERERERE9F/UytJGVVUjzVpFb/IPanaTIDhSFwRJt1n0RoW1qjrdu7Lq5BybbUPfpraDY8xsgDkxK3rDtjUTK+DRUeLYFHu2wJzYK3rTVjVMP2Q+ChpFb9qmjv0I8yF2it62Ran9CPMhpkVv2yLJCPMhFr1t80SH1Klj2pcc0vyY9oveuHEXQuFF0Rs37kQoPCl648YhRFj+ECIsfwgRlj+ECMsfQoTlDyHC8ocQYflDiLD8IUR4qE4vb2rKRrefzFYqp/CyHoahry4MB3f3jgoffJ3uHXnrpPDG0Lc1Pg7dEz5ZAPMGOmLphDU7oO/XHRNe2gL98Nkp4b01MCc+uCQcCYSac1ou4VDg0w2xXMIXyQh9v+aOcCQC+r47wrEMGKr+eiuXcCAUnjojlAERIkSIECFChAgRIkSI0HnhZHp1pmz22Wnh7DyKolhZ/gPzqavC6XUUHxsUR4uKk8KlmW9nvHJQuIhMfZuipXPCufEA98SVY8KV1QS3xKlTwoo18DiOnRIuLM/odogrh4SCEe6G6Izwi2CE299EZ4TXImG8ckY4kRzSXLhwRij6Ncy7/ueFxwgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSIECFChAgRIkSI8ADCQ7xH+BB3q8v/H78uFL4qdtMXCvuKNdfCdyqcezWZUPk+704iEiYd1aKxiBgvBTcjbHtSbcYTCpVrvsnebTITXY2QH9IX5W5SyTENUuWaU9EMo4nnPYlmqNyM7JiqD6ns9S3xW/7gq+R+C911Og37IQYNzZozwRCj9eZJm2t09o01m/F69kNMerpFv1oPcfc6M8nlAfpLn5q2xKSpXXMSWxLj+f7Joe13ourb/kdZ2wrYzgzWrNgR8+/C9x5t7nsaqL7sP2raENv6CW5a23zaRPOfH70zJobP2gut9rWqpic1qbYM1/TeTF8NGUdnvz75WtPeurbhhY+Gl8tta3aTQPehGgRJ12yAuypz3dtLd28wXU5+e3T4MhrXlY1rt2YH9KNWljaqqhppZjy/fevZcnGu7Ntqql+GiIiIiIiIiIiIiIjob/cdbx3Q0gt9Dn0AAAAASUVORK5CYII=" alt="CodeForces">
@@ -467,19 +595,18 @@
         </div>
     </section>
 
-
     <!-- Leadership Experience -->
     <section class="section-padding">
         <div class="container">
             <div class="row mb-5">
                 <div class="col-12 text-center">
-                    <h2 class="display-6 fw-bold">Leadership & Experience</h2>
+                    <h2 class="display-6 fw-bold pulse">Leadership & Experience</h2>
                     <p class="text-muted">My contributions and roles</p>
                 </div>
             </div>
             
             <div class="row g-4">
-                <div class="col-lg-6">
+                <div class="col-lg-6 mb-4">
                     <div class="experience-card">
                         <div class="experience-header">
                             <div class="experience-icon">
@@ -501,7 +628,7 @@
                     </div>
                 </div>
                 
-                <div class="col-lg-6">
+                <div class="col-lg-6 mb-4">
                     <div class="experience-card">
                         <div class="experience-header">
                             <div class="experience-icon">
@@ -526,277 +653,115 @@
         </div>
     </section>
 
-     <!-- Footer -->
-<!-- Footer -->
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 mb-4">
-                <h4>V Yashwanth Kumar</h4>
-                <p>Full-Stack Developer & ML Enthusiast</p>
-                <p class="small">B.Tech Computer Science & Engineering<br>Anurag University</p>
-                <div class="social-links">
-                    <a href="https://github.com/YashwanthChowdaryV" target="_blank" class="social-icon floating-icon" style="animation-delay: 0.1s;">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/vankayalapati-yashwanth-kumar-730091315/" target="_blank" class="social-icon floating-icon" style="animation-delay: 0.2s;">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://twitter.com/yourusername" target="_blank" class="social-icon floating-icon" style="animation-delay: 0.3s;">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://instagram.com/__yashwanth.15" target="_blank" class="social-icon floating-icon" style="animation-delay: 0.4s;">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4>V Yashwanth Kumar</h4>
+                    <p>Full-Stack Developer & ML Enthusiast</p>
+                    <p class="small">B.Tech Computer Science & Engineering<br>Anurag University</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">Skills & DSA</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="certificates.html">Certificates</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Contact</h5>
+                    <p><i class="fas fa-envelope me-2"></i> yashwanthkumarv155@gmail.com</p>
+                    <p><i class="fas fa-phone me-2"></i> +91 9951810271</p>
+                    <div class="social-links">
+                        <a href="https://github.com/YashwanthChowdaryV" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/vankayalapati-yashwanth-kumar-730091315/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com/yourusername" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com/__yashwanth.15" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-4 mb-4">
-                <h5>Quick Links</h5>
-                <ul class="footer-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">Skills & DSA</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="certificates.html">Certificates</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <h5>Contact</h5>
-                <p><i class="fas fa-envelope"></i> yashwanthkumarv155@gmail.com</p>
-                <p><i class="fas fa-phone"></i> +91 9951810271</p>
-                <p><i class="fas fa-map-marker-alt"></i> Hyderabad, India</p>
-                <p class="small mt-3">
-                    <i class="fas fa-heart text-danger"></i> Open to internship opportunities and collaborative projects
-                </p>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2024 V Yashwanth Kumar. All rights reserved.</p>
+                    <p class="mt-2 small">Crafted with <i class="fas fa-heart text-danger"></i> and passion for innovation</p>
+                </div>
             </div>
         </div>
-        <hr>
-        <div class="row">
-            <div class="col-12 text-center">
-                <p class="mb-0">&copy; 2024 V Yashwanth Kumar. All rights reserved.</p>
-                <p class="mt-2 small">Crafted with <i class="fas fa-heart text-danger"></i> and passion for innovation</p>
-            </div>
-        </div>
-    </div>
-</footer>
+    </footer>
 
-<style>
-    /* Footer CSS */
-    :root {
-        --footer-primary-color: #667eea;
-        --footer-secondary-color: #764ba2;
-        --footer-bg: #2c3e50;
-        --footer-text: #ecf0f1;
-    }
-
-    .footer {
-        background: var(--footer-bg);
-        color: var(--footer-text);
-        padding: 4rem 0 2rem;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .footer::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: linear-gradient(90deg, var(--footer-primary-color), var(--footer-secondary-color));
-    }
-
-    .footer h4,
-    .footer h5 {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-        color: white;
-    }
-
-    .footer h4 {
-        font-size: 1.8rem;
-        background: linear-gradient(135deg, var(--footer-primary-color) 0%, var(--footer-secondary-color) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        display: inline-block;
-    }
-
-    .footer p {
-        line-height: 1.8;
-        margin-bottom: 1rem;
-        opacity: 0.9;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .footer-links {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .footer-links li {
-        margin-bottom: 0.8rem;
-    }
-
-    .footer-links a {
-        color: var(--footer-text);
-        text-decoration: none;
-        transition: all 0.3s ease;
-        display: inline-block;
-        position: relative;
-        padding-left: 0;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .footer-links a::before {
-        content: '→';
-        position: absolute;
-        left: -20px;
-        opacity: 0;
-        transition: all 0.3s ease;
-        color: var(--footer-primary-color);
-    }
-
-    .footer-links a:hover {
-        color: var(--footer-primary-color);
-        transform: translateX(10px);
-    }
-
-    .footer-links a:hover::before {
-        opacity: 1;
-        left: -15px;
-    }
-
-    .social-links {
-        display: flex;
-        gap: 1rem;
-        margin-top: 1.5rem;
-    }
-
-    .social-icon {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        color: white;
-        font-size: 1.2rem;
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .social-icon:hover {
-        background: linear-gradient(135deg, var(--footer-primary-color) 0%, var(--footer-secondary-color) 100%);
-        transform: translateY(-5px);
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-    }
-
-    .footer hr {
-        background: rgba(255, 255, 255, 0.1);
-        margin: 2rem 0;
-        height: 1px;
-        border: none;
-    }
-
-    .footer .text-center p {
-        opacity: 0.8;
-        font-size: 0.9rem;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .footer .text-danger {
-        color: #ff6b6b !important;
-    }
-
-    .footer .small {
-        font-size: 0.85rem;
-        opacity: 0.7;
-    }
-
-    /* Floating element animation for footer */
-    .floating-icon {
-        animation: float 4s ease-in-out infinite;
-    }
-
-    @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-    }
-
-    /* Contact info icons */
-    .footer i {
-        color: var(--footer-primary-color);
-        width: 20px;
-        margin-right: 10px;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 991.98px) {
-        .footer {
-            padding: 3rem 0 1.5rem;
-        }
-        
-        .footer h4 {
-            font-size: 1.6rem;
-        }
-        
-        .footer h5 {
-            font-size: 1.2rem;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .footer {
-            text-align: center;
-        }
-        
-        .footer-links a:hover {
-            transform: translateX(5px);
-        }
-        
-        .footer-links a::before {
-            display: none;
-        }
-        
-        .social-links {
-            justify-content: center;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .footer {
-            padding: 2.5rem 0 1.5rem;
-        }
-        
-        .footer h4 {
-            font-size: 1.4rem;
-        }
-        
-        .footer h5 {
-            font-size: 1.1rem;
-        }
-        
-        .social-icon {
-            width: 35px;
-            height: 35px;
-            font-size: 1rem;
-        }
-    }
-</style>
-
-    
-    <!-- Bootstrap JS Bundle -->
+    <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Simple Icons CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/index.js"></script>
-    <!-- Custom JS -->
-    <script src="script.js"></script>
+    <script>
+        // Scroll animations for elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            function animateOnScroll() {
+                const elements = document.querySelectorAll('.skill-card, .dsa-card, .experience-card, .profile-item');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.classList.add('visible');
+                        
+                        // Animate skill bars
+                        if (element.classList.contains('skill-card')) {
+                            setTimeout(() => {
+                                const skillBars = element.querySelectorAll('.skill-bar');
+                                skillBars.forEach(bar => {
+                                    const level = bar.getAttribute('data-level');
+                                    bar.style.setProperty('--skill-level', level + '%');
+                                    bar.classList.add('animated');
+                                });
+                            }, 300);
+                        }
+                    }
+                });
+            }
+            
+            // Set initial animation state
+            const animatedElements = document.querySelectorAll('.skill-card, .dsa-card, .experience-card, .profile-item');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+            });
+            
+            // Animate on scroll
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Initial check
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Set current year in footer
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('footer .text-center p').forEach(p => {
+                if (p.textContent.includes('2024')) {
+                    p.textContent = p.textContent.replace('2024', currentYear);
+                }
+            });
+            
+            // Typewriter effect cleanup
+            const typewriter = document.querySelector('.typewriter');
+            if (typewriter) {
+                setTimeout(() => {
+                    typewriter.style.borderRight = 'none';
+                }, 3500);
+            }
+        });
+    </script>
 </body>
-
 </html>
-
-
