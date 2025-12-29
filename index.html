@@ -86,50 +86,145 @@
             }
         }
         
-        /* Education card specific */
-        .education-card {
-            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+        /* Personal Details Card */
+        .personal-card {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
             border-radius: 20px;
             padding: 2.5rem;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(78, 84, 200, 0.1);
+            height: 100%;
         }
         
-        .education-card:hover {
-            transform: translateY(-15px);
+        .personal-card:hover {
+            transform: translateY(-10px);
             box-shadow: 0 25px 50px rgba(78, 84, 200, 0.15);
         }
         
-        .university-logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .profile-image-container {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 2rem;
             border-radius: 50%;
+            padding: 8px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+        }
+        
+        .personal-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.2rem;
+            padding: 0.8rem;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .personal-detail:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .detail-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .detail-icon i {
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .detail-content h6 {
+            margin-bottom: 0.3rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .detail-content p {
+            margin-bottom: 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        /* Education card specific */
+        .education-card {
+            background: linear-gradient(145deg, #ffffff, #f5f5f5);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(78, 84, 200, 0.1);
+            height: 100%;
+        }
+        
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(78, 84, 200, 0.15);
         }
         
         .education-icon {
-            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .education-icon i {
+            font-size: 1.8rem;
             color: white;
         }
         
         /* Stats counter */
         .stat-number {
-            font-size: 3.5rem;
+            font-size: 2.8rem;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
+            line-height: 1;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.8rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(78, 84, 200, 0.1);
+            text-align: center;
+            height: 100%;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(78, 84, 200, 0.15);
         }
         
         /* Action buttons */
         .action-button {
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.8rem;
             border-radius: 50px;
             font-weight: 600;
             letter-spacing: 0.5px;
@@ -158,8 +253,8 @@
         /* Feature cards */
         .feature-card {
             background: white;
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            padding: 2rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             height: 100%;
@@ -173,7 +268,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 5px;
+            width: 4px;
             height: 100%;
             background: linear-gradient(to bottom, #667eea, #764ba2);
             transition: width 0.4s ease;
@@ -185,12 +280,12 @@
         }
         
         .feature-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(78, 84, 200, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(78, 84, 200, 0.15);
         }
         
         .feature-icon {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
@@ -242,6 +337,80 @@
                 opacity: 0;
             }
         }
+        
+        /* About text styling */
+        .about-text {
+            color: #444;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        
+        .about-highlight {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        /* Education details */
+        .education-detail {
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .education-badge {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .personal-card {
+                padding: 2rem;
+            }
+            
+            .education-card {
+                padding: 1.2rem;
+            }
+            
+            .feature-card {
+                padding: 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .profile-image-container {
+                width: 200px;
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .profile-image-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .education-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .education-icon i {
+                font-size: 1.5rem;
+            }
+            
+            .personal-detail {
+                padding: 0.6rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -260,7 +429,7 @@
                         <a class="nav-link active" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="skills.html">Skills & DSA</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="projects.html">Projects</a>
@@ -287,13 +456,17 @@
                     <div class="hero-content">
                         <h6 class="text-light mb-3 floating-element" style="animation-delay: 0.2s;">Hello, I'm</h6>
                         <h1 class="display-4 fw-bold mb-3 typewriter" style="animation-delay: 0.5s;">V Yashwanth Kumar</h1>
-                        <h2 class="h3 mb-4 text-light opacity-75" style="animation-delay: 1s;">Undergraduate at Anurag University</h2>
-                        <p class="lead mb-4" style="animation-delay: 1.5s;">Computer Science Engineering student passionate about Full-Stack Development, Artificial Intelligence, and IoT.</p>
+                        <h2 class="h3 mb-4 text-light opacity-75" style="animation-delay: 1s;">Computer Science Engineering Student</h2>
+                        <p class="lead mb-4 about-text" style="color: rgba(255,255,255,0.95); animation-delay: 1.5s;">
+                            A passionate <span style="font-weight: 600;">Full-Stack Developer</span>, 
+                            <span style="font-weight: 600;">AI/ML Enthusiast</span>, and 
+                            <span style="font-weight: 600;">IoT Developer</span> currently pursuing B.Tech at Anurag University.
+                        </p>
                         <div class="hero-buttons" style="animation-delay: 2s;">
-                            <a href="#education" class="btn btn-light btn-lg me-3 action-button glow-on-hover">
-                                <i class="fas fa-graduation-cap me-2"></i>My Education
+                            <a href="#personal" class="btn btn-light btn-lg me-3 action-button glow-on-hover mb-2">
+                                <i class="fas fa-user me-2"></i>About Me
                             </a>
-                            <a href="projects.html" class="btn btn-outline-light btn-lg action-button glow-on-hover">
+                            <a href="projects.html" class="btn btn-outline-light btn-lg action-button glow-on-hover mb-2">
                                 <i class="fas fa-code me-2"></i>View Projects
                             </a>
                         </div>
@@ -301,10 +474,181 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="hero-visual text-center">
-                        <div class="hero-profile floating-element" style="animation-duration: 8s;">
-                            <div class="profile-circle" style="width: 350px; height: 350px; margin: 0 auto; background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); border-radius: 50%; padding: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
-                                <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-laptop-code" style="font-size: 8rem; color: white;"></i>
+                        <div class="profile-image-wrapper floating-element" style="animation-duration: 8s;">
+                            <div class="profile-image-container">
+                                <img src="images/profile.png" alt="V Yashwanth Kumar" class="profile-image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Details Section -->
+    <section id="personal" class="section-padding" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="display-4 fw-bold mb-3 stagger-animation" style="animation-delay: 0.2s;">Personal Details</h2>
+                    <p class="lead text-muted stagger-animation" style="animation-delay: 0.4s;">Get to know me better</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- Left Column: Personal Info & Stats -->
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <div class="personal-card stagger-animation" style="animation-delay: 0.3s;">
+                        <div class="text-center mb-4">
+                            <div class="profile-image-container">
+                                <img src="images/profile.png" alt="V Yashwanth Kumar" class="profile-image">
+                            </div>
+                            <h3 class="fw-bold mb-1">V Yashwanth Kumar</h3>
+                            <p class="text-muted">Computer Science Engineering Student</p>
+                        </div>
+                        
+                        <!-- Personal Details -->
+                        <div class="mb-4">
+                            <div class="personal-detail">
+                                <div class="detail-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="detail-content">
+                                    <h6>Email</h6>
+                                    <p>yashwanthkumarv155@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="personal-detail">
+                                <div class="detail-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="detail-content">
+                                    <h6>Phone</h6>
+                                    <p>+91 9951810271</p>
+                                </div>
+                            </div>
+                            
+                            <div class="personal-detail">
+                                <div class="detail-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="detail-content">
+                                    <h6>Location</h6>
+                                    <p>Hyderabad, India</p>
+                                </div>
+                            </div>
+                            
+                            <div class="personal-detail">
+                                <div class="detail-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="detail-content">
+                                    <h6>Education</h6>
+                                    <p>B.Tech CSE (8.68 CGPA)</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Stats -->
+                        <div class="row text-center mt-4">
+                            <div class="col-6 mb-3">
+                                <div class="stat-card">
+                                    <div class="stat-number">10+</div>
+                                    <p class="mt-2 small">Projects</p>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="stat-card">
+                                    <div class="stat-number">3</div>
+                                    <p class="mt-2 small">Domains</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stat-card">
+                                    <div class="stat-number">4</div>
+                                    <p class="mt-2 small">Hackathons</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stat-card">
+                                    <div class="stat-number">300+</div>
+                                    <p class="mt-2 small">DSA</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column: About Me -->
+                <div class="col-lg-7">
+                    <div class="stagger-animation" style="animation-delay: 0.5s;">
+                        <h2 class="fw-bold mb-4">Hello, I'm Yashwanth</h2>
+                        
+                        <div class="about-text mb-4">
+                            I'm a passionate Computer Science student at Anurag University with a strong interest in 
+                            <span class="about-highlight">full-stack development</span>, 
+                            <span class="about-highlight">AI</span>, and 
+                            <span class="about-highlight">IoT</span>. 
+                            My journey began with C programming and has evolved to include modern web technologies, 
+                            AI, embedded systems, and machine learning applications.
+                        </div>
+                        
+                        <div class="about-text mb-4">
+                            Through my academic projects, hackathons, and DSA expertise, I've built a diverse skill 
+                            set for creating innovative, optimized solutions. My strong algorithmic foundation enables 
+                            efficient problem-solving, and I continuously explore new technologies to enhance my 
+                            technical capabilities.
+                        </div>
+                        
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <h4 class="fw-bold mb-4">What I Bring to the Table</h4>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex align-items-start">
+                                            <div class="me-3">
+                                                <i class="fas fa-code text-primary" style="font-size: 1.5rem;"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="fw-bold mb-2">Strong Technical Foundation</h5>
+                                                <p class="small text-muted">Solid understanding of DSA, algorithms, and problem-solving techniques</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex align-items-start">
+                                            <div class="me-3">
+                                                <i class="fas fa-lightbulb text-primary" style="font-size: 1.5rem;"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="fw-bold mb-2">Innovative Mindset</h5>
+                                                <p class="small text-muted">Ability to create innovative solutions across multiple domains</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex align-items-start">
+                                            <div class="me-3">
+                                                <i class="fas fa-project-diagram text-primary" style="font-size: 1.5rem;"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="fw-bold mb-2">Project Experience</h5>
+                                                <p class="small text-muted">Hands-on experience with AI, IoT, and web development projects</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex align-items-start">
+                                            <div class="me-3">
+                                                <i class="fas fa-users text-primary" style="font-size: 1.5rem;"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="fw-bold mb-2">Collaborative Skills</h5>
+                                                <p class="small text-muted">Experience working in teams for hackathons and group projects</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -315,81 +659,118 @@
     </section>
 
     <!-- Education Section -->
-    <section id="education" class="section-padding" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+    <section id="education" class="section-padding">
         <div class="container">
             <div class="row mb-5">
                 <div class="col-12 text-center">
                     <h2 class="display-4 fw-bold mb-3 stagger-animation" style="animation-delay: 0.2s;">My Education</h2>
-                    <p class="lead text-muted stagger-animation" style="animation-delay: 0.4s;">Academic Journey & Achievements</p>
+                    <p class="lead text-muted stagger-animation" style="animation-delay: 0.4s;">Complete Academic Journey</p>
                 </div>
             </div>
             
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="education-card stagger-animation glow-on-hover" style="animation-delay: 0.6s;">
-                        <div class="university-logo">
-                            <i class="fas fa-university education-icon"></i>
+            <div class="row g-4">
+                <!-- University Education -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="education-card stagger-animation glow-on-hover" style="animation-delay: 0.3s;">
+                        <div class="education-icon">
+                            <i class="fas fa-university"></i>
                         </div>
-                        <h3 class="text-center fw-bold mb-3">Anurag University</h3>
-                        <h4 class="text-center text-primary mb-4">Bachelor of Technology - Computer Science & Engineering</h4>
+                        <h3 class="fw-bold mb-3">Anurag University</h3>
+                        <h5 class="text-primary mb-3">B.Tech - Computer Science & Engineering</h5>
                         
-                        <div class="row text-center mb-4">
-                            <div class="col-md-6 mb-3">
-                                <div class="p-3" style="background: rgba(78, 84, 200, 0.1); border-radius: 15px;">
-                                    <h5 class="fw-bold">Current CGPA</h5>
-                                    <div class="display-5 fw-bold text-primary">8.68/10</div>
-                                    <small class="text-muted">Till 6th Semester</small>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <div class="p-3" style="background: rgba(102, 126, 234, 0.1); border-radius: 15px;">
-                                    <h5 class="fw-bold">Expected Graduation</h5>
-                                    <div class="display-5 fw-bold text-primary">2027</div>
-                                  
-                                </div>
-                            </div>
+                        <div class="education-detail">
+                            <strong>Duration:</strong> 2022 - 2026 (Expected)
                         </div>
-                      
+                        <div class="education-detail">
+                            <strong>Current CGPA:</strong> 8.68/10
+                        </div>
+                        <div class="education-detail mb-3">
+                            <strong>Status:</strong> Till 6th Semester
+                        </div>
+                        
+                        <div class="mb-3">
+                            <span class="education-badge">Data Structures</span>
+                            <span class="education-badge">Algorithms</span>
+                            <span class="education-badge">Web Development</span>
+                            <span class="education-badge">AI/ML</span>
+                        </div>
+                        
+                        <div class="mt-3 pt-3 border-top">
+                            <small class="text-muted">
+                                <i class="fas fa-star text-warning me-1"></i>
+                                Among top 10% of department
+                            </small>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="row mt-5">
-                <div class="col-12 text-center">
-                    <a href="about.html" class="btn btn-primary btn-lg action-button glow-on-hover">
-                        <i class="fas fa-user-graduate me-2"></i>View Complete Academic Profile
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Stats -->
-    <section class="section-padding bg-dark text-white" style="position: relative; overflow: hidden;">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-md-3 col-6 mb-4 stagger-animation" style="animation-delay: 0.2s;">
-                    <div class="p-4">
-                        <div class="stat-number">10+</div>
-                        <p class="mt-2">Projects Completed</p>
+                
+                <!-- Intermediate Education -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="education-card stagger-animation glow-on-hover" style="animation-delay: 0.5s;">
+                        <div class="education-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3">FIITJEE Junior College</h3>
+                        <h5 class="text-primary mb-3">Intermediate - MPC Stream</h5>
+                        
+                        <div class="education-detail">
+                            <strong>Duration:</strong> 2021 - 2023
+                        </div>
+                        <div class="education-detail">
+                            <strong>Percentage:</strong> 92.5%
+                        </div>
+                        <div class="education-detail mb-3">
+                            <strong>Location:</strong> Saifabad, Hyderabad
+                        </div>
+                        
+                        <div class="mb-3">
+                            <span class="education-badge">Mathematics</span>
+                            <span class="education-badge">Physics</span>
+                            <span class="education-badge">Chemistry</span>
+                            <span class="education-badge">JEE Preparation</span>
+                        </div>
+                        
+                        <div class="mt-3 pt-3 border-top">
+                            <small class="text-muted">
+                                <i class="fas fa-award text-warning me-1"></i>
+                                Strong foundation in core sciences
+                            </small>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-6 mb-4 stagger-animation" style="animation-delay: 0.4s;">
-                    <div class="p-4">
-                        <div class="stat-number">25+</div>
-                        <p class="mt-2">Technologies Mastered</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6 mb-4 stagger-animation" style="animation-delay: 0.6s;">
-                    <div class="p-4">
-                        <div class="stat-number">3</div>
-                        <p class="mt-2">Hackathon Awards</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6 mb-4 stagger-animation" style="animation-delay: 0.8s;">
-                    <div class="p-4">
-                        <div class="stat-number">2</div>
-                        <p class="mt-2">Years Experience</p>
+                
+                <!-- School Education -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="education-card stagger-animation glow-on-hover" style="animation-delay: 0.7s;">
+                        <div class="education-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3">St. Pious X School</h3>
+                        <h5 class="text-primary mb-3">ICSE Board - 10th Standard</h5>
+                        
+                        <div class="education-detail">
+                            <strong>Duration:</strong> 2020 - 2021
+                        </div>
+                        <div class="education-detail">
+                            <strong>Percentage:</strong> 93.5%
+                        </div>
+                        <div class="education-detail mb-3">
+                            <strong>Board:</strong> ICSE
+                        </div>
+                        
+                        <div class="mb-3">
+                            <span class="education-badge">Mathematics</span>
+                            <span class="education-badge">Science</span>
+                            <span class="education-badge">Computer Science</span>
+                            <span class="education-badge">English</span>
+                        </div>
+                        
+                        <div class="mt-3 pt-3 border-top">
+                            <small class="text-muted">
+                                <i class="fas fa-medal text-warning me-1"></i>
+                                Excellent academic performance
+                            </small>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -397,12 +778,12 @@
     </section>
 
     <!-- Feature Cards -->
-    <section class="section-padding">
+    <section class="section-padding" style="background: #f8f9fa;">
         <div class="container">
             <div class="row mb-5">
                 <div class="col-12 text-center">
                     <h2 class="display-4 fw-bold mb-3 stagger-animation" style="animation-delay: 0.2s;">Explore My Portfolio</h2>
-                    <p class="lead text-muted stagger-animation" style="animation-delay: 0.4s;">Discover my skills, projects, and achievements</p>
+                    <p class="lead text-muted stagger-animation" style="animation-delay: 0.4s;">Discover more about my skills and achievements</p>
                 </div>
             </div>
             
@@ -411,9 +792,9 @@
                     <div class="feature-card stagger-animation" style="animation-delay: 0.3s;">
                         <div class="text-center">
                             <i class="fas fa-code feature-icon"></i>
-                            <h3 class="fw-bold mb-3">My Skills</h3>
-                            <p class="text-muted mb-4">Explore my technical expertise across multiple domains including Full-Stack Development, AI/ML, IoT, and Data Structures & Algorithms.</p>
-                            <a href="about.html#skills" class="btn btn-outline-primary btn-lg action-button">
+                            <h3 class="fw-bold mb-3">Skills & DSA</h3>
+                            <p class="text-muted mb-4">Explore my technical skills, Data Structures & Algorithms expertise, and problem-solving approach in detail.</p>
+                            <a href="skills.html" class="btn btn-outline-primary btn-lg action-button">
                                 <i class="fas fa-cogs me-2"></i>View Skills
                             </a>
                         </div>
@@ -423,11 +804,11 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="feature-card stagger-animation" style="animation-delay: 0.5s;">
                         <div class="text-center">
-                            <i class="fas fa-project-diagram feature-icon"></i>
+                            <i class="fas fa-rocket feature-icon"></i>
                             <h3 class="fw-bold mb-3">My Projects</h3>
-                            <p class="text-muted mb-4">Browse through my portfolio of innovative projects across AI, IoT, and Web Development, each with detailed implementation insights.</p>
+                            <p class="text-muted mb-4">Browse through my portfolio of innovative projects across AI, IoT, and Web Development with detailed implementation.</p>
                             <a href="projects.html" class="btn btn-outline-primary btn-lg action-button">
-                                <i class="fas fa-rocket me-2"></i>View Projects
+                                <i class="fas fa-laptop-code me-2"></i>View Projects
                             </a>
                         </div>
                     </div>
@@ -436,11 +817,11 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="feature-card stagger-animation" style="animation-delay: 0.7s;">
                         <div class="text-center">
-                            <i class="fas fa-award feature-icon"></i>
+                            <i class="fas fa-trophy feature-icon"></i>
                             <h3 class="fw-bold mb-3">My Certificates</h3>
-                            <p class="text-muted mb-4">View my certifications and achievements from hackathons, online courses, and technical competitions that validate my expertise.</p>
+                            <p class="text-muted mb-4">View my certifications and achievements from hackathons, online courses, and technical competitions.</p>
                             <a href="certificates.html" class="btn btn-outline-primary btn-lg action-button">
-                                <i class="fas fa-trophy me-2"></i>View Certificates
+                                <i class="fas fa-award me-2"></i>View Certificates
                             </a>
                         </div>
                     </div>
@@ -482,7 +863,7 @@
                     <h5>Quick Links</h5>
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
+                        <li><a href="skills.html">Skills & DSA</a></li>
                         <li><a href="projects.html">Projects</a></li>
                         <li><a href="certificates.html">Certificates</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -583,6 +964,24 @@
                     }
                 });
             });
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Typewriter effect for hero
+            const heroTitle = document.querySelector('.typewriter');
+            if (heroTitle) {
+                setTimeout(() => {
+                    heroTitle.style.borderRight = 'none';
+                }, 4000);
+            }
         });
         
         // Parallax effect on scroll
