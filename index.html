@@ -86,6 +86,232 @@
             }
         }
         
+        /* Resume Section Styles */
+        .resume-card {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(78, 84, 200, 0.1);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .resume-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            transition: width 0.4s ease;
+        }
+        
+        .resume-card:hover::before {
+            width: 100%;
+            opacity: 0.05;
+        }
+        
+        .resume-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(78, 84, 200, 0.15);
+        }
+        
+        .resume-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .resume-card:hover .resume-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .resume-icon i {
+            font-size: 2.5rem;
+            color: white;
+        }
+        
+        .resume-preview {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .resume-preview:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .resume-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .resume-preview:hover img {
+            transform: scale(1.05);
+        }
+        
+        .resume-preview-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(102, 126, 234, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .resume-preview:hover .resume-preview-overlay {
+            opacity: 1;
+        }
+        
+        .resume-preview-overlay i {
+            font-size: 3rem;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .resume-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .resume-btn {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .resume-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .resume-btn:hover::before {
+            left: 100%;
+        }
+        
+        .resume-btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+        }
+        
+        .resume-btn-secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .resume-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .resume-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px dashed rgba(102, 126, 234, 0.2);
+        }
+        
+        .resume-stat {
+            text-align: center;
+        }
+        
+        .resume-stat-number {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            line-height: 1;
+        }
+        
+        .resume-stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        /* Resume Modal */
+        .resume-modal .modal-content {
+            border-radius: 20px;
+            border: none;
+            overflow: hidden;
+            box-shadow: 0 25px 75px rgba(0, 0, 0, 0.3);
+        }
+        
+        .resume-modal .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom: none;
+            padding: 1.5rem 2rem;
+        }
+        
+        .resume-modal .modal-body {
+            padding: 0;
+            height: 70vh;
+            position: relative;
+        }
+        
+        .resume-modal iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
         /* Personal Details Card */
         .personal-card {
             background: linear-gradient(145deg, #ffffff, #f8f9fa);
@@ -374,6 +600,10 @@
                 padding: 2rem;
             }
             
+            .resume-card {
+                padding: 2rem;
+            }
+            
             .education-card {
                 padding: 1.2rem;
             }
@@ -389,6 +619,15 @@
             .profile-image-container {
                 width: 200px;
                 height: 200px;
+            }
+            
+            .resume-buttons {
+                flex-direction: column;
+            }
+            
+            .resume-stats {
+                flex-direction: column;
+                gap: 1.5rem;
             }
         }
         
@@ -409,6 +648,15 @@
             
             .personal-detail {
                 padding: 0.6rem;
+            }
+            
+            .resume-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .resume-icon i {
+                font-size: 2rem;
             }
         }
     </style>
@@ -631,6 +879,73 @@
         </div>
     </section>
 
+    <!-- Resume Section -->
+    <section id="resume" class="section-padding">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="display-4 fw-bold mb-3 stagger-animation" style="animation-delay: 0.2s;">My Resume</h2>
+                    <p class="lead text-muted stagger-animation" style="animation-delay: 0.4s;">Professional Profile & Experience</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="resume-card stagger-animation" style="animation-delay: 0.5s;">
+                        <div class="text-center">
+                            <div class="resume-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h3 class="fw-bold mb-3">V Yashwanth Kumar</h3>
+                            <h5 class="text-primary mb-3">Computer Science Engineering Student</h5>
+                            
+                            <p class="text-muted mb-4">
+                                Aspiring Computer Science and Engineering student with a strong passion for technology and innovation, 
+                                driven by hands-on experience in AI/ML applications, web development, and IoT systems. 
+                                Through academic projects and hackathons, I have cultivated a problem-solving mindset, 
+                                strong foundation in Data Structures & Algorithms, and collaborative approach to building impactful solutions.
+                            </p>
+                            
+                            <!-- Resume Preview -->
+                            <div class="resume-preview" onclick="openResumeModal()">
+                                <img src="images/resume-preview.jpg" alt="Resume Preview" id="resume-preview-img">
+                                <div class="resume-preview-overlay">
+                                    <i class="fas fa-expand-alt"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Action Buttons -->
+                            <div class="resume-buttons">
+                                <a href="images/VYashwanthKumarResume.pdf" download class="resume-btn resume-btn-primary">
+                                    <i class="fas fa-download me-2"></i>Download PDF
+                                </a>
+                                <a href="#" class="resume-btn resume-btn-secondary" onclick="openResumeModal(); return false;">
+                                    <i class="fas fa-eye me-2"></i>View Online
+                                </a>
+                            </div>
+                            
+                            <!-- Resume Stats -->
+                            <div class="resume-stats">
+                                <div class="resume-stat">
+                                    <div class="resume-stat-number">9+</div>
+                                    <div class="resume-stat-label">Projects</div>
+                                </div>
+                                <div class="resume-stat">
+                                    <div class="resume-stat-number">4</div>
+                                    <div class="resume-stat-label">Hackathons</div>
+                                </div>
+                                <div class="resume-stat">
+                                    <div class="resume-stat-number">5</div>
+                                    <div class="resume-stat-label">Tech Domains</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Education Section -->
     <section id="education" class="section-padding">
         <div class="container">
@@ -823,6 +1138,29 @@
         </div>
     </section>
 
+    <!-- Resume Modal -->
+    <div class="modal fade resume-modal" id="resumeModal" tabindex="-1" aria-labelledby="resumeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="resumeModalLabel">V Yashwanth Kumar - Resume</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="images/VYashwanthKumarResume.pdf" title="V Yashwanth Kumar Resume"></iframe>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <a href="images/VYashwanthKumarResume.pdf" download class="btn btn-primary">
+                        <i class="fas fa-download me-2"></i>Download Resume
+                    </a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i>Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -867,6 +1205,12 @@
     <!-- JavaScript for animations -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Resume Modal Functions
+        function openResumeModal() {
+            const resumeModal = new bootstrap.Modal(document.getElementById('resumeModal'));
+            resumeModal.show();
+        }
+        
         // Particle animation for hero section
         function createParticles() {
             const container = document.getElementById('particles-container');
@@ -955,6 +1299,14 @@
                     heroTitle.style.borderRight = 'none';
                 }, 4000);
             }
+            
+            // Resume preview fallback
+            const resumePreviewImg = document.getElementById('resume-preview-img');
+            if (resumePreviewImg) {
+                resumePreviewImg.onerror = function() {
+                    this.src = 'https://via.placeholder.com/600x800/667eea/ffffff?text=Resume+Preview';
+                };
+            }
         });
         
         // Parallax effect on scroll
@@ -969,6 +1321,3 @@
     </script>
 </body>
 </html>
-
-
-
